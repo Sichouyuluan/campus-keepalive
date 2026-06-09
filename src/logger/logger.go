@@ -12,7 +12,8 @@ import (
 type Level int
 
 const (
-	LevelInfo Level = iota
+	LevelDebug Level = iota
+	LevelInfo
 	LevelWarn
 	LevelError
 )
@@ -20,6 +21,8 @@ const (
 // String 日志级别字符串
 func (l Level) String() string {
 	switch l {
+	case LevelDebug:
+		return "DEBUG"
 	case LevelInfo:
 		return "INFO"
 	case LevelWarn:
@@ -102,6 +105,11 @@ func (l *Logger) log(level Level, format string, args ...interface{}) {
 	if len(l.recent) > l.maxRecent {
 		l.recent = l.recent[1:]
 	}
+}
+
+// Debug 调试日志
+func (l *Logger) Debug(format string, args ...interface{}) {
+	l.log(LevelDebug, format, args...)
 }
 
 // Info 信息日志

@@ -33,7 +33,7 @@ type Tray struct {
 	status   Status
 
 	// 菜单项
-	mStatus   *systray.MenuItem
+	mStatus    *systray.MenuItem
 	mReconnect *systray.MenuItem
 	mAutoStart *systray.MenuItem
 
@@ -65,13 +65,15 @@ func (t *Tray) Run() {
 
 // onReady 托盘初始化
 func (t *Tray) onReady() {
+	t.log.Info("托盘初始化开始")
+
 	// 设置图标（初始红色离线状态）
 	systray.SetIcon(createIcon(StatusOffline))
 	systray.SetTitle("校园网保活")
 	systray.SetTooltip("校园网自动保活工具 - 启动中...")
 
 	// 菜单项
-	t.mStatus = systray.AddMenuItem("状态: 离线", "当前网络状态")
+	t.mStatus = systray.AddMenuItem("状态: 检测中...", "当前网络状态")
 	t.mStatus.Disable()
 
 	systray.AddSeparator()
@@ -94,11 +96,13 @@ func (t *Tray) onReady() {
 	// 监听菜单事件
 	go t.handleMenuEvents(t.mReconnect, mSettings, mStatusWin, t.mAutoStart, mQuit)
 
-	// 启动网络检测
-	go t.checkLoop()
-
 	// 启动时立即检测一次
-	go t.checkAndReconnect()
+	t.log.Info("启动首次网络检测...")
+	t.checkAndReconnect()
+
+	// 启动定时检测
+	t.log.Info("启动定时检测，间隔: %d 秒", t.cfg.CheckInterval)
+	go t.checkLoop()
 }
 
 // onExit 托盘退出
@@ -112,13 +116,14 @@ func (t *Tray) handleMenuEvents(mReconnect, mSettings, mStatusWin, mAutoStart, m
 	for {
 		select {
 		case <-mReconnect.ClickedCh:
+			t.log.Info("点击：手动重连")
 			go t.ManualReconnect()
 		case <-mSettings.ClickedCh:
-			// TODO: 打开设置窗口
-			t.log.Info("点击设置（功能开发中）")
+			t.log.Info("点击：设置")
+			go openSettings(t.cfg, t.log, t)
 		case <-mStatusWin.ClickedCh:
-			// TODO: 打开状态窗口
-			t.log.Info("点击状态窗口（功能开发中）")
+			t.log.Info("点击：状态窗口")
+			go openStatus(t.cfg, t.log, t)
 		case <-mAutoStart.ClickedCh:
 			t.cfg.AutoStart = !t.cfg.AutoStart
 			if t.cfg.AutoStart {
@@ -129,6 +134,7 @@ func (t *Tray) handleMenuEvents(mReconnect, mSettings, mStatusWin, mAutoStart, m
 			config.Save(t.cfg)
 			t.log.Info("开机自启: %v", t.cfg.AutoStart)
 		case <-mQuit.ClickedCh:
+			t.log.Info("点击：退出")
 			systray.Quit()
 			return
 		}
@@ -137,14 +143,22 @@ func (t *Tray) handleMenuEvents(mReconnect, mSettings, mStatusWin, mAutoStart, m
 
 // checkLoop 定时检测循环
 func (t *Tray) checkLoop() {
-	ticker := time.NewTicker(time.Duration(t.cfg.CheckInterval) * time.Second)
+	interval := t.cfg.CheckInterval
+	if interval < 5 {
+		interval = 5
+	}
+	ticker := time.NewTicker(time.Duration(interval) * time.Second)
 	defer ticker.Stop()
+
+	t.log.Info("定时检测循环已启动，每 %d 秒检测一次", interval)
 
 	for {
 		select {
 		case <-ticker.C:
+			t.log.Debug("定时检测触发")
 			t.checkAndReconnect()
 		case <-t.stopCh:
+			t.log.Info("定时检测循环停止")
 			return
 		}
 	}
@@ -152,22 +166,23 @@ func (t *Tray) checkLoop() {
 
 // checkAndReconnect 检测并重连
 func (t *Tray) checkAndReconnect() {
+	t.log.Info("开始检测网络状态...")
 	status := t.detector.Detect()
 
 	switch status {
 	case network.StatusOnline:
+		t.log.Info("检测结果: 在线")
 		if t.status != StatusOnline {
-			t.log.Info("网络在线")
 			t.setStatus(StatusOnline)
 		}
 	case network.StatusOffline:
-		t.log.Warn("网络掉线，开始重连")
+		t.log.Warn("检测结果: 离线，开始重连")
 		t.setStatus(StatusRetrying)
 
-		result := t.loginMgr.RetryWithBackoff(5)
+		result := t.loginMgr.RetryWithBackoff(3)
 		if result.Success {
 			t.setStatus(StatusOnline)
-			t.log.Info("重连成功")
+			t.log.Info("重连成功！")
 			t.showNotification("重连成功", "校园网已重新连接")
 		} else {
 			t.setStatus(StatusOffline)
@@ -175,7 +190,7 @@ func (t *Tray) checkAndReconnect() {
 			t.showNotification("重连失败", result.Message)
 		}
 	case network.StatusUnknown:
-		t.log.Warn("网络检测超时")
+		t.log.Warn("检测结果: 超时/未知")
 	}
 }
 
@@ -187,22 +202,22 @@ func (t *Tray) setStatus(status Status) {
 	case StatusOnline:
 		systray.SetIcon(createIcon(StatusOnline))
 		systray.SetTooltip("校园网保活工具 - 在线")
-		t.mStatus.SetTitle("状态: 在线")
+		t.mStatus.SetTitle("状态: ✓ 在线")
 	case StatusOffline:
 		systray.SetIcon(createIcon(StatusOffline))
 		systray.SetTooltip("校园网保活工具 - 离线")
-		t.mStatus.SetTitle("状态: 离线")
+		t.mStatus.SetTitle("状态: ✗ 离线")
 	case StatusRetrying:
 		systray.SetIcon(createIcon(StatusRetrying))
 		systray.SetTooltip("校园网保活工具 - 重连中...")
-		t.mStatus.SetTitle("状态: 重连中...")
+		t.mStatus.SetTitle("状态: ⟳ 重连中...")
 	}
 }
 
 // showNotification 显示通知
 func (t *Tray) showNotification(title, message string) {
 	if t.cfg.Notification {
-		systray.SetTooltip(fmt.Sprintf("%s - %s", title, message))
+		systray.SetTooltip(fmt.Sprintf("校园网保活 - %s: %s", title, message))
 	}
 }
 
@@ -228,6 +243,11 @@ func (t *Tray) Stop() {
 	systray.Quit()
 }
 
+// GetStatus 获取当前状态
+func (t *Tray) GetStatus() Status {
+	return t.status
+}
+
 // ========== 图标生成 ==========
 
 // createIcon 根据状态创建 ICO 格式图标
@@ -245,7 +265,6 @@ func createIcon(status Status) []byte {
 		circleColor = color.RGBA{R: 255, G: 193, B: 7, A: 255} // 黄色
 	}
 
-	// 填充圆形
 	centerX, centerY := size/2, size/2
 	radius := size/2 - 1
 
@@ -272,12 +291,10 @@ func imageToICO(img *image.RGBA) []byte {
 
 	var buf bytes.Buffer
 
-	// ICO Header
-	binary.Write(&buf, binary.LittleEndian, uint16(0)) // Reserved
-	binary.Write(&buf, binary.LittleEndian, uint16(1)) // Type: ICO
-	binary.Write(&buf, binary.LittleEndian, uint16(1)) // Count: 1
+	binary.Write(&buf, binary.LittleEndian, uint16(0))
+	binary.Write(&buf, binary.LittleEndian, uint16(1))
+	binary.Write(&buf, binary.LittleEndian, uint16(1))
 
-	// 像素数据（BGRA 格式，从底部开始）
 	pixelData := make([]byte, size*size*4)
 	maskData := make([]byte, ((size+31)/32)*4*size)
 
@@ -308,7 +325,6 @@ func imageToICO(img *image.RGBA) []byte {
 	imageDataSize := len(pixelData) + len(maskData)
 	offset := 6 + 16
 
-	// Directory Entry
 	buf.WriteByte(byte(size))
 	buf.WriteByte(byte(size))
 	buf.WriteByte(0)
@@ -318,7 +334,6 @@ func imageToICO(img *image.RGBA) []byte {
 	binary.Write(&buf, binary.LittleEndian, uint32(imageDataSize+bitmapInfoSize))
 	binary.Write(&buf, binary.LittleEndian, uint32(offset))
 
-	// BITMAPINFOHEADER
 	binary.Write(&buf, binary.LittleEndian, uint32(40))
 	binary.Write(&buf, binary.LittleEndian, int32(size))
 	binary.Write(&buf, binary.LittleEndian, int32(size*2))

@@ -1,0 +1,19 @@
+# 编译产物
+*.exe
+!test_tray.exe
+
+# 临时文件
+.playwright-mcp/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# 系统文件
+Thumbs.db
+Desktop.ini
+
+# Go 编译缓存
+vendor/
