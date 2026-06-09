@@ -1,0 +1,42 @@
+{
+  "RT_GROUP_ICON": {
+    "APP": {
+      "0000": "icon.ico"
+    }
+  },
+  "RT_MANIFEST": {
+    "1": {
+      "0409": {
+        "description": "校园网自动登录器",
+        "minimum-os": "win7",
+        "dpi-awareness": "system",
+        "execution-level": "as invoker",
+        "uac-access": "false",
+        "uac-uiaccess": "false"
+      }
+    }
+  },
+  "RT_VERSION": {
+    "#1": {
+      "0000": {
+        "fixed": {
+          "file_version": "0.1.11.0",
+          "product_version": "0.1.11.0"
+        },
+        "info": {
+          "0409": {
+            "CompanyName": "Campus Keepalive",
+            "FileDescription": "校园网自动登录器",
+            "FileVersion": "0.1.11.0",
+            "InternalName": "campus-keepalive",
+            "LegalCopyright": "Copyright © 2026",
+            "OriginalFilename": "campus-keepalive.exe",
+            "ProductName": "校园网自动登录器",
+            "ProductVersion": "0.1.11.0",
+            "Comments": "校园网自动保活工具"
+          }
+        }
+      }
+    }
+  }
+}
