@@ -19,13 +19,13 @@ type LoginResult struct {
 
 // LoginManager 登录管理器
 type LoginManager struct {
-	server     string
-	username   string
-	password   string
-	carrier    string
-	logger     *logger.Logger
-	client     *http.Client
-	failCount  int
+	server    string
+	username  string
+	password  string
+	carrier   string
+	logger    *logger.Logger
+	client    *http.Client
+	failCount int
 }
 
 // NewLoginManager 创建登录管理器
@@ -44,12 +44,15 @@ func NewLoginManager(server, username, password, carrier string, log *logger.Log
 
 // Login 登录
 func (m *LoginManager) Login() LoginResult {
+	if m.username == "" || m.password == "" {
+		return LoginResult{Success: false, Message: "账号或密码为空"}
+	}
+
 	suffix := getCarrierSuffix(m.carrier)
 	DDDDD := m.username + suffix
 
 	loginURL := fmt.Sprintf("http://%s:801/eportal/?c=ACSetting&a=Login&url=drappall", m.server)
 
-	// 构建 POST 表单数据
 	form := url.Values{}
 	form.Set("DDDDD", DDDDD)
 	form.Set("upass", m.password)
@@ -68,7 +71,7 @@ func (m *LoginManager) Login() LoginResult {
 	result := string(body)
 
 	// 检查登录结果
-	if strings.Contains(result, "Dr.COMWebLoginID_3.htm") || strings.Contains(result, "success") || strings.Contains(result, "login_ok") {
+	if strings.Contains(result, "success") || strings.Contains(result, "login_ok") || strings.Contains(result, "Dr.COMWebLoginID_3") {
 		m.logger.Info("登录成功")
 		m.failCount = 0
 		return LoginResult{Success: true, Message: "登录成功"}
@@ -97,18 +100,20 @@ func (m *LoginManager) Logout() bool {
 }
 
 // SmartReconnect 智能重连
-// 注意：此方法只在确认离线后才调用，不要在已登录状态下调用
+// 重要：只在确认离线后才调用此方法！
 func (m *LoginManager) SmartReconnect() LoginResult {
-	// 直接尝试登录（如果已登录，认证系统会返回成功或忽略）
+	// 直接尝试登录（不先注销！）
+	m.logger.Info("开始重连，直接尝试登录...")
 	result := m.Login()
+
 	if result.Success {
 		return result
 	}
 
 	// 登录失败，可能需要先注销
-	// 但注销会断开现有连接，所以只在登录确实失败时才注销
-	m.logger.Info("登录失败，尝试注销后重新登录")
-	m.Logout()
+	// 但只有在明确知道"已登录但状态异常"时才注销
+	// 这里保守处理：不注销，只重试
+	m.logger.Warn("首次登录失败，等待 2 秒后重试...")
 	time.Sleep(2 * time.Second)
 
 	return m.Login()
@@ -116,21 +121,22 @@ func (m *LoginManager) SmartReconnect() LoginResult {
 
 // RetryWithBackoff 带退避的重试
 func (m *LoginManager) RetryWithBackoff(maxRetries int) LoginResult {
-	delays := []time.Duration{3 * time.Second, 5 * time.Second, 10 * time.Second, 10 * time.Second, 10 * time.Second}
+	delays := []time.Duration{3 * time.Second, 5 * time.Second, 10 * time.Second}
 
 	for i := 0; i < maxRetries; i++ {
+		m.logger.Info("重连尝试 %d/%d", i+1, maxRetries)
 		result := m.SmartReconnect()
 		if result.Success {
 			return result
 		}
 
 		if i < len(delays) {
-			m.logger.Warn("重试 %d/%d，等待 %v", i+1, maxRetries, delays[i])
+			m.logger.Warn("重试失败，等待 %v", delays[i])
 			time.Sleep(delays[i])
 		}
 	}
 
-	m.logger.Error("连续 %d 次失败", maxRetries)
+	m.logger.Error("连续 %d 次重连失败", maxRetries)
 	return LoginResult{Success: false, Message: "连续失败，请检查网络或账号密码"}
 }
 
@@ -140,6 +146,18 @@ func (m *LoginManager) UpdateCredentials(server, username, password, carrier str
 	m.username = username
 	m.password = password
 	m.carrier = carrier
+}
+
+// getCarrierSuffix 获取运营商后缀
+func getCarrierSuffix(carrier string) string {
+	switch carrier {
+	case "dx":
+		return "@dx"
+	case "lt":
+		return "@lt"
+	default:
+		return ""
+	}
 }
 
 // truncate 截断字符串

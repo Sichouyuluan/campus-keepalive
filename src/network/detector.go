@@ -12,9 +12,9 @@ import (
 type Status int
 
 const (
-	StatusOnline  Status = iota // 在线
-	StatusOffline               // 离线
-	StatusUnknown               // 未知
+	StatusOnline  Status = iota // 在线（已登录）
+	StatusOffline               // 离线（未登录或网络不通）
+	StatusUnknown               // 未知（检测超时）
 )
 
 // String 状态字符串
@@ -31,8 +31,8 @@ func (s Status) String() string {
 
 // Detector 网络检测器
 type Detector struct {
-	server  string
-	client  *http.Client
+	server string
+	client *http.Client
 }
 
 // NewDetector 创建检测器
@@ -45,16 +45,14 @@ func NewDetector(server string) *Detector {
 	}
 }
 
-// Detect 检测网络状态（通过 HTTP 访问认证页面）
+// Detect 检测网络状态
+// 策略：HTTP 访问认证页面，检查返回内容判断是否已登录
 func (d *Detector) Detect() Status {
-	// 访问认证页面，检查是否已登录
-	// 已登录的用户访问首页会看到"注销"按钮和用户信息
-	// 未登录的用户会看到登录页面
 	url := fmt.Sprintf("http://%s/", d.server)
 
 	resp, err := d.client.Get(url)
 	if err != nil {
-		// 网络完全不通（没连上校园网）
+		// 网络完全不通（没连上校园网，或服务器挂了）
 		return StatusOffline
 	}
 	defer resp.Body.Close()
@@ -66,13 +64,15 @@ func (d *Detector) Detect() Status {
 
 	content := string(body)
 
-	// 检查是否已登录
-	// 已登录页面包含"注销"按钮和用户信息
-	if strings.Contains(content, "注销") || strings.Contains(content, "logout") || strings.Contains(content, "NID=") {
+	// 已登录的特征：
+	// 1. 包含 uid='xxx'（用户账号）
+	// 2. 包含 NID='xxx'（用户姓名）
+	// 3. 页面标题是"用户信息页"
+	if strings.Contains(content, "uid='") && !strings.Contains(content, "uid=''") {
 		return StatusOnline
 	}
 
-	// 未登录页面（登录页面）
+	// 未登录（登录页面）
 	return StatusOffline
 }
 
@@ -89,17 +89,5 @@ func (d *Detector) DetectWithTimeout(timeout time.Duration) Status {
 		return status
 	case <-time.After(timeout):
 		return StatusUnknown
-	}
-}
-
-// getCarrierSuffix 获取运营商后缀
-func getCarrierSuffix(carrier string) string {
-	switch carrier {
-	case "dx":
-		return "@dx"
-	case "lt":
-		return "@lt"
-	default:
-		return ""
 	}
 }
