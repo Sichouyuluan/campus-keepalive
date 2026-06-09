@@ -1,0 +1,535 @@
+- generic [active] [ref=e1]:
+  - link "Skip to content" [ref=e2] [cursor=pointer]:
+    - /url: "#_top"
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - generic [ref=e5]:
+        - generic [ref=e6]:
+          - link "Tauri" [ref=e7] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e8]: Tauri
+          - generic [ref=e10]:
+            - combobox "Menu" [ref=e11] [cursor=pointer]:
+              - option "Menu" [disabled] [selected]
+              - option "Guides"
+              - option "References"
+              - option "Blog"
+              - option "Releases"
+            - img
+        - button "Search" [ref=e14] [cursor=pointer]:
+          - img [ref=e15]
+          - generic [ref=e17]: Search
+          - generic [ref=e18]:
+            - generic [ref=e19]: Ctrl
+            - generic [ref=e20]: K
+        - generic [ref=e21]:
+          - generic [ref=e22]:
+            - link "GitHub" [ref=e23] [cursor=pointer]:
+              - /url: https://github.com/tauri-apps/tauri
+              - generic [ref=e24]: GitHub
+              - img [ref=e25]
+            - link "Discord" [ref=e27] [cursor=pointer]:
+              - /url: https://discord.com/invite/tauri
+              - generic [ref=e28]: Discord
+              - img [ref=e29]
+            - link "Twitter" [ref=e31] [cursor=pointer]:
+              - /url: https://twitter.com/TauriApps
+              - generic [ref=e32]: Twitter
+              - img [ref=e33]
+            - link "Bluesky" [ref=e35] [cursor=pointer]:
+              - /url: https://bsky.app/profile/tauri.app
+              - generic [ref=e36]: Bluesky
+              - img [ref=e37]
+            - link "Mastodon" [ref=e39] [cursor=pointer]:
+              - /url: https://fosstodon.org/@TauriApps
+              - generic [ref=e40]: Mastodon
+              - img [ref=e41]
+            - link "RSS" [ref=e43] [cursor=pointer]:
+              - /url: https://v2.tauri.app/rss
+              - generic [ref=e44]: RSS
+              - img [ref=e45]
+          - generic [ref=e48]:
+            - generic [ref=e49]: Select language
+            - img
+            - combobox "Select language" [ref=e50] [cursor=pointer]:
+              - option "English" [selected]
+              - option "Français"
+              - option "Español"
+              - option "简体中文"
+              - option "日本語"
+              - option "한국어"
+            - img
+          - img [ref=e52] [cursor=pointer]
+    - main [ref=e57]:
+      - generic [ref=e59]:
+        - generic [ref=e60]:
+          - generic [ref=e65]:
+            - generic [ref=e66]:
+              - img [ref=e67]
+              - paragraph [ref=e73]: Create small, fast, secure, cross-platform applications
+              - generic [ref=e74]:
+                - link "Get started" [ref=e75] [cursor=pointer]:
+                  - /url: /start/
+                  - text: Get started
+                  - img [ref=e76]
+                - link "Tauri 1.0 Documentation" [ref=e78] [cursor=pointer]:
+                  - /url: https://v1.tauri.app
+                  - text: Tauri 1.0 Documentation
+                  - img [ref=e79]
+            - img [ref=e82]
+          - article [ref=e88]:
+            - paragraph [ref=e89]:
+              - img [ref=e90]
+              - generic [ref=e93]: Create a Project
+            - generic [ref=e95]:
+              - tablist [ref=e97]:
+                - tab "Bash" [selected] [ref=e98] [cursor=pointer]
+                - tab "PowerShell" [ref=e99] [cursor=pointer]
+                - tab "Fish" [ref=e100] [cursor=pointer]
+                - tab "npm" [ref=e101] [cursor=pointer]
+                - tab "Yarn" [ref=e102] [cursor=pointer]
+                - tab "pnpm" [ref=e103] [cursor=pointer]
+                - tab "deno" [ref=e104] [cursor=pointer]
+                - tab "bun" [ref=e105] [cursor=pointer]
+                - tab "Cargo" [ref=e106] [cursor=pointer]
+              - tabpanel "Bash" [ref=e107]:
+                - figure [ref=e109]:
+                  - code [ref=e111]:
+                    - generic [ref=e113]:
+                      - text: sh <(
+                      - generic [ref=e114]: curl https://create.tauri.app/sh
+                      - text: )
+                  - button "Copy to clipboard" [ref=e116] [cursor=pointer]
+          - generic [ref=e118]:
+            - link [ref=e119] [cursor=pointer]:
+              - /url: /start/frontend/
+              - article [ref=e120]:
+                - paragraph [ref=e121]:
+                  - img [ref=e122]
+                  - generic [ref=e125]: Frontend Independent
+                - paragraph [ref=e127]: Bring your existing web stack to Tauri or start that new dream project. Tauri supports any frontend framework so you don’t need to change your stack.
+            - link [ref=e128] [cursor=pointer]:
+              - /url: /distribute/
+              - article [ref=e129]:
+                - paragraph [ref=e130]:
+                  - img [ref=e131]
+                  - generic [ref=e134]: Cross Platform
+                - paragraph [ref=e136]: Build your app for Linux, macOS, Windows, Android and iOS - all from a single codebase. Write your frontend in JavaScript, application logic in Rust, and integrate deep into the system with Swift and Kotlin.
+            - link [ref=e137] [cursor=pointer]:
+              - /url: /security/
+              - article [ref=e138]:
+                - paragraph [ref=e139]:
+                  - img [ref=e140]
+                  - generic [ref=e143]: Maximum Security
+                - paragraph [ref=e145]: Front-of-mind for the Tauri Team that drives our highest priorities and biggest innovations.
+            - link [ref=e146] [cursor=pointer]:
+              - /url: /concept/size/
+              - article [ref=e147]:
+                - paragraph [ref=e148]:
+                  - img [ref=e149]
+                  - generic [ref=e152]: Minimal Size
+                - paragraph [ref=e154]: By using the OS’s native web renderer, the size of a Tauri app can be little as 600KB.
+          - generic [ref=e155]:
+            - generic [ref=e156]:
+              - generic [ref=e157]:
+                - heading "Supported by" [level=3] [ref=e158]
+                - link [ref=e161] [cursor=pointer]:
+                  - /url: https://crabnebula.dev/
+                  - img [ref=e163]
+              - generic [ref=e175]:
+                - heading "Open Collective Sponsors" [level=4] [ref=e176]
+                - link "1Password 1Password" [ref=e181] [cursor=pointer]:
+                  - /url: https://1password.com?ref=tauri.app&utm_source=tauri.app
+                  - img "1Password" [ref=e182]
+                  - paragraph [ref=e183]: 1Password
+                - generic [ref=e185]:
+                  - link "Lightfinder" [ref=e188] [cursor=pointer]:
+                    - /url: https://opencollective.com/lightfinder?ref=tauri.app&utm_source=tauri.app
+                    - img "Lightfinder" [ref=e189]
+                  - link "VPS Server" [ref=e192] [cursor=pointer]:
+                    - /url: https://www.vpsserver.com?ref=tauri.app&utm_source=tauri.app
+                    - img "VPS Server" [ref=e193]
+                  - link "Keygen" [ref=e196] [cursor=pointer]:
+                    - /url: https://keygen.sh/?ref=tauri.app&utm_source=tauri.app
+                    - img "Keygen" [ref=e197]
+                  - link "Sourcegraph" [ref=e200] [cursor=pointer]:
+                    - /url: https://about.sourcegraph.com?ref=tauri.app&utm_source=tauri.app
+                    - img "Sourcegraph" [ref=e201]
+                  - link "Daniel Thompson-Yvetot" [ref=e204] [cursor=pointer]:
+                    - /url: https://github.com/nothingismagick?ref=tauri.app&utm_source=tauri.app
+                    - img "Daniel Thompson-Yvetot" [ref=e205]
+                  - link "Conductor" [ref=e208] [cursor=pointer]:
+                    - /url: https://opencollective.com/conductor?ref=tauri.app&utm_source=tauri.app
+                    - img "Conductor" [ref=e209]
+                  - link "Recut" [ref=e212] [cursor=pointer]:
+                    - /url: https://getrecut.com/?ref=tauri.app&utm_source=tauri.app
+                    - img "Recut" [ref=e213]
+                  - link "PhearZero" [ref=e216] [cursor=pointer]:
+                    - /url: https://opencollective.com/phearzero?ref=tauri.app&utm_source=tauri.app
+                    - img "PhearZero" [ref=e217]
+                  - link "Mintter App" [ref=e220] [cursor=pointer]:
+                    - /url: https://mintter.com?ref=tauri.app&utm_source=tauri.app
+                    - img "Mintter App" [ref=e221]
+                  - link "Matt Campbell" [ref=e224] [cursor=pointer]:
+                    - /url: https://opencollective.com/matt-campbell1?ref=tauri.app&utm_source=tauri.app
+                    - img "Matt Campbell" [ref=e225]
+                  - link "Thad Guidry" [ref=e228] [cursor=pointer]:
+                    - /url: https://opencollective.com/thad-guidry1?ref=tauri.app&utm_source=tauri.app
+                    - img "Thad Guidry" [ref=e229]
+                  - link "Improving" [ref=e232] [cursor=pointer]:
+                    - /url: https://www.improving.com/?ref=tauri.app&utm_source=tauri.app
+                    - img "Improving" [ref=e233]
+                  - link "Pete Thomas" [ref=e236] [cursor=pointer]:
+                    - /url: https://opencollective.com/user-44f56a2f?ref=tauri.app&utm_source=tauri.app
+                    - img "Pete Thomas" [ref=e237]
+                  - link "Pierre de la Martinière" [ref=e240] [cursor=pointer]:
+                    - /url: https://opencollective.com/pierre-de-la-martiniere?ref=tauri.app&utm_source=tauri.app
+                    - img "Pierre de la Martinière" [ref=e241]
+                  - link "FUTO" [ref=e244] [cursor=pointer]:
+                    - /url: https://www.futo.org/?ref=tauri.app&utm_source=tauri.app
+                    - img "FUTO" [ref=e245]
+                  - link "Controla" [ref=e248] [cursor=pointer]:
+                    - /url: https://www.controla.ai/?ref=tauri.app&utm_source=tauri.app
+                    - img "Controla" [ref=e249]
+                  - link "CoParse" [ref=e252] [cursor=pointer]:
+                    - /url: https://coparse.com?ref=tauri.app&utm_source=tauri.app
+                    - img "CoParse" [ref=e253]
+                  - link "Eric Busch" [ref=e256] [cursor=pointer]:
+                    - /url: https://opencollective.com/user-39d3e8eb?ref=tauri.app&utm_source=tauri.app
+                    - img "Eric Busch" [ref=e257]
+                  - link "Rick Richardson" [ref=e260] [cursor=pointer]:
+                    - /url: https://opencollective.com/rick-richardson?ref=tauri.app&utm_source=tauri.app
+                    - img "Rick Richardson" [ref=e261]
+                  - link "KOBA789" [ref=e264] [cursor=pointer]:
+                    - /url: https://koba789.com/?ref=tauri.app&utm_source=tauri.app
+                    - img "KOBA789" [ref=e265]
+                  - link "Raffi Minassian" [ref=e268] [cursor=pointer]:
+                    - /url: https://opencollective.com/raffi-minassian1?ref=tauri.app&utm_source=tauri.app
+                    - img "Raffi Minassian" [ref=e269]
+                  - link "HTTP Toolkit" [ref=e272] [cursor=pointer]:
+                    - /url: https://httptoolkit.com/?ref=tauri.app&utm_source=tauri.app
+                    - img "HTTP Toolkit" [ref=e273]
+                  - link "Aaron Campbell" [ref=e276] [cursor=pointer]:
+                    - /url: https://opencollective.com/aaron-campbell?ref=tauri.app&utm_source=tauri.app
+                    - img "Aaron Campbell" [ref=e277]
+                - generic [ref=e279]:
+                  - link "Jamie Pine" [ref=e282] [cursor=pointer]:
+                    - /url: https://jamiepine.com?ref=tauri.app&utm_source=tauri.app
+                    - img "Jamie Pine" [ref=e283]
+                  - link "Alex Merced" [ref=e286] [cursor=pointer]:
+                    - /url: https://opencollective.com/alex-merced?ref=tauri.app&utm_source=tauri.app
+                    - img "Alex Merced" [ref=e287]
+                  - link "Brian DeRocher" [ref=e290] [cursor=pointer]:
+                    - /url: https://opencollective.com/brian-derocher?ref=tauri.app&utm_source=tauri.app
+                    - img "Brian DeRocher" [ref=e291]
+                  - link "James Bartlett" [ref=e294] [cursor=pointer]:
+                    - /url: https://opencollective.com/james-bartlett1?ref=tauri.app&utm_source=tauri.app
+                    - img "James Bartlett" [ref=e295]
+                  - link "Gyuri Lajos" [ref=e298] [cursor=pointer]:
+                    - /url: https://trailmarks.co?ref=tauri.app&utm_source=tauri.app
+                    - img "Gyuri Lajos" [ref=e299]
+                  - link "Open Collective" [ref=e302] [cursor=pointer]:
+                    - /url: https://opencollective.com/?ref=tauri.app&utm_source=tauri.app
+                    - img "Open Collective" [ref=e303]
+                  - link "Luke Parker" [ref=e306] [cursor=pointer]:
+                    - /url: https://opencollective.com/luke-parker?ref=tauri.app&utm_source=tauri.app
+                    - img "Luke Parker" [ref=e307]
+                  - link "Riley Seaburg" [ref=e310] [cursor=pointer]:
+                    - /url: https://opencollective.com/guest-7ba71ea5?ref=tauri.app&utm_source=tauri.app
+                    - img "Riley Seaburg" [ref=e311]
+                  - link "Rabbit Company" [ref=e314] [cursor=pointer]:
+                    - /url: https://rabbit-company.com/?ref=tauri.app&utm_source=tauri.app
+                    - img "Rabbit Company" [ref=e315]
+                  - link "Clemens Koza" [ref=e318] [cursor=pointer]:
+                    - /url: https://opencollective.com/clemens-koza?ref=tauri.app&utm_source=tauri.app
+                    - img "Clemens Koza" [ref=e319]
+                  - link "Martin Kramer" [ref=e322] [cursor=pointer]:
+                    - /url: https://opencollective.com/martin-kramer?ref=tauri.app&utm_source=tauri.app
+                    - img "Martin Kramer" [ref=e323]
+                  - link "Jun Hashimoto" [ref=e326] [cursor=pointer]:
+                    - /url: https://opencollective.com/jun-hashimoto?ref=tauri.app&utm_source=tauri.app
+                    - img "Jun Hashimoto" [ref=e327]
+                  - link "Robin van Boven" [ref=e330] [cursor=pointer]:
+                    - /url: https://opencollective.com/robin-van-boven?ref=tauri.app&utm_source=tauri.app
+                    - img "Robin van Boven" [ref=e331]
+                  - link "victorhqc" [ref=e334] [cursor=pointer]:
+                    - /url: https://opencollective.com/victorhqc?ref=tauri.app&utm_source=tauri.app
+                    - img "victorhqc" [ref=e335]
+                  - link "Harsha Teja Kanna" [ref=e338] [cursor=pointer]:
+                    - /url: https://opencollective.com/harsha-teja-kanna?ref=tauri.app&utm_source=tauri.app
+                    - img "Harsha Teja Kanna" [ref=e339]
+                  - link "Adam Leonard" [ref=e342] [cursor=pointer]:
+                    - /url: https://opencollective.com/guest-041a692a?ref=tauri.app&utm_source=tauri.app
+                    - img "Adam Leonard" [ref=e343]
+                  - link "JL" [ref=e346] [cursor=pointer]:
+                    - /url: https://commandline.be?ref=tauri.app&utm_source=tauri.app
+                    - img "JL" [ref=e347]
+                  - link "Noah Corona" [ref=e350] [cursor=pointer]:
+                    - /url: https://opencollective.com/noah-corona1?ref=tauri.app&utm_source=tauri.app
+                    - img "Noah Corona" [ref=e351]
+                  - link "Hector" [ref=e354] [cursor=pointer]:
+                    - /url: https://opencollective.com/user-76eb8887?ref=tauri.app&utm_source=tauri.app
+                    - img "Hector" [ref=e355]
+                  - link "grandvin" [ref=e358] [cursor=pointer]:
+                    - /url: https://opencollective.com/grandvin?ref=tauri.app&utm_source=tauri.app
+                    - img "grandvin" [ref=e359]
+                  - link "MasterDarius" [ref=e362] [cursor=pointer]:
+                    - /url: https://www.nikolaosmargaris.gr?ref=tauri.app&utm_source=tauri.app
+                    - img "MasterDarius" [ref=e363]
+                  - link "Danny Williams" [ref=e366] [cursor=pointer]:
+                    - /url: https://opencollective.com/danny-williams?ref=tauri.app&utm_source=tauri.app
+                    - img "Danny Williams" [ref=e367]
+                  - link "Bitcoin Contributions" [ref=e370] [cursor=pointer]:
+                    - /url: https://opencollective.com/bitcoin-contributions?ref=tauri.app&utm_source=tauri.app
+                    - img "Bitcoin Contributions" [ref=e371]
+                  - link "Archon Systems Inc." [ref=e374] [cursor=pointer]:
+                    - /url: https://www.archonsystems.com/?ref=tauri.app&utm_source=tauri.app
+                    - img "Archon Systems Inc." [ref=e375]
+                  - link "Alex Michael Berry" [ref=e378] [cursor=pointer]:
+                    - /url: https://ligature.dev?ref=tauri.app&utm_source=tauri.app
+                    - img "Alex Michael Berry" [ref=e379]
+                  - link "EthicalAds" [ref=e382] [cursor=pointer]:
+                    - /url: https://www.ethicalads.io/?ref=tauri.app&utm_source=tauri.app
+                    - img "EthicalAds" [ref=e383]
+                  - link "Kether Saturnius" [ref=e386] [cursor=pointer]:
+                    - /url: https://www.k3th3r.com?ref=tauri.app&utm_source=tauri.app
+                    - img "Kether Saturnius" [ref=e387]
+                  - link "John H Stone" [ref=e390] [cursor=pointer]:
+                    - /url: https://opencollective.com/user-d398d7c1?ref=tauri.app&utm_source=tauri.app
+                    - img "John H Stone" [ref=e391]
+                  - link "librelois" [ref=e394] [cursor=pointer]:
+                    - /url: https://opencollective.com/guest-1092fa70?ref=tauri.app&utm_source=tauri.app
+                    - img "librelois" [ref=e395]
+                  - link "Pintura" [ref=e398] [cursor=pointer]:
+                    - /url: https://pqina.nl/pintura/?ref=tauri.app&utm_source=tauri.app
+                    - img "Pintura" [ref=e399]
+                  - link [ref=e402] [cursor=pointer]:
+                    - /url: https://opencollective.com/guest-2f33f2a5?ref=tauri.app&utm_source=tauri.app
+                  - link "Nonogram Online" [ref=e405] [cursor=pointer]:
+                    - /url: https://www.nonogramonline.org?ref=tauri.app&utm_source=tauri.app
+                    - img "Nonogram Online" [ref=e406]
+                  - link [ref=e409] [cursor=pointer]:
+                    - /url: https://opencollective.com/user-146594?ref=tauri.app&utm_source=tauri.app
+                  - link "Braden Neufeld" [ref=e412] [cursor=pointer]:
+                    - /url: https://opencollective.com/braden-neufeld?ref=tauri.app&utm_source=tauri.app
+                    - img "Braden Neufeld" [ref=e413]
+                  - link "Seth Lowie" [ref=e416] [cursor=pointer]:
+                    - /url: https://opencollective.com/seth-lowie?ref=tauri.app&utm_source=tauri.app
+                    - img "Seth Lowie" [ref=e417]
+                  - link "Jacob" [ref=e420] [cursor=pointer]:
+                    - /url: https://opencollective.com/jacob7?ref=tauri.app&utm_source=tauri.app
+                    - img "Jacob" [ref=e421]
+                  - link "Pochoclin" [ref=e424] [cursor=pointer]:
+                    - /url: https://opencollective.com/pochoclin?ref=tauri.app&utm_source=tauri.app
+                    - img "Pochoclin" [ref=e425]
+                  - link "Kobra Rocks" [ref=e428] [cursor=pointer]:
+                    - /url: https://kobra.rocks?ref=tauri.app&utm_source=tauri.app
+                    - img "Kobra Rocks" [ref=e429]
+                  - link "Florian Neumann" [ref=e432] [cursor=pointer]:
+                    - /url: https://opencollective.com/florian-neumann?ref=tauri.app&utm_source=tauri.app
+                    - img "Florian Neumann" [ref=e433]
+                  - link "Christoph Karrer-Hoffmann" [ref=e436] [cursor=pointer]:
+                    - /url: https://opencollective.com/christoph-karrer-hoffmann?ref=tauri.app&utm_source=tauri.app
+                    - img "Christoph Karrer-Hoffmann" [ref=e437]
+                  - link "Thong Tran" [ref=e440] [cursor=pointer]:
+                    - /url: https://opencollective.com/thong-tran?ref=tauri.app&utm_source=tauri.app
+                    - img "Thong Tran" [ref=e441]
+                  - link "Jan" [ref=e444] [cursor=pointer]:
+                    - /url: https://opencollective.com/jan50?ref=tauri.app&utm_source=tauri.app
+                    - img "Jan" [ref=e445]
+                  - link "Alexander Herrmann" [ref=e448] [cursor=pointer]:
+                    - /url: https://opencollective.com/darignac?ref=tauri.app&utm_source=tauri.app
+                    - img "Alexander Herrmann" [ref=e449]
+                  - link "nelson" [ref=e452] [cursor=pointer]:
+                    - /url: https://opencollective.com/nelson6?ref=tauri.app&utm_source=tauri.app
+                    - img "nelson" [ref=e453]
+                  - link "Secdude" [ref=e456] [cursor=pointer]:
+                    - /url: https://opencollective.com/secdude?ref=tauri.app&utm_source=tauri.app
+                    - img "Secdude" [ref=e457]
+                  - link "Robert Collins" [ref=e460] [cursor=pointer]:
+                    - /url: https://opencollective.com/rcollins?ref=tauri.app&utm_source=tauri.app
+                    - img "Robert Collins" [ref=e461]
+                  - link "Seokju Na" [ref=e464] [cursor=pointer]:
+                    - /url: https://opencollective.com/seokju-na1?ref=tauri.app&utm_source=tauri.app
+                    - img "Seokju Na" [ref=e465]
+                  - link "Proxyman" [ref=e468] [cursor=pointer]:
+                    - /url: https://proxyman.com/?ref=tauri.app&utm_source=tauri.app
+                    - img "Proxyman" [ref=e469]
+                  - link "Alexander Eden" [ref=e472] [cursor=pointer]:
+                    - /url: https://github.com/alexeden?ref=tauri.app&utm_source=tauri.app
+                    - img "Alexander Eden" [ref=e473]
+                  - link "Fritz-Rainer Doebbelin" [ref=e476] [cursor=pointer]:
+                    - /url: https://opencollective.com/fritz-rainer-doebbelin?ref=tauri.app&utm_source=tauri.app
+                    - img "Fritz-Rainer Doebbelin" [ref=e477]
+                  - link "Darryl Spencer" [ref=e480] [cursor=pointer]:
+                    - /url: https://twitter.com/DarrylDSpencer?ref=tauri.app&utm_source=tauri.app
+                    - img "Darryl Spencer" [ref=e481]
+                  - link "Ethan Li" [ref=e484] [cursor=pointer]:
+                    - /url: https://opencollective.com/user-72b0b300?ref=tauri.app&utm_source=tauri.app
+                    - img "Ethan Li" [ref=e485]
+                  - link "kuma" [ref=e488] [cursor=pointer]:
+                    - /url: https://opencollective.com/kuma?ref=tauri.app&utm_source=tauri.app
+                    - img "kuma" [ref=e489]
+                  - link "praxr" [ref=e492] [cursor=pointer]:
+                    - /url: http://praxr.com?ref=tauri.app&utm_source=tauri.app
+                    - img "praxr" [ref=e493]
+                  - link "ken" [ref=e496] [cursor=pointer]:
+                    - /url: https://opencollective.com/ken2?ref=tauri.app&utm_source=tauri.app
+                    - img "ken" [ref=e497]
+                  - link "Simon" [ref=e500] [cursor=pointer]:
+                    - /url: https://opencollective.com/simon15?ref=tauri.app&utm_source=tauri.app
+                    - img "Simon" [ref=e501]
+                  - link "Sentry" [ref=e504] [cursor=pointer]:
+                    - /url: https://sentry.io/welcome/?ref=tauri.app&utm_source=tauri.app
+                    - img "Sentry" [ref=e505]
+                  - link "James Carlson" [ref=e508] [cursor=pointer]:
+                    - /url: https://opencollective.com/james-carlson?ref=tauri.app&utm_source=tauri.app
+                    - img "James Carlson" [ref=e509]
+                  - link "Christian Alfoni" [ref=e512] [cursor=pointer]:
+                    - /url: https://www.christianalfoni.com?ref=tauri.app&utm_source=tauri.app
+                    - img "Christian Alfoni" [ref=e513]
+                  - link "Arturo José Pérez Verdú" [ref=e516] [cursor=pointer]:
+                    - /url: https://opencollective.com/arturo-jose-perez-verdu?ref=tauri.app&utm_source=tauri.app
+                    - img "Arturo José Pérez Verdú" [ref=e517]
+                  - link "tomita" [ref=e520] [cursor=pointer]:
+                    - /url: https://opencollective.com/tomita?ref=tauri.app&utm_source=tauri.app
+                    - img "tomita" [ref=e521]
+                  - link "Justin Dorfman" [ref=e524] [cursor=pointer]:
+                    - /url: https://www.justindorfman.com/?ref=tauri.app&utm_source=tauri.app
+                    - img "Justin Dorfman" [ref=e525]
+                  - link "RxDB" [ref=e528] [cursor=pointer]:
+                    - /url: https://rxdb.info/?utm_source=opencollective&utm_medium=banner&utm_campaign=opencollective_sponsor&utm_content=logo?ref=tauri.app&utm_source=tauri.app
+                    - img "RxDB" [ref=e529]
+                  - link "Ivan" [ref=e532] [cursor=pointer]:
+                    - /url: https://opencollective.com/ivan13?ref=tauri.app&utm_source=tauri.app
+                    - img "Ivan" [ref=e533]
+              - generic [ref=e534]:
+                - heading "GitHub Sponsors" [level=4] [ref=e535]
+                - generic [ref=e536]:
+                  - link "3colorr" [ref=e538] [cursor=pointer]:
+                    - /url: https://github.com/3colorr
+                    - img "3colorr" [ref=e539]
+                  - link "ahkohd" [ref=e541] [cursor=pointer]:
+                    - /url: https://github.com/ahkohd
+                    - img "ahkohd" [ref=e542]
+                  - link "Akmot9" [ref=e544] [cursor=pointer]:
+                    - /url: https://github.com/Akmot9
+                    - img "Akmot9" [ref=e545]
+                  - link "alexeden" [ref=e547] [cursor=pointer]:
+                    - /url: https://github.com/alexeden
+                    - img "alexeden" [ref=e548]
+                  - link "alprimak" [ref=e550] [cursor=pointer]:
+                    - /url: https://github.com/alprimak
+                    - img "alprimak" [ref=e551]
+                  - link "austenc" [ref=e553] [cursor=pointer]:
+                    - /url: https://github.com/austenc
+                    - img "austenc" [ref=e554]
+                  - link "BE-CH" [ref=e556] [cursor=pointer]:
+                    - /url: https://github.com/BE-CH
+                    - img "BE-CH" [ref=e557]
+                  - link "chaoji233" [ref=e559] [cursor=pointer]:
+                    - /url: https://github.com/chaoji233
+                    - img "chaoji233" [ref=e560]
+                  - link "ciscorn" [ref=e562] [cursor=pointer]:
+                    - /url: https://github.com/ciscorn
+                    - img "ciscorn" [ref=e563]
+                  - link "ErikBjare" [ref=e565] [cursor=pointer]:
+                    - /url: https://github.com/ErikBjare
+                    - img "ErikBjare" [ref=e566]
+                  - link "EscapedShadows" [ref=e568] [cursor=pointer]:
+                    - /url: https://github.com/EscapedShadows
+                    - img "EscapedShadows" [ref=e569]
+                  - link "fastrepl" [ref=e571] [cursor=pointer]:
+                    - /url: https://github.com/fastrepl
+                    - img "fastrepl" [ref=e572]
+                  - link "filiptronicek" [ref=e574] [cursor=pointer]:
+                    - /url: https://github.com/filiptronicek
+                    - img "filiptronicek" [ref=e575]
+                  - link "guoliu" [ref=e577] [cursor=pointer]:
+                    - /url: https://github.com/guoliu
+                    - img "guoliu" [ref=e578]
+                  - link "hobbestherat" [ref=e580] [cursor=pointer]:
+                    - /url: https://github.com/hobbestherat
+                    - img "hobbestherat" [ref=e581]
+                  - link "Jesper-Andersen" [ref=e583] [cursor=pointer]:
+                    - /url: https://github.com/Jesper-Andersen
+                    - img "Jesper-Andersen" [ref=e584]
+                  - link "jonahgeorge" [ref=e586] [cursor=pointer]:
+                    - /url: https://github.com/jonahgeorge
+                    - img "jonahgeorge" [ref=e587]
+                  - link "jorge-menjivar" [ref=e589] [cursor=pointer]:
+                    - /url: https://github.com/jorge-menjivar
+                    - img "jorge-menjivar" [ref=e590]
+                  - link "kibertoad" [ref=e592] [cursor=pointer]:
+                    - /url: https://github.com/kibertoad
+                    - img "kibertoad" [ref=e593]
+                  - link "Leay15" [ref=e595] [cursor=pointer]:
+                    - /url: https://github.com/Leay15
+                    - img "Leay15" [ref=e596]
+                  - link "marcelgundermann" [ref=e598] [cursor=pointer]:
+                    - /url: https://github.com/marcelgundermann
+                    - img "marcelgundermann" [ref=e599]
+                  - link "MindWorkAI" [ref=e601] [cursor=pointer]:
+                    - /url: https://github.com/MindWorkAI
+                    - img "MindWorkAI" [ref=e602]
+                  - link "mrHaiker" [ref=e604] [cursor=pointer]:
+                    - /url: https://github.com/mrHaiker
+                    - img "mrHaiker" [ref=e605]
+                  - link "nineclue" [ref=e607] [cursor=pointer]:
+                    - /url: https://github.com/nineclue
+                    - img "nineclue" [ref=e608]
+                  - link "nothingismagick" [ref=e610] [cursor=pointer]:
+                    - /url: https://github.com/nothingismagick
+                    - img "nothingismagick" [ref=e611]
+                  - link "samirdjelal" [ref=e613] [cursor=pointer]:
+                    - /url: https://github.com/samirdjelal
+                    - img "samirdjelal" [ref=e614]
+                  - link "sean-hale-dev" [ref=e616] [cursor=pointer]:
+                    - /url: https://github.com/sean-hale-dev
+                    - img "sean-hale-dev" [ref=e617]
+                  - link "sedrakpc" [ref=e619] [cursor=pointer]:
+                    - /url: https://github.com/sedrakpc
+                    - img "sedrakpc" [ref=e620]
+                  - link "Sir-Thom" [ref=e622] [cursor=pointer]:
+                    - /url: https://github.com/Sir-Thom
+                    - img "Sir-Thom" [ref=e623]
+                  - link "SlawomirBuszko" [ref=e625] [cursor=pointer]:
+                    - /url: https://github.com/SlawomirBuszko
+                    - img "SlawomirBuszko" [ref=e626]
+                  - link "stancl" [ref=e628] [cursor=pointer]:
+                    - /url: https://github.com/stancl
+                    - img "stancl" [ref=e629]
+                  - link "surferjeff" [ref=e631] [cursor=pointer]:
+                    - /url: https://github.com/surferjeff
+                    - img "surferjeff" [ref=e632]
+                  - link "syntaxfm" [ref=e634] [cursor=pointer]:
+                    - /url: https://github.com/syntaxfm
+                    - img "syntaxfm" [ref=e635]
+                  - link "tibordp" [ref=e637] [cursor=pointer]:
+                    - /url: https://github.com/tibordp
+                    - img "tibordp" [ref=e638]
+                  - link "tomohiro-owada" [ref=e640] [cursor=pointer]:
+                    - /url: https://github.com/tomohiro-owada
+                    - img "tomohiro-owada" [ref=e641]
+                  - link "utilForever" [ref=e643] [cursor=pointer]:
+                    - /url: https://github.com/utilForever
+                    - img "utilForever" [ref=e644]
+                  - link "yannkost" [ref=e646] [cursor=pointer]:
+                    - /url: https://github.com/yannkost
+                    - img "yannkost" [ref=e647]
+            - generic [ref=e648]:
+              - heading "Website powered by" [level=3] [ref=e649]
+              - generic [ref=e651]:
+                - link [ref=e652] [cursor=pointer]:
+                  - /url: https://www.meilisearch.com/
+                  - img [ref=e654]
+                - link [ref=e669] [cursor=pointer]:
+                  - /url: https://netlify.com/
+                  - img [ref=e671]
+        - separator [ref=e687]
+        - generic [ref=e688]:
+          - link "Support on Open Collective" [ref=e689] [cursor=pointer]:
+            - /url: https://opencollective.com/tauri
+          - link "Sponsor on GitHub" [ref=e690] [cursor=pointer]:
+            - /url: https://github.com/sponsors/tauri-apps
+        - paragraph [ref=e691]: © 2026 Tauri Contributors. CC-BY / MIT

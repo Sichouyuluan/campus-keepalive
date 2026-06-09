@@ -1,0 +1,1638 @@
+- generic [active] [ref=e1]:
+  - link "Skip to content" [ref=e2] [cursor=pointer]:
+    - /url: "#what-is-pysimplegui"
+  - banner [ref=e3]:
+    - navigation "Header" [ref=e4]:
+      - img [ref=e6] [cursor=pointer]
+      - generic [ref=e9]:
+        - generic [ref=e11]: PySimpleGUI Documentation
+        - generic:
+          - generic: The Project
+      - dialog [ref=e12]:
+        - search [ref=e13]:
+          - generic [ref=e14]:
+            - textbox "Search" [ref=e15]
+            - generic:
+              - img
+            - navigation "Search":
+              - button "Clear":
+                - img
+          - generic [ref=e16]:
+            - generic [ref=e17]: Initializing search
+            - list
+      - link "www.PySimpleGUI.com Main site, Licensing, FAQ" [ref=e19] [cursor=pointer]:
+        - /url: https://www.pysimplegui.com
+        - img [ref=e21]
+        - generic [ref=e23]:
+          - text: www.PySimpleGUI.com
+          - generic [ref=e24]: Main site, Licensing, FAQ
+      - link "PySimpleGUI/PySimpleGUI 6.1 13.8k 1.8k" [ref=e26] [cursor=pointer]:
+        - /url: https://github.com/PySimpleGUI/PySimpleGUI
+        - img [ref=e28]
+        - generic [ref=e30]:
+          - text: PySimpleGUI/PySimpleGUI
+          - list [ref=e31]:
+            - listitem [ref=e32]: "6.1"
+            - listitem [ref=e33]: 13.8k
+            - listitem [ref=e34]: 1.8k
+  - generic [ref=e35]:
+    - main [ref=e36]:
+      - generic [ref=e37]:
+        - generic [ref=e40]:
+          - button "Scroll to active item" [ref=e41]
+          - navigation "Navigation" [ref=e42]:
+            - generic [ref=e43] [cursor=pointer]:
+              - link "PySimpleGUI Documentation" [ref=e44]:
+                - /url: .
+                - img "logo" [ref=e45]
+              - text: PySimpleGUI Documentation
+            - list [ref=e46]:
+              - listitem [ref=e47]:
+                - generic [ref=e48] [cursor=pointer]: Home
+                - navigation "Home" [ref=e50]:
+                  - generic [ref=e51] [cursor=pointer]: Home
+                  - list [ref=e53]:
+                    - listitem [ref=e54]:
+                      - link "The Project" [ref=e55] [cursor=pointer]:
+                        - /url: .
+                    - listitem [ref=e56]:
+                      - generic [ref=e57] [cursor=pointer]: What is PySimpleGUI?
+                      - navigation "What is PySimpleGUI?" [ref=e59]:
+                        - generic [ref=e60] [cursor=pointer]: What is PySimpleGUI?
+                        - list [ref=e62]:
+                          - listitem [ref=e63]:
+                            - link "Who Is PySimpleGUI Designed For?" [ref=e64] [cursor=pointer]:
+                              - /url: documentation/what_is_it/
+                          - listitem [ref=e65]:
+                            - link "The Concept" [ref=e66] [cursor=pointer]:
+                              - /url: documentation/what_is_it/the_concept/
+                          - listitem [ref=e67]:
+                            - link "Goal 1 - \"You Have Fun\"" [ref=e68] [cursor=pointer]:
+                              - /url: documentation/what_is_it/fun_as_a_goal/
+                          - listitem [ref=e69]:
+                            - link "Goal 2 - \"You Are Successful\"" [ref=e70] [cursor=pointer]:
+                              - /url: documentation/what_is_it/success_as_a_goal/
+                          - listitem [ref=e71]:
+                            - link "What Was Made Simple?" [ref=e72] [cursor=pointer]:
+                              - /url: documentation/what_is_it/what_was_made_simple/
+                          - listitem [ref=e73]:
+                            - link "Window Creation" [ref=e74] [cursor=pointer]:
+                              - /url: documentation/what_is_it/window_creation/
+                          - listitem [ref=e75]:
+                            - link "Make the Window Do Something Useful" [ref=e76] [cursor=pointer]:
+                              - /url: documentation/what_is_it/doing_something_useful/
+                          - listitem [ref=e77]:
+                            - link "The PySimpleGUI Architecture - Under The Hood" [ref=e78] [cursor=pointer]:
+                              - /url: documentation/what_is_it/under_the_hood/
+                          - listitem [ref=e79]:
+                            - link "What Can PySimpleGUI Be Used For?" [ref=e80] [cursor=pointer]:
+                              - /url: documentation/what_is_it/what_can_be_made_with_PySimpleGUI/
+                    - listitem [ref=e81]:
+                      - generic [ref=e82] [cursor=pointer]: Getting Started
+                      - navigation "Getting Started" [ref=e84]:
+                        - generic [ref=e85] [cursor=pointer]: Getting Started
+                        - list [ref=e87]:
+                          - listitem [ref=e88]:
+                            - link "Quick Start - Basic Install & Introduction to the APIs" [ref=e89] [cursor=pointer]:
+                              - /url: documentation/quick_start/getting_started/
+                          - listitem [ref=e90]:
+                            - link "Coding Conventions" [ref=e91] [cursor=pointer]:
+                              - /url: documentation/quick_start/coding_conventions/
+                          - listitem [ref=e92]:
+                            - link "The 2 Groups of APIs" [ref=e93] [cursor=pointer]:
+                              - /url: documentation/quick_start/groups_of_apis/
+                          - listitem [ref=e94]:
+                            - link "The Windowing APIs - Popups" [ref=e95] [cursor=pointer]:
+                              - /url: documentation/quick_start/windowing_apis_popup_windows/
+                          - listitem [ref=e96]:
+                            - link "popup - Output Popup Functions (Popup Windows 1 of 4)" [ref=e97] [cursor=pointer]:
+                              - /url: documentation/quick_start/popups_output_type/
+                          - listitem [ref=e98]:
+                            - link "popup - Input Popup Functions (Popup Windows 2 of 4)" [ref=e99] [cursor=pointer]:
+                              - /url: documentation/quick_start/popups_input_type/
+                          - listitem [ref=e100]:
+                            - link "Debug Print (Popup Windows 3 of 4)" [ref=e101] [cursor=pointer]:
+                              - /url: documentation/quick_start/debug_print_window/
+                          - listitem [ref=e102]:
+                            - link "One Line Progress Meter (Popup Windows 4 of 4)" [ref=e103] [cursor=pointer]:
+                              - /url: documentation/quick_start/one_line_progress_meter/
+                          - listitem [ref=e104]:
+                            - link "The Windowing APIs - Custom Windows" [ref=e105] [cursor=pointer]:
+                              - /url: documentation/quick_start/windowing_apis_custom_windows/
+                    - listitem [ref=e106]:
+                      - generic [ref=e107] [cursor=pointer]: Ecosystem
+                      - navigation "Ecosystem" [ref=e109]:
+                        - generic [ref=e110] [cursor=pointer]: Ecosystem
+                        - list [ref=e112]:
+                          - listitem [ref=e113]:
+                            - link "The PySimpleGUI Ecosystem" [ref=e114] [cursor=pointer]:
+                              - /url: documentation/ecosystem/
+                          - listitem [ref=e115]:
+                            - link "Documentation" [ref=e116] [cursor=pointer]:
+                              - /url: documentation/ecosystem/ecosys_docs/
+                          - listitem [ref=e117]:
+                            - link "PySimpleGUI Demo Programs" [ref=e118] [cursor=pointer]:
+                              - /url: documentation/ecosystem/ecosys_demos/
+                          - listitem [ref=e119]:
+                            - link "Support" [ref=e120] [cursor=pointer]:
+                              - /url: documentation/ecosystem/ecosys_support/
+                    - listitem [ref=e121]:
+                      - generic [ref=e122] [cursor=pointer]: Ports
+                      - navigation "Ports" [ref=e124]:
+                        - generic [ref=e125] [cursor=pointer]: Ports
+                        - list [ref=e127]:
+                          - listitem [ref=e128]:
+                            - link "The PySimpleGUI Ports - tk, Qt, Wx, Remi/Web" [ref=e129] [cursor=pointer]:
+                              - /url: documentation/ports/
+                          - listitem [ref=e130]:
+                            - link "PySimpleGUI - The Tkinter Port" [ref=e131] [cursor=pointer]:
+                              - /url: documentation/ports/pysimplegui_tkinter/
+                          - listitem [ref=e132]:
+                            - link "PySimpleGUIQt" [ref=e133] [cursor=pointer]:
+                              - /url: documentation/ports/pysimplegui_qt/
+                          - listitem [ref=e134]:
+                            - link "PySimpleGUIWx" [ref=e135] [cursor=pointer]:
+                              - /url: documentation/ports/pysimplegui_wx/
+                          - listitem [ref=e136]:
+                            - link "PySimpleGUIWeb" [ref=e137] [cursor=pointer]:
+                              - /url: documentation/ports/pysimplegui_web/
+                    - listitem [ref=e138]:
+                      - generic [ref=e139] [cursor=pointer]: Installing
+                      - navigation "Installing" [ref=e141]:
+                        - generic [ref=e142] [cursor=pointer]: Installing
+                        - list [ref=e144]:
+                          - listitem [ref=e145]:
+                            - link "Installation" [ref=e146] [cursor=pointer]:
+                              - /url: documentation/installing_licensing/
+                          - listitem [ref=e147]:
+                            - link "Installing PySimpleGUI" [ref=e148] [cursor=pointer]:
+                              - /url: documentation/installing_licensing/installing/
+                          - listitem [ref=e149]:
+                            - link "Testing The Installation of PySimpleGUI" [ref=e150] [cursor=pointer]:
+                              - /url: documentation/installing_licensing/testing_install/
+                          - listitem [ref=e151]:
+                            - link "Upgrading PySimpleGUI" [ref=e152] [cursor=pointer]:
+                              - /url: documentation/installing_licensing/upgrading/
+                    - listitem [ref=e153]:
+                      - generic [ref=e154] [cursor=pointer]: Writing PySimpleGUI Applications
+                      - navigation "Writing PySimpleGUI Applications" [ref=e156]:
+                        - generic [ref=e157] [cursor=pointer]: Writing PySimpleGUI Applications
+                        - list [ref=e159]:
+                          - listitem [ref=e160]:
+                            - link "Writing PySimpleGUI Applications" [ref=e161] [cursor=pointer]:
+                              - /url: documentation/writing_applications/
+                          - listitem [ref=e162]:
+                            - link "Editors and IDEs" [ref=e163] [cursor=pointer]:
+                              - /url: documentation/writing_applications/ides/
+                          - listitem [ref=e164]:
+                            - link "Distribution" [ref=e165] [cursor=pointer]:
+                              - /url: documentation/writing_applications/distribution/
+                          - listitem [ref=e166]:
+                            - link "The Window Designer" [ref=e167] [cursor=pointer]:
+                              - /url: documentation/writing_applications/window_designer/
+                          - listitem [ref=e168]:
+                            - link "Error Handling" [ref=e169] [cursor=pointer]:
+                              - /url: documentation/writing_applications/error_handling/
+                    - listitem [ref=e170]:
+                      - generic [ref=e171] [cursor=pointer]: The Module
+                      - navigation "The Module" [ref=e173]:
+                        - generic [ref=e174] [cursor=pointer]: The Module
+                        - list [ref=e176]:
+                          - listitem [ref=e177]:
+                            - generic [ref=e178] [cursor=pointer]: Elements
+                            - navigation "Elements" [ref=e180]:
+                              - generic [ref=e181] [cursor=pointer]: Elements
+                              - list [ref=e183]:
+                                - listitem [ref=e184]:
+                                  - link "The Elements" [ref=e185] [cursor=pointer]:
+                                    - /url: documentation/module/elements/
+                                - listitem [ref=e186]:
+                                  - link "Button" [ref=e187] [cursor=pointer]:
+                                    - /url: documentation/module/elements/button/
+                                - listitem [ref=e188]:
+                                  - link "ButtonMenu" [ref=e189] [cursor=pointer]:
+                                    - /url: documentation/module/elements/button_menu/
+                                - listitem [ref=e190]:
+                                  - link "Canvas" [ref=e191] [cursor=pointer]:
+                                    - /url: documentation/module/elements/canvas/
+                                - listitem [ref=e192]:
+                                  - link "Checkbox" [ref=e193] [cursor=pointer]:
+                                    - /url: documentation/module/elements/checkbox/
+                                - listitem [ref=e194]:
+                                  - link "Column" [ref=e195] [cursor=pointer]:
+                                    - /url: documentation/module/elements/column/
+                                - listitem [ref=e196]:
+                                  - link "Combo" [ref=e197] [cursor=pointer]:
+                                    - /url: documentation/module/elements/combo/
+                                - listitem [ref=e198]:
+                                  - link "Frame" [ref=e199] [cursor=pointer]:
+                                    - /url: documentation/module/elements/frame/
+                                - listitem [ref=e200]:
+                                  - link "Graph" [ref=e201] [cursor=pointer]:
+                                    - /url: documentation/module/elements/graph/
+                                - listitem [ref=e202]:
+                                  - link "Horizontal Separator" [ref=e203] [cursor=pointer]:
+                                    - /url: documentation/module/elements/horizontal_separator/
+                                - listitem [ref=e204]:
+                                  - link "Vertical Separator" [ref=e205] [cursor=pointer]:
+                                    - /url: documentation/module/elements/vertical_separator/
+                                - listitem [ref=e206]:
+                                  - link "Image" [ref=e207] [cursor=pointer]:
+                                    - /url: documentation/module/elements/image/
+                                - listitem [ref=e208]:
+                                  - link "Input" [ref=e209] [cursor=pointer]:
+                                    - /url: documentation/module/elements/input/
+                                - listitem [ref=e210]:
+                                  - link "Listbox" [ref=e211] [cursor=pointer]:
+                                    - /url: documentation/module/elements/listbox/
+                                - listitem [ref=e212]:
+                                  - link "Menu" [ref=e213] [cursor=pointer]:
+                                    - /url: documentation/module/elements/menu/
+                                - listitem [ref=e214]:
+                                  - link "MenubarCustom" [ref=e215] [cursor=pointer]:
+                                    - /url: documentation/module/elements/menubar_custom/
+                                - listitem [ref=e216]:
+                                  - link "Multiline" [ref=e217] [cursor=pointer]:
+                                    - /url: documentation/module/elements/multiline/
+                                - listitem [ref=e218]:
+                                  - link "OptionMenu" [ref=e219] [cursor=pointer]:
+                                    - /url: documentation/module/elements/option_menu/
+                                - listitem [ref=e220]:
+                                  - link "Output" [ref=e221] [cursor=pointer]:
+                                    - /url: documentation/module/elements/output/
+                                - listitem [ref=e222]:
+                                  - link "Pane" [ref=e223] [cursor=pointer]:
+                                    - /url: documentation/module/elements/pane/
+                                - listitem [ref=e224]:
+                                  - link "ProgressBar" [ref=e225] [cursor=pointer]:
+                                    - /url: documentation/module/elements/progress_bar/
+                                - listitem [ref=e226]:
+                                  - link "Push" [ref=e227] [cursor=pointer]:
+                                    - /url: documentation/module/elements/push/
+                                - listitem [ref=e228]:
+                                  - link "Radio" [ref=e229] [cursor=pointer]:
+                                    - /url: documentation/module/elements/radio/
+                                - listitem [ref=e230]:
+                                  - link "Sizegrip" [ref=e231] [cursor=pointer]:
+                                    - /url: documentation/module/elements/sizegrip/
+                                - listitem [ref=e232]:
+                                  - link "Sizer" [ref=e233] [cursor=pointer]:
+                                    - /url: documentation/module/elements/sizer/
+                                - listitem [ref=e234]:
+                                  - link "Slider" [ref=e235] [cursor=pointer]:
+                                    - /url: documentation/module/elements/slider/
+                                - listitem [ref=e236]:
+                                  - link "Spin" [ref=e237] [cursor=pointer]:
+                                    - /url: documentation/module/elements/spin/
+                                - listitem [ref=e238]:
+                                  - link "StatusBar" [ref=e239] [cursor=pointer]:
+                                    - /url: documentation/module/elements/status_bar/
+                                - listitem [ref=e240]:
+                                  - link "Tab" [ref=e241] [cursor=pointer]:
+                                    - /url: documentation/module/elements/tab/
+                                - listitem [ref=e242]:
+                                  - link "Table" [ref=e243] [cursor=pointer]:
+                                    - /url: documentation/module/elements/table/
+                                - listitem [ref=e244]:
+                                  - link "Text" [ref=e245] [cursor=pointer]:
+                                    - /url: documentation/module/elements/text/
+                                - listitem [ref=e246]:
+                                  - link "Titlebar" [ref=e247] [cursor=pointer]:
+                                    - /url: documentation/module/elements/titlebar/
+                                - listitem [ref=e248]:
+                                  - link "Tree" [ref=e249] [cursor=pointer]:
+                                    - /url: documentation/module/elements/tree/
+                                - listitem [ref=e250]:
+                                  - link "VPush" [ref=e251] [cursor=pointer]:
+                                    - /url: documentation/module/elements/vpush/
+                          - listitem [ref=e252]:
+                            - link "Locating & Changing Elements" [ref=e253] [cursor=pointer]:
+                              - /url: documentation/module/locating_and_updating_elements/
+                          - listitem [ref=e254]:
+                            - link "Common Parameters" [ref=e255] [cursor=pointer]:
+                              - /url: documentation/module/common_element_parameters/
+                          - listitem [ref=e256]:
+                            - link "Keys" [ref=e257] [cursor=pointer]:
+                              - /url: documentation/module/keys/
+                          - listitem [ref=e258]:
+                            - generic [ref=e259] [cursor=pointer]: Return Values
+                            - navigation "Return Values" [ref=e261]:
+                              - generic [ref=e262] [cursor=pointer]: Return Values
+                              - list [ref=e264]:
+                                - listitem [ref=e265]:
+                                  - link "Return Values" [ref=e266] [cursor=pointer]:
+                                    - /url: documentation/module/return_values/
+                                - listitem [ref=e267]:
+                                  - link "Events" [ref=e268] [cursor=pointer]:
+                                    - /url: documentation/module/return_values/events/
+                                - listitem [ref=e269]:
+                                  - link "Values Dictionary" [ref=e270] [cursor=pointer]:
+                                    - /url: documentation/module/return_values/values/
+                          - listitem [ref=e271]:
+                            - link "Window Object" [ref=e272] [cursor=pointer]:
+                              - /url: documentation/module/window/
+                          - listitem [ref=e273]:
+                            - link "Reading Windows" [ref=e274] [cursor=pointer]:
+                              - /url: documentation/module/reading_windows/
+                          - listitem [ref=e275]:
+                            - link "Layouts" [ref=e276] [cursor=pointer]:
+                              - /url: documentation/module/layouts/
+                          - listitem [ref=e277]:
+                            - link "Dynamic Layouts" [ref=e278] [cursor=pointer]:
+                              - /url: documentation/module/dynamic_layouts/
+                          - listitem [ref=e279]:
+                            - link "Menus" [ref=e280] [cursor=pointer]:
+                              - /url: documentation/module/menus/
+                          - listitem [ref=e281]:
+                            - link "Keyboard & Mouse Capture" [ref=e282] [cursor=pointer]:
+                              - /url: documentation/module/keyboard_mouse_capture/
+                          - listitem [ref=e283]:
+                            - link "Popups" [ref=e284] [cursor=pointer]:
+                              - /url: documentation/module/popups/
+                          - listitem [ref=e285]:
+                            - link "One Line Progress Meter" [ref=e286] [cursor=pointer]:
+                              - /url: documentation/module/one_line_progress_meter/
+                          - listitem [ref=e287]:
+                            - link "Debug Print" [ref=e288] [cursor=pointer]:
+                              - /url: documentation/module/debug_output/
+                          - listitem [ref=e289]:
+                            - link "Images" [ref=e290] [cursor=pointer]:
+                              - /url: documentation/module/images/
+                          - listitem [ref=e291]:
+                            - link "Cursors" [ref=e292] [cursor=pointer]:
+                              - /url: documentation/module/cursors/
+                          - listitem [ref=e293]:
+                            - link "TTK" [ref=e294] [cursor=pointer]:
+                              - /url: documentation/module/ttk/
+                          - listitem [ref=e295]:
+                            - link "Themes" [ref=e296] [cursor=pointer]:
+                              - /url: documentation/module/themes/
+                          - listitem [ref=e297]:
+                            - link "SystemTray" [ref=e298] [cursor=pointer]:
+                              - /url: documentation/module/system_tray/
+                          - listitem [ref=e299]:
+                            - generic [ref=e300] [cursor=pointer]: Extending PySimpleGUI
+                            - navigation "Extending PySimpleGUI" [ref=e302]:
+                              - generic [ref=e303] [cursor=pointer]: Extending PySimpleGUI
+                              - list [ref=e305]:
+                                - listitem [ref=e306]:
+                                  - link "Extending" [ref=e307] [cursor=pointer]:
+                                    - /url: documentation/module/extending/extending/
+                                - listitem [ref=e308]:
+                                  - link "Widget Access" [ref=e309] [cursor=pointer]:
+                                    - /url: documentation/module/extending/widget_access/
+                                - listitem [ref=e310]:
+                                  - link "Binding Tkinter \"events\"" [ref=e311] [cursor=pointer]:
+                                    - /url: documentation/module/extending/event_bindings/
+                          - listitem [ref=e312]:
+                            - link "Multi-threading" [ref=e313] [cursor=pointer]:
+                              - /url: documentation/module/multithreading/
+                          - listitem [ref=e314]:
+                            - link "Global Settings" [ref=e315] [cursor=pointer]:
+                              - /url: documentation/module/global_settings/
+                          - listitem [ref=e316]:
+                            - link "User Settings API" [ref=e317] [cursor=pointer]:
+                              - /url: documentation/module/user_settings/
+                          - listitem [ref=e318]:
+                            - link "Exec APIs - Simplified Subprocesses" [ref=e319] [cursor=pointer]:
+                              - /url: documentation/module/exec_apis/
+                          - listitem [ref=e320]:
+                            - link "Timer APIs - Simplified Time-based Events" [ref=e321] [cursor=pointer]:
+                              - /url: documentation/module/timer_apis/
+                          - listitem [ref=e322]:
+                            - link "Clipboard APIs" [ref=e323] [cursor=pointer]:
+                              - /url: documentation/module/clipboard_apis/
+                          - listitem [ref=e324]:
+                            - link "The Debugger" [ref=e325] [cursor=pointer]:
+                              - /url: documentation/module/debugger/
+                    - listitem [ref=e326]:
+                      - generic [ref=e327] [cursor=pointer]: Utilities
+                      - navigation "Utilities" [ref=e329]:
+                        - generic [ref=e330] [cursor=pointer]: Utilities
+                        - list [ref=e332]:
+                          - listitem [ref=e333]:
+                            - link "The PySimpleGUI Utilities" [ref=e334] [cursor=pointer]:
+                              - /url: documentation/utilities/
+                          - listitem [ref=e335]:
+                            - link "Built-in Command Line Utilities" [ref=e336] [cursor=pointer]:
+                              - /url: documentation/utilities/builtin_utilities/
+                          - listitem [ref=e337]:
+                            - link "psgdemos" [ref=e338] [cursor=pointer]:
+                              - /url: documentation/utilities/psgdemos/
+                          - listitem [ref=e339]:
+                            - link "psgcompiler" [ref=e340] [cursor=pointer]:
+                              - /url: documentation/utilities/psgcompiler/
+                          - listitem [ref=e341]:
+                            - link "psgshortcut" [ref=e342] [cursor=pointer]:
+                              - /url: documentation/utilities/psgshortcut/
+                          - listitem [ref=e343]:
+                            - link "psgresizer" [ref=e344] [cursor=pointer]:
+                              - /url: documentation/utilities/psgresizer/
+                          - listitem [ref=e345]:
+                            - link "psgtest" [ref=e346] [cursor=pointer]:
+                              - /url: documentation/utilities/psgtest/
+                          - listitem [ref=e347]:
+                            - link "psgfiglet" [ref=e348] [cursor=pointer]:
+                              - /url: documentation/utilities/psgfiglet/
+                    - listitem [ref=e349]:
+                      - generic [ref=e350] [cursor=pointer]: Versions
+                      - navigation "Versions" [ref=e352]:
+                        - generic [ref=e353] [cursor=pointer]: Versions
+                        - list [ref=e355]:
+                          - listitem [ref=e356]:
+                            - link "Versions (very early releases)" [ref=e357] [cursor=pointer]:
+                              - /url: documentation/versions/
+                          - listitem [ref=e358]:
+                            - link "Release Notes (post-2018)" [ref=e359] [cursor=pointer]:
+                              - /url: documentation/versions/release_notes/
+                          - listitem [ref=e360]:
+                            - link "5.0 Feb-2024" [ref=e361] [cursor=pointer]:
+                              - /url: documentation/versions/psg5/
+                          - listitem [ref=e362]:
+                            - link "6.0 Apr-2026" [ref=e363] [cursor=pointer]:
+                              - /url: documentation/versions/psg6/
+                    - listitem [ref=e364]:
+                      - link "About" [ref=e365] [cursor=pointer]:
+                        - /url: documentation/about/
+              - listitem [ref=e366]:
+                - generic [ref=e367] [cursor=pointer]: Call Reference
+                - navigation "Call Reference" [ref=e369]:
+                  - generic [ref=e370] [cursor=pointer]: Call Reference
+                  - list [ref=e372]:
+                    - listitem [ref=e373]:
+                      - link "The PySimpleGUI Call Reference" [ref=e374] [cursor=pointer]:
+                        - /url: call_reference/
+                    - listitem [ref=e375]:
+                      - generic [ref=e376] [cursor=pointer]: Qt
+                      - navigation "Qt" [ref=e378]:
+                        - generic [ref=e379] [cursor=pointer]: Qt
+                        - list [ref=e381]:
+                          - listitem [ref=e382]:
+                            - link "Qt Port Call Reference" [ref=e383] [cursor=pointer]:
+                              - /url: call_reference/qt/
+                          - listitem [ref=e384]:
+                            - link "Window" [ref=e385] [cursor=pointer]:
+                              - /url: call_reference/qt/window/
+                          - listitem [ref=e386]:
+                            - generic [ref=e387] [cursor=pointer]: Elements
+                            - navigation "Elements" [ref=e389]:
+                              - generic [ref=e390] [cursor=pointer]: Elements
+                              - list [ref=e392]:
+                                - listitem [ref=e393]:
+                                  - link "Button" [ref=e394] [cursor=pointer]:
+                                    - /url: call_reference/qt/elements/button/
+                                - listitem [ref=e395]:
+                                  - link "ButtonMenu" [ref=e396] [cursor=pointer]:
+                                    - /url: call_reference/qt/elements/button_menu/
+                                - listitem [ref=e397]:
+                                  - link "Canvas" [ref=e398] [cursor=pointer]:
+                                    - /url: call_reference/qt/elements/canvas/
+                                - listitem [ref=e399]:
+                                  - link "Checkbox" [ref=e400] [cursor=pointer]:
+                                    - /url: call_reference/qt/elements/checkbox/
+                                - listitem [ref=e401]:
+                                  - link "Column" [ref=e402] [cursor=pointer]:
+                                    - /url: call_reference/qt/elements/column/
+                                - listitem [ref=e403]:
+                                  - link "Combo" [ref=e404] [cursor=pointer]:
+                                    - /url: call_reference/qt/elements/combo/
+                                - listitem [ref=e405]:
+                                  - link "Frame" [ref=e406] [cursor=pointer]:
+                                    - /url: call_reference/qt/elements/frame/
+                                - listitem [ref=e407]:
+                                  - link "Graph" [ref=e408] [cursor=pointer]:
+                                    - /url: call_reference/qt/elements/graph/
+                                - listitem [ref=e409]:
+                                  - link "HorizontalSeparator" [ref=e410] [cursor=pointer]:
+                                    - /url: call_reference/qt/elements/horizontal_separator/
+                                - listitem [ref=e411]:
+                                  - link "Image" [ref=e412] [cursor=pointer]:
+                                    - /url: call_reference/qt/elements/image/
+                                - listitem [ref=e413]:
+                                  - link "Listbox" [ref=e414] [cursor=pointer]:
+                                    - /url: call_reference/qt/elements/listbox/
+                                - listitem [ref=e415]:
+                                  - link "Menu" [ref=e416] [cursor=pointer]:
+                                    - /url: call_reference/qt/elements/menu/
+                                - listitem [ref=e417]:
+                                  - link "Multiline" [ref=e418] [cursor=pointer]:
+                                    - /url: call_reference/qt/elements/multiline/
+                                - listitem [ref=e419]:
+                                  - link "Output" [ref=e420] [cursor=pointer]:
+                                    - /url: call_reference/qt/elements/output/
+                                - listitem [ref=e421]:
+                                  - link "Pre-Defined Buttons" [ref=e422] [cursor=pointer]:
+                                    - /url: call_reference/qt/elements/pre_defined_buttons/
+                                - listitem [ref=e423]:
+                                  - link "ProgressBar" [ref=e424] [cursor=pointer]:
+                                    - /url: call_reference/qt/elements/progress_bar/
+                                - listitem [ref=e425]:
+                                  - link "Radio" [ref=e426] [cursor=pointer]:
+                                    - /url: call_reference/qt/elements/radio/
+                                - listitem [ref=e427]:
+                                  - link "Slider" [ref=e428] [cursor=pointer]:
+                                    - /url: call_reference/qt/elements/slider/
+                                - listitem [ref=e429]:
+                                  - link "Spin" [ref=e430] [cursor=pointer]:
+                                    - /url: call_reference/qt/elements/spin/
+                                - listitem [ref=e431]:
+                                  - link "Tab" [ref=e432] [cursor=pointer]:
+                                    - /url: call_reference/qt/elements/tab/
+                                - listitem [ref=e433]:
+                                  - link "TabGroup" [ref=e434] [cursor=pointer]:
+                                    - /url: call_reference/qt/elements/tab_group/
+                                - listitem [ref=e435]:
+                                  - link "Table" [ref=e436] [cursor=pointer]:
+                                    - /url: call_reference/qt/elements/table/
+                                - listitem [ref=e437]:
+                                  - link "Text" [ref=e438] [cursor=pointer]:
+                                    - /url: call_reference/qt/elements/text/
+                                - listitem [ref=e439]:
+                                  - link "Tree" [ref=e440] [cursor=pointer]:
+                                    - /url: call_reference/qt/elements/tree/
+                                - listitem [ref=e441]:
+                                  - link "TreeData" [ref=e442] [cursor=pointer]:
+                                    - /url: call_reference/qt/elements/tree_data/
+                                - listitem [ref=e443]:
+                                  - link "VerticalSeparator" [ref=e444] [cursor=pointer]:
+                                    - /url: call_reference/qt/elements/vertical_separator/
+                          - listitem [ref=e445]:
+                            - generic [ref=e446] [cursor=pointer]: Popups
+                            - navigation "Popups" [ref=e448]:
+                              - generic [ref=e449] [cursor=pointer]: Popups
+                              - list [ref=e451]:
+                                - listitem [ref=e452]:
+                                  - link "Popups Call Reference" [ref=e453] [cursor=pointer]:
+                                    - /url: call_reference/qt/popups/
+                                - listitem [ref=e454]:
+                                  - link "Popup" [ref=e455] [cursor=pointer]:
+                                    - /url: call_reference/qt/popups/popup/
+                                - listitem [ref=e456]:
+                                  - link "Popup auto close" [ref=e457] [cursor=pointer]:
+                                    - /url: call_reference/qt/popups/popup_auto_close/
+                                - listitem [ref=e458]:
+                                  - link "Popup cancel" [ref=e459] [cursor=pointer]:
+                                    - /url: call_reference/qt/popups/popup_cancel/
+                                - listitem [ref=e460]:
+                                  - link "Popup error" [ref=e461] [cursor=pointer]:
+                                    - /url: call_reference/qt/popups/popup_error/
+                                - listitem [ref=e462]:
+                                  - link "Popup get file" [ref=e463] [cursor=pointer]:
+                                    - /url: call_reference/qt/popups/popup_get_file/
+                                - listitem [ref=e464]:
+                                  - link "Popup get folder" [ref=e465] [cursor=pointer]:
+                                    - /url: call_reference/qt/popups/popup_get_folder/
+                                - listitem [ref=e466]:
+                                  - link "Popup get text" [ref=e467] [cursor=pointer]:
+                                    - /url: call_reference/qt/popups/popup_get_text/
+                                - listitem [ref=e468]:
+                                  - link "Popup no buttons" [ref=e469] [cursor=pointer]:
+                                    - /url: call_reference/qt/popups/popup_no_buttons/
+                                - listitem [ref=e470]:
+                                  - link "Popup no titlebar" [ref=e471] [cursor=pointer]:
+                                    - /url: call_reference/qt/popups/popup_no_titlebar/
+                                - listitem [ref=e472]:
+                                  - link "Popup non blocking" [ref=e473] [cursor=pointer]:
+                                    - /url: call_reference/qt/popups/popup_non_blocking/
+                                - listitem [ref=e474]:
+                                  - link "Popup ok" [ref=e475] [cursor=pointer]:
+                                    - /url: call_reference/qt/popups/popup_ok/
+                                - listitem [ref=e476]:
+                                  - link "Popup ok cancel" [ref=e477] [cursor=pointer]:
+                                    - /url: call_reference/qt/popups/popup_ok_cancel/
+                                - listitem [ref=e478]:
+                                  - link "Popup quick" [ref=e479] [cursor=pointer]:
+                                    - /url: call_reference/qt/popups/popup_quick/
+                                - listitem [ref=e480]:
+                                  - link "Popup quick message" [ref=e481] [cursor=pointer]:
+                                    - /url: call_reference/qt/popups/popup_quick_message/
+                                - listitem [ref=e482]:
+                                  - link "Popup scrolled" [ref=e483] [cursor=pointer]:
+                                    - /url: call_reference/qt/popups/popup_scrolled/
+                                - listitem [ref=e484]:
+                                  - link "Popup yes no" [ref=e485] [cursor=pointer]:
+                                    - /url: call_reference/qt/popups/popup_yes_no/
+                          - listitem [ref=e486]:
+                            - generic [ref=e487] [cursor=pointer]: Functions
+                            - navigation "Functions" [ref=e489]:
+                              - generic [ref=e490] [cursor=pointer]: Functions
+                              - list [ref=e492]:
+                                - listitem [ref=e493]:
+                                  - link "Application-wide Configuration / Settings" [ref=e494] [cursor=pointer]:
+                                    - /url: call_reference/qt/functions/configuration/
+                                - listitem [ref=e495]:
+                                  - link "Debug Window Output" [ref=e496] [cursor=pointer]:
+                                    - /url: call_reference/qt/functions/debug_window_output/
+                                - listitem [ref=e497]:
+                                  - link "The Main PySimpleGUI Program" [ref=e498] [cursor=pointer]:
+                                    - /url: call_reference/qt/functions/main/
+                                - listitem [ref=e499]:
+                                  - link "Display Objects as Strings" [ref=e500] [cursor=pointer]:
+                                    - /url: call_reference/qt/functions/obj_to_string/
+                                - listitem [ref=e501]:
+                                  - link "Platform Checks" [ref=e502] [cursor=pointer]:
+                                    - /url: call_reference/qt/functions/platform_checks/
+                                - listitem [ref=e503]:
+                                  - link "Themes" [ref=e504] [cursor=pointer]:
+                                    - /url: call_reference/qt/functions/themes/
+                                - listitem [ref=e505]:
+                                  - link "Timer" [ref=e506] [cursor=pointer]:
+                                    - /url: call_reference/qt/functions/timer/
+                                - listitem [ref=e507]:
+                                  - link "User Settings API - Function Interface" [ref=e508] [cursor=pointer]:
+                                    - /url: call_reference/qt/functions/user_settings/
+                          - listitem [ref=e509]:
+                            - generic [ref=e510] [cursor=pointer]: Classes
+                            - navigation "Classes" [ref=e512]:
+                              - generic [ref=e513] [cursor=pointer]: Classes
+                              - list [ref=e515]:
+                                - listitem [ref=e516]:
+                                  - link "System tray" [ref=e517] [cursor=pointer]:
+                                    - /url: call_reference/qt/classes/system_tray/
+                                - listitem [ref=e518]:
+                                  - link "User settings" [ref=e519] [cursor=pointer]:
+                                    - /url: call_reference/qt/classes/user_settings/
+                    - listitem [ref=e520]:
+                      - generic [ref=e521] [cursor=pointer]: Tkinter
+                      - navigation "Tkinter" [ref=e523]:
+                        - generic [ref=e524] [cursor=pointer]: Tkinter
+                        - list [ref=e526]:
+                          - listitem [ref=e527]:
+                            - link "Tkinter Port Call Reference" [ref=e528] [cursor=pointer]:
+                              - /url: call_reference/tkinter/
+                          - listitem [ref=e529]:
+                            - link "Window" [ref=e530] [cursor=pointer]:
+                              - /url: call_reference/tkinter/window/
+                          - listitem [ref=e531]:
+                            - generic [ref=e532] [cursor=pointer]: Elements
+                            - navigation "Elements" [ref=e534]:
+                              - generic [ref=e535] [cursor=pointer]: Elements
+                              - list [ref=e537]:
+                                - listitem [ref=e538]:
+                                  - link "Button" [ref=e539] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/elements/button/
+                                - listitem [ref=e540]:
+                                  - link "ButtonMenu" [ref=e541] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/elements/button_menu/
+                                - listitem [ref=e542]:
+                                  - link "Canvas" [ref=e543] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/elements/canvas/
+                                - listitem [ref=e544]:
+                                  - link "Checkbox" [ref=e545] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/elements/checkbox/
+                                - listitem [ref=e546]:
+                                  - link "Column" [ref=e547] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/elements/column/
+                                - listitem [ref=e548]:
+                                  - link "Combo" [ref=e549] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/elements/combo/
+                                - listitem [ref=e550]:
+                                  - link "Frame" [ref=e551] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/elements/frame/
+                                - listitem [ref=e552]:
+                                  - link "Graph" [ref=e553] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/elements/graph/
+                                - listitem [ref=e554]:
+                                  - link "HorizontalSeparator" [ref=e555] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/elements/horizontal_separator/
+                                - listitem [ref=e556]:
+                                  - link "Image" [ref=e557] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/elements/image/
+                                - listitem [ref=e558]:
+                                  - link "Input" [ref=e559] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/elements/input/
+                                - listitem [ref=e560]:
+                                  - link "Layout Helper Funcs" [ref=e561] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/elements/layout_helpers/
+                                - listitem [ref=e562]:
+                                  - link "Listbox" [ref=e563] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/elements/listbox/
+                                - listitem [ref=e564]:
+                                  - link "Menu" [ref=e565] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/elements/menu/
+                                - listitem [ref=e566]:
+                                  - link "MenubarCustom" [ref=e567] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/elements/menubar_custom/
+                                - listitem [ref=e568]:
+                                  - link "Multiline" [ref=e569] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/elements/multiline/
+                                - listitem [ref=e570]:
+                                  - link "OptionMenu" [ref=e571] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/elements/option_menu/
+                                - listitem [ref=e572]:
+                                  - link "Output" [ref=e573] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/elements/output/
+                                - listitem [ref=e574]:
+                                  - link "Pane" [ref=e575] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/elements/pane/
+                                - listitem [ref=e576]:
+                                  - link "Pre-Defined Buttons" [ref=e577] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/elements/pre_defined_buttons/
+                                - listitem [ref=e578]:
+                                  - link "ProgressBar" [ref=e579] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/elements/progress_bar/
+                                - listitem [ref=e580]:
+                                  - link "Radio" [ref=e581] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/elements/radio/
+                                - listitem [ref=e582]:
+                                  - link "Sizegrip" [ref=e583] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/elements/sizegrip/
+                                - listitem [ref=e584]:
+                                  - link "Slider" [ref=e585] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/elements/slider/
+                                - listitem [ref=e586]:
+                                  - link "Spin" [ref=e587] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/elements/spin/
+                                - listitem [ref=e588]:
+                                  - link "StatusBar" [ref=e589] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/elements/status_bar/
+                                - listitem [ref=e590]:
+                                  - link "Tab" [ref=e591] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/elements/tab/
+                                - listitem [ref=e592]:
+                                  - link "TabGroup" [ref=e593] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/elements/tab_group/
+                                - listitem [ref=e594]:
+                                  - link "Table" [ref=e595] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/elements/table/
+                                - listitem [ref=e596]:
+                                  - link "Text" [ref=e597] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/elements/text/
+                                - listitem [ref=e598]:
+                                  - link "Custom Titlebar" [ref=e599] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/elements/titlebar/
+                                - listitem [ref=e600]:
+                                  - link "ToolTip" [ref=e601] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/elements/tool_tip/
+                                - listitem [ref=e602]:
+                                  - link "Tree" [ref=e603] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/elements/tree/
+                                - listitem [ref=e604]:
+                                  - link "TreeData" [ref=e605] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/elements/tree_data/
+                                - listitem [ref=e606]:
+                                  - link "VerticalSeparator" [ref=e607] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/elements/vertical_separator/
+                          - listitem [ref=e608]:
+                            - generic [ref=e609] [cursor=pointer]: Popups
+                            - navigation "Popups" [ref=e611]:
+                              - generic [ref=e612] [cursor=pointer]: Popups
+                              - list [ref=e614]:
+                                - listitem [ref=e615]:
+                                  - link "Popups Call Reference" [ref=e616] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/popups/
+                                - listitem [ref=e617]:
+                                  - link "One Line Progress Meter" [ref=e618] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/popups/one_line_progress_meter/
+                                - listitem [ref=e619]:
+                                  - link "Popup" [ref=e620] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/popups/popup/
+                                - listitem [ref=e621]:
+                                  - link "Popup animated" [ref=e622] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/popups/popup_animated/
+                                - listitem [ref=e623]:
+                                  - link "Popup annoying" [ref=e624] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/popups/popup_annoying/
+                                - listitem [ref=e625]:
+                                  - link "Popup auto close" [ref=e626] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/popups/popup_auto_close/
+                                - listitem [ref=e627]:
+                                  - link "Popup cancel" [ref=e628] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/popups/popup_cancel/
+                                - listitem [ref=e629]:
+                                  - link "Popup error" [ref=e630] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/popups/popup_error/
+                                - listitem [ref=e631]:
+                                  - link "Popup error with traceback" [ref=e632] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/popups/popup_error_with_traceback/
+                                - listitem [ref=e633]:
+                                  - link "Popup get date" [ref=e634] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/popups/popup_get_date/
+                                - listitem [ref=e635]:
+                                  - link "Popup get file" [ref=e636] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/popups/popup_get_file/
+                                - listitem [ref=e637]:
+                                  - link "Popup get folder" [ref=e638] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/popups/popup_get_folder/
+                                - listitem [ref=e639]:
+                                  - link "Popup get text" [ref=e640] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/popups/popup_get_text/
+                                - listitem [ref=e641]:
+                                  - link "Popup menu" [ref=e642] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/popups/popup_menu/
+                                - listitem [ref=e643]:
+                                  - link "Popup no border" [ref=e644] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/popups/popup_no_border/
+                                - listitem [ref=e645]:
+                                  - link "Popup no buttons" [ref=e646] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/popups/popup_no_buttons/
+                                - listitem [ref=e647]:
+                                  - link "Popup no frame" [ref=e648] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/popups/popup_no_frame/
+                                - listitem [ref=e649]:
+                                  - link "Popup no titlebar" [ref=e650] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/popups/popup_no_titlebar/
+                                - listitem [ref=e651]:
+                                  - link "Popup no wait" [ref=e652] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/popups/popup_no_wait/
+                                - listitem [ref=e653]:
+                                  - link "Popup non blocking" [ref=e654] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/popups/popup_non_blocking/
+                                - listitem [ref=e655]:
+                                  - link "Popup notify" [ref=e656] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/popups/popup_notify/
+                                - listitem [ref=e657]:
+                                  - link "Popup ok" [ref=e658] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/popups/popup_ok/
+                                - listitem [ref=e659]:
+                                  - link "Popup ok cancel" [ref=e660] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/popups/popup_ok_cancel/
+                                - listitem [ref=e661]:
+                                  - link "Popup quick" [ref=e662] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/popups/popup_quick/
+                                - listitem [ref=e663]:
+                                  - link "Popup quick message" [ref=e664] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/popups/popup_quick_message/
+                                - listitem [ref=e665]:
+                                  - link "Popup scrolled" [ref=e666] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/popups/popup_scrolled/
+                                - listitem [ref=e667]:
+                                  - link "Popup timed" [ref=e668] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/popups/popup_timed/
+                                - listitem [ref=e669]:
+                                  - link "Popup yes no" [ref=e670] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/popups/popup_yes_no/
+                          - listitem [ref=e671]:
+                            - generic [ref=e672] [cursor=pointer]: Functions
+                            - navigation "Functions" [ref=e674]:
+                              - generic [ref=e675] [cursor=pointer]: Functions
+                              - list [ref=e677]:
+                                - listitem [ref=e678]:
+                                  - link "Clipboard APIs" [ref=e679] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/functions/clipboard/
+                                - listitem [ref=e680]:
+                                  - link "Application-wide Configuration / Settings" [ref=e681] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/functions/configuration/
+                                - listitem [ref=e682]:
+                                  - link "Debug Window Output" [ref=e683] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/functions/debug_window_output/
+                                - listitem [ref=e684]:
+                                  - link "Debugger" [ref=e685] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/functions/debugger/
+                                - listitem [ref=e686]:
+                                  - link "Exec APIs - Launching Subprocesses" [ref=e687] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/functions/exec_api/
+                                - listitem [ref=e688]:
+                                  - link "The Main PySimpleGUI Program" [ref=e689] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/functions/main/
+                                - listitem [ref=e690]:
+                                  - link "Misc" [ref=e691] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/functions/misc/
+                                - listitem [ref=e692]:
+                                  - link "Network API" [ref=e693] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/functions/network_api/
+                                - listitem [ref=e694]:
+                                  - link "Display Objects as Strings" [ref=e695] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/functions/obj_to_string/
+                                - listitem [ref=e696]:
+                                  - link "Platform Checks" [ref=e697] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/functions/platform_checks/
+                                - listitem [ref=e698]:
+                                  - link "Themes" [ref=e699] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/functions/themes/
+                                - listitem [ref=e700]:
+                                  - link "Timer" [ref=e701] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/functions/timer/
+                                - listitem [ref=e702]:
+                                  - link "User Settings API - Function Interface" [ref=e703] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/functions/user_settings/
+                          - listitem [ref=e704]:
+                            - generic [ref=e705] [cursor=pointer]: Classes
+                            - navigation "Classes" [ref=e707]:
+                              - generic [ref=e708] [cursor=pointer]: Classes
+                              - list [ref=e710]:
+                                - listitem [ref=e711]:
+                                  - link "System tray" [ref=e712] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/classes/system_tray/
+                                - listitem [ref=e713]:
+                                  - link "User settings" [ref=e714] [cursor=pointer]:
+                                    - /url: call_reference/tkinter/classes/user_settings/
+                    - listitem [ref=e715]:
+                      - generic [ref=e716] [cursor=pointer]: Web
+                      - navigation "Web" [ref=e718]:
+                        - generic [ref=e719] [cursor=pointer]: Web
+                        - list [ref=e721]:
+                          - listitem [ref=e722]:
+                            - link "Web Port Call Reference" [ref=e723] [cursor=pointer]:
+                              - /url: call_reference/web/
+                          - listitem [ref=e724]:
+                            - link "Window" [ref=e725] [cursor=pointer]:
+                              - /url: call_reference/web/window/
+                          - listitem [ref=e726]:
+                            - generic [ref=e727] [cursor=pointer]: Elements
+                            - navigation "Elements" [ref=e729]:
+                              - generic [ref=e730] [cursor=pointer]: Elements
+                              - list [ref=e732]:
+                                - listitem [ref=e733]:
+                                  - link "Button" [ref=e734] [cursor=pointer]:
+                                    - /url: call_reference/web/elements/button/
+                                - listitem [ref=e735]:
+                                  - link "Checkbox" [ref=e736] [cursor=pointer]:
+                                    - /url: call_reference/web/elements/checkbox/
+                                - listitem [ref=e737]:
+                                  - link "Column" [ref=e738] [cursor=pointer]:
+                                    - /url: call_reference/web/elements/column/
+                                - listitem [ref=e739]:
+                                  - link "Combo" [ref=e740] [cursor=pointer]:
+                                    - /url: call_reference/web/elements/combo/
+                                - listitem [ref=e741]:
+                                  - link "Frame" [ref=e742] [cursor=pointer]:
+                                    - /url: call_reference/web/elements/frame/
+                                - listitem [ref=e743]:
+                                  - link "Graph" [ref=e744] [cursor=pointer]:
+                                    - /url: call_reference/web/elements/graph/
+                                - listitem [ref=e745]:
+                                  - link "Image" [ref=e746] [cursor=pointer]:
+                                    - /url: call_reference/web/elements/image/
+                                - listitem [ref=e747]:
+                                  - link "Listbox" [ref=e748] [cursor=pointer]:
+                                    - /url: call_reference/web/elements/listbox/
+                                - listitem [ref=e749]:
+                                  - link "Menu" [ref=e750] [cursor=pointer]:
+                                    - /url: call_reference/web/elements/menu/
+                                - listitem [ref=e751]:
+                                  - link "Multiline" [ref=e752] [cursor=pointer]:
+                                    - /url: call_reference/web/elements/multiline/
+                                - listitem [ref=e753]:
+                                  - link "OptionMenu" [ref=e754] [cursor=pointer]:
+                                    - /url: call_reference/web/elements/option_menu/
+                                - listitem [ref=e755]:
+                                  - link "Output" [ref=e756] [cursor=pointer]:
+                                    - /url: call_reference/web/elements/output/
+                                - listitem [ref=e757]:
+                                  - link "Pre-Defined Buttons" [ref=e758] [cursor=pointer]:
+                                    - /url: call_reference/web/elements/pre_defined_buttons/
+                                - listitem [ref=e759]:
+                                  - link "ProgressBar" [ref=e760] [cursor=pointer]:
+                                    - /url: call_reference/web/elements/progress_bar/
+                                - listitem [ref=e761]:
+                                  - link "Radio" [ref=e762] [cursor=pointer]:
+                                    - /url: call_reference/web/elements/radio/
+                                - listitem [ref=e763]:
+                                  - link "Slider" [ref=e764] [cursor=pointer]:
+                                    - /url: call_reference/web/elements/slider/
+                                - listitem [ref=e765]:
+                                  - link "Spin" [ref=e766] [cursor=pointer]:
+                                    - /url: call_reference/web/elements/spin/
+                                - listitem [ref=e767]:
+                                  - link "Tab" [ref=e768] [cursor=pointer]:
+                                    - /url: call_reference/web/elements/tab/
+                                - listitem [ref=e769]:
+                                  - link "TabGroup" [ref=e770] [cursor=pointer]:
+                                    - /url: call_reference/web/elements/tab_group/
+                                - listitem [ref=e771]:
+                                  - link "Table" [ref=e772] [cursor=pointer]:
+                                    - /url: call_reference/web/elements/table/
+                                - listitem [ref=e773]:
+                                  - link "Text" [ref=e774] [cursor=pointer]:
+                                    - /url: call_reference/web/elements/text/
+                                - listitem [ref=e775]:
+                                  - link "Tree" [ref=e776] [cursor=pointer]:
+                                    - /url: call_reference/web/elements/tree/
+                                - listitem [ref=e777]:
+                                  - link "TreeData" [ref=e778] [cursor=pointer]:
+                                    - /url: call_reference/web/elements/tree_data/
+                                - listitem [ref=e779]:
+                                  - link "VerticalSeparator" [ref=e780] [cursor=pointer]:
+                                    - /url: call_reference/web/elements/vertical_separator/
+                          - listitem [ref=e781]:
+                            - generic [ref=e782] [cursor=pointer]: Popups
+                            - navigation "Popups" [ref=e784]:
+                              - generic [ref=e785] [cursor=pointer]: Popups
+                              - list [ref=e787]:
+                                - listitem [ref=e788]:
+                                  - link "Popups Call Reference" [ref=e789] [cursor=pointer]:
+                                    - /url: call_reference/web/popups/
+                                - listitem [ref=e790]:
+                                  - link "One Line Progress Meter" [ref=e791] [cursor=pointer]:
+                                    - /url: call_reference/web/popups/one_line_progress_meter/
+                                - listitem [ref=e792]:
+                                  - link "Popup" [ref=e793] [cursor=pointer]:
+                                    - /url: call_reference/web/popups/popup/
+                                - listitem [ref=e794]:
+                                  - link "Popup auto close" [ref=e795] [cursor=pointer]:
+                                    - /url: call_reference/web/popups/popup_auto_close/
+                                - listitem [ref=e796]:
+                                  - link "Popup cancel" [ref=e797] [cursor=pointer]:
+                                    - /url: call_reference/web/popups/popup_cancel/
+                                - listitem [ref=e798]:
+                                  - link "Popup error" [ref=e799] [cursor=pointer]:
+                                    - /url: call_reference/web/popups/popup_error/
+                                - listitem [ref=e800]:
+                                  - link "Popup error with traceback" [ref=e801] [cursor=pointer]:
+                                    - /url: call_reference/web/popups/popup_error_with_traceback/
+                                - listitem [ref=e802]:
+                                  - link "Popup get file" [ref=e803] [cursor=pointer]:
+                                    - /url: call_reference/web/popups/popup_get_file/
+                                - listitem [ref=e804]:
+                                  - link "Popup get folder" [ref=e805] [cursor=pointer]:
+                                    - /url: call_reference/web/popups/popup_get_folder/
+                                - listitem [ref=e806]:
+                                  - link "Popup get text" [ref=e807] [cursor=pointer]:
+                                    - /url: call_reference/web/popups/popup_get_text/
+                                - listitem [ref=e808]:
+                                  - link "Popup no buttons" [ref=e809] [cursor=pointer]:
+                                    - /url: call_reference/web/popups/popup_no_buttons/
+                                - listitem [ref=e810]:
+                                  - link "Popup no titlebar" [ref=e811] [cursor=pointer]:
+                                    - /url: call_reference/web/popups/popup_no_titlebar/
+                                - listitem [ref=e812]:
+                                  - link "Popup non blocking" [ref=e813] [cursor=pointer]:
+                                    - /url: call_reference/web/popups/popup_non_blocking/
+                                - listitem [ref=e814]:
+                                  - link "Popup ok" [ref=e815] [cursor=pointer]:
+                                    - /url: call_reference/web/popups/popup_ok/
+                                - listitem [ref=e816]:
+                                  - link "Popup ok cancel" [ref=e817] [cursor=pointer]:
+                                    - /url: call_reference/web/popups/popup_ok_cancel/
+                                - listitem [ref=e818]:
+                                  - link "Popup quick" [ref=e819] [cursor=pointer]:
+                                    - /url: call_reference/web/popups/popup_quick/
+                                - listitem [ref=e820]:
+                                  - link "Popup quick message" [ref=e821] [cursor=pointer]:
+                                    - /url: call_reference/web/popups/popup_quick_message/
+                                - listitem [ref=e822]:
+                                  - link "Popup scrolled" [ref=e823] [cursor=pointer]:
+                                    - /url: call_reference/web/popups/popup_scrolled/
+                                - listitem [ref=e824]:
+                                  - link "Popup yes no" [ref=e825] [cursor=pointer]:
+                                    - /url: call_reference/web/popups/popup_yes_no/
+                          - listitem [ref=e826]:
+                            - generic [ref=e827] [cursor=pointer]: Functions
+                            - navigation "Functions" [ref=e829]:
+                              - generic [ref=e830] [cursor=pointer]: Functions
+                              - list [ref=e832]:
+                                - listitem [ref=e833]:
+                                  - link "Application-wide Configuration / Settings" [ref=e834] [cursor=pointer]:
+                                    - /url: call_reference/web/functions/configuration/
+                                - listitem [ref=e835]:
+                                  - link "Debug Window Output" [ref=e836] [cursor=pointer]:
+                                    - /url: call_reference/web/functions/debug_window_output/
+                                - listitem [ref=e837]:
+                                  - link "The Main PySimpleGUI Program" [ref=e838] [cursor=pointer]:
+                                    - /url: call_reference/web/functions/main/
+                                - listitem [ref=e839]:
+                                  - link "Display Objects as Strings" [ref=e840] [cursor=pointer]:
+                                    - /url: call_reference/web/functions/obj_to_string/
+                                - listitem [ref=e841]:
+                                  - link "Platform Checks" [ref=e842] [cursor=pointer]:
+                                    - /url: call_reference/web/functions/platform_checks/
+                                - listitem [ref=e843]:
+                                  - link "Themes" [ref=e844] [cursor=pointer]:
+                                    - /url: call_reference/web/functions/themes/
+                                - listitem [ref=e845]:
+                                  - link "Timer" [ref=e846] [cursor=pointer]:
+                                    - /url: call_reference/web/functions/timer/
+                                - listitem [ref=e847]:
+                                  - link "User Settings API - Function Interface" [ref=e848] [cursor=pointer]:
+                                    - /url: call_reference/web/functions/user_settings/
+                          - listitem [ref=e849]:
+                            - generic [ref=e850] [cursor=pointer]: Classes
+                            - navigation "Classes" [ref=e852]:
+                              - generic [ref=e853] [cursor=pointer]: Classes
+                              - list [ref=e855]:
+                                - listitem [ref=e856]:
+                                  - link "User settings" [ref=e857] [cursor=pointer]:
+                                    - /url: call_reference/web/classes/user_settings/
+                    - listitem [ref=e858]:
+                      - generic [ref=e859] [cursor=pointer]: Wx
+                      - navigation "Wx" [ref=e861]:
+                        - generic [ref=e862] [cursor=pointer]: Wx
+                        - list [ref=e864]:
+                          - listitem [ref=e865]:
+                            - link "Wx Port Call Reference" [ref=e866] [cursor=pointer]:
+                              - /url: call_reference/wx/
+                          - listitem [ref=e867]:
+                            - link "Window" [ref=e868] [cursor=pointer]:
+                              - /url: call_reference/wx/window/
+                          - listitem [ref=e869]:
+                            - generic [ref=e870] [cursor=pointer]: Elements
+                            - navigation "Elements" [ref=e872]:
+                              - generic [ref=e873] [cursor=pointer]: Elements
+                              - list [ref=e875]:
+                                - listitem [ref=e876]:
+                                  - link "Button" [ref=e877] [cursor=pointer]:
+                                    - /url: call_reference/wx/elements/button/
+                                - listitem [ref=e878]:
+                                  - link "Canvas" [ref=e879] [cursor=pointer]:
+                                    - /url: call_reference/wx/elements/canvas/
+                                - listitem [ref=e880]:
+                                  - link "Checkbox" [ref=e881] [cursor=pointer]:
+                                    - /url: call_reference/wx/elements/checkbox/
+                                - listitem [ref=e882]:
+                                  - link "Column" [ref=e883] [cursor=pointer]:
+                                    - /url: call_reference/wx/elements/column/
+                                - listitem [ref=e884]:
+                                  - link "Combo" [ref=e885] [cursor=pointer]:
+                                    - /url: call_reference/wx/elements/combo/
+                                - listitem [ref=e886]:
+                                  - link "Frame" [ref=e887] [cursor=pointer]:
+                                    - /url: call_reference/wx/elements/frame/
+                                - listitem [ref=e888]:
+                                  - link "Graph" [ref=e889] [cursor=pointer]:
+                                    - /url: call_reference/wx/elements/graph/
+                                - listitem [ref=e890]:
+                                  - link "HorizontalSeparator" [ref=e891] [cursor=pointer]:
+                                    - /url: call_reference/wx/elements/horizontal_separator/
+                                - listitem [ref=e892]:
+                                  - link "Image" [ref=e893] [cursor=pointer]:
+                                    - /url: call_reference/wx/elements/image/
+                                - listitem [ref=e894]:
+                                  - link "Listbox" [ref=e895] [cursor=pointer]:
+                                    - /url: call_reference/wx/elements/listbox/
+                                - listitem [ref=e896]:
+                                  - link "Menu" [ref=e897] [cursor=pointer]:
+                                    - /url: call_reference/wx/elements/menu/
+                                - listitem [ref=e898]:
+                                  - link "Multiline" [ref=e899] [cursor=pointer]:
+                                    - /url: call_reference/wx/elements/multiline/
+                                - listitem [ref=e900]:
+                                  - link "OptionMenu" [ref=e901] [cursor=pointer]:
+                                    - /url: call_reference/wx/elements/option_menu/
+                                - listitem [ref=e902]:
+                                  - link "Output" [ref=e903] [cursor=pointer]:
+                                    - /url: call_reference/wx/elements/output/
+                                - listitem [ref=e904]:
+                                  - link "Pre-Defined Buttons" [ref=e905] [cursor=pointer]:
+                                    - /url: call_reference/wx/elements/pre_defined_buttons/
+                                - listitem [ref=e906]:
+                                  - link "ProgressBar" [ref=e907] [cursor=pointer]:
+                                    - /url: call_reference/wx/elements/progress_bar/
+                                - listitem [ref=e908]:
+                                  - link "Radio" [ref=e909] [cursor=pointer]:
+                                    - /url: call_reference/wx/elements/radio/
+                                - listitem [ref=e910]:
+                                  - link "Slider" [ref=e911] [cursor=pointer]:
+                                    - /url: call_reference/wx/elements/slider/
+                                - listitem [ref=e912]:
+                                  - link "Spin" [ref=e913] [cursor=pointer]:
+                                    - /url: call_reference/wx/elements/spin/
+                                - listitem [ref=e914]:
+                                  - link "Tab" [ref=e915] [cursor=pointer]:
+                                    - /url: call_reference/wx/elements/tab/
+                                - listitem [ref=e916]:
+                                  - link "TabGroup" [ref=e917] [cursor=pointer]:
+                                    - /url: call_reference/wx/elements/tab_group/
+                                - listitem [ref=e918]:
+                                  - link "Table" [ref=e919] [cursor=pointer]:
+                                    - /url: call_reference/wx/elements/table/
+                                - listitem [ref=e920]:
+                                  - link "Text" [ref=e921] [cursor=pointer]:
+                                    - /url: call_reference/wx/elements/text/
+                                - listitem [ref=e922]:
+                                  - link "Tree" [ref=e923] [cursor=pointer]:
+                                    - /url: call_reference/wx/elements/tree/
+                                - listitem [ref=e924]:
+                                  - link "TreeData" [ref=e925] [cursor=pointer]:
+                                    - /url: call_reference/wx/elements/tree_data/
+                                - listitem [ref=e926]:
+                                  - link "VerticalSeparator" [ref=e927] [cursor=pointer]:
+                                    - /url: call_reference/wx/elements/vertical_separator/
+                          - listitem [ref=e928]:
+                            - generic [ref=e929] [cursor=pointer]: Popups
+                            - navigation "Popups" [ref=e931]:
+                              - generic [ref=e932] [cursor=pointer]: Popups
+                              - list [ref=e934]:
+                                - listitem [ref=e935]:
+                                  - link "Popups Call Reference" [ref=e936] [cursor=pointer]:
+                                    - /url: call_reference/wx/popups/
+                                - listitem [ref=e937]:
+                                  - link "Popup" [ref=e938] [cursor=pointer]:
+                                    - /url: call_reference/wx/popups/popup/
+                                - listitem [ref=e939]:
+                                  - link "Popup auto close" [ref=e940] [cursor=pointer]:
+                                    - /url: call_reference/wx/popups/popup_auto_close/
+                                - listitem [ref=e941]:
+                                  - link "Popup cancel" [ref=e942] [cursor=pointer]:
+                                    - /url: call_reference/wx/popups/popup_cancel/
+                                - listitem [ref=e943]:
+                                  - link "Popup error" [ref=e944] [cursor=pointer]:
+                                    - /url: call_reference/wx/popups/popup_error/
+                                - listitem [ref=e945]:
+                                  - link "Popup get file" [ref=e946] [cursor=pointer]:
+                                    - /url: call_reference/wx/popups/popup_get_file/
+                                - listitem [ref=e947]:
+                                  - link "Popup get folder" [ref=e948] [cursor=pointer]:
+                                    - /url: call_reference/wx/popups/popup_get_folder/
+                                - listitem [ref=e949]:
+                                  - link "Popup get text" [ref=e950] [cursor=pointer]:
+                                    - /url: call_reference/wx/popups/popup_get_text/
+                                - listitem [ref=e951]:
+                                  - link "Popup no buttons" [ref=e952] [cursor=pointer]:
+                                    - /url: call_reference/wx/popups/popup_no_buttons/
+                                - listitem [ref=e953]:
+                                  - link "Popup no titlebar" [ref=e954] [cursor=pointer]:
+                                    - /url: call_reference/wx/popups/popup_no_titlebar/
+                                - listitem [ref=e955]:
+                                  - link "Popup non blocking" [ref=e956] [cursor=pointer]:
+                                    - /url: call_reference/wx/popups/popup_non_blocking/
+                                - listitem [ref=e957]:
+                                  - link "Popup ok" [ref=e958] [cursor=pointer]:
+                                    - /url: call_reference/wx/popups/popup_ok/
+                                - listitem [ref=e959]:
+                                  - link "Popup ok cancel" [ref=e960] [cursor=pointer]:
+                                    - /url: call_reference/wx/popups/popup_ok_cancel/
+                                - listitem [ref=e961]:
+                                  - link "Popup quick" [ref=e962] [cursor=pointer]:
+                                    - /url: call_reference/wx/popups/popup_quick/
+                                - listitem [ref=e963]:
+                                  - link "Popup quick message" [ref=e964] [cursor=pointer]:
+                                    - /url: call_reference/wx/popups/popup_quick_message/
+                                - listitem [ref=e965]:
+                                  - link "Popup scrolled" [ref=e966] [cursor=pointer]:
+                                    - /url: call_reference/wx/popups/popup_scrolled/
+                                - listitem [ref=e967]:
+                                  - link "Popup yes no" [ref=e968] [cursor=pointer]:
+                                    - /url: call_reference/wx/popups/popup_yes_no/
+                          - listitem [ref=e969]:
+                            - generic [ref=e970] [cursor=pointer]: Functions
+                            - navigation "Functions" [ref=e972]:
+                              - generic [ref=e973] [cursor=pointer]: Functions
+                              - list [ref=e975]:
+                                - listitem [ref=e976]:
+                                  - link "Application-wide Configuration / Settings" [ref=e977] [cursor=pointer]:
+                                    - /url: call_reference/wx/functions/configuration/
+                                - listitem [ref=e978]:
+                                  - link "Debug Window Output" [ref=e979] [cursor=pointer]:
+                                    - /url: call_reference/wx/functions/debug_window_output/
+                                - listitem [ref=e980]:
+                                  - link "The Main PySimpleGUI Program" [ref=e981] [cursor=pointer]:
+                                    - /url: call_reference/wx/functions/main/
+                                - listitem [ref=e982]:
+                                  - link "Display Objects as Strings" [ref=e983] [cursor=pointer]:
+                                    - /url: call_reference/wx/functions/obj_to_string/
+                                - listitem [ref=e984]:
+                                  - link "Platform Checks" [ref=e985] [cursor=pointer]:
+                                    - /url: call_reference/wx/functions/platform_checks/
+                                - listitem [ref=e986]:
+                                  - link "Themes" [ref=e987] [cursor=pointer]:
+                                    - /url: call_reference/wx/functions/themes/
+                                - listitem [ref=e988]:
+                                  - link "Timer" [ref=e989] [cursor=pointer]:
+                                    - /url: call_reference/wx/functions/timer/
+                                - listitem [ref=e990]:
+                                  - link "User Settings API - Function Interface" [ref=e991] [cursor=pointer]:
+                                    - /url: call_reference/wx/functions/user_settings/
+                          - listitem [ref=e992]:
+                            - generic [ref=e993] [cursor=pointer]: Classes
+                            - navigation "Classes" [ref=e995]:
+                              - generic [ref=e996] [cursor=pointer]: Classes
+                              - list [ref=e998]:
+                                - listitem [ref=e999]:
+                                  - link "System tray" [ref=e1000] [cursor=pointer]:
+                                    - /url: call_reference/wx/classes/system_tray/
+                                - listitem [ref=e1001]:
+                                  - link "User settings" [ref=e1002] [cursor=pointer]:
+                                    - /url: call_reference/wx/classes/user_settings/
+              - listitem [ref=e1003]:
+                - generic [ref=e1004] [cursor=pointer]: Cookbook
+                - navigation "Cookbook" [ref=e1006]:
+                  - generic [ref=e1007] [cursor=pointer]: Cookbook
+                  - list [ref=e1009]:
+                    - listitem [ref=e1010]:
+                      - link "The Cookbook" [ref=e1011] [cursor=pointer]:
+                        - /url: cookbook/
+                    - listitem [ref=e1012]:
+                      - generic [ref=e1013] [cursor=pointer]: The Original Cookbook
+                      - navigation "The Original Cookbook" [ref=e1015]:
+                        - generic [ref=e1016] [cursor=pointer]: The Original Cookbook
+                        - list [ref=e1018]:
+                          - listitem [ref=e1019]:
+                            - link "The Original PySimpleGUI Cookbook" [ref=e1020] [cursor=pointer]:
+                              - /url: cookbook/original/
+                          - listitem [ref=e1021]:
+                            - link "Getting Started" [ref=e1022] [cursor=pointer]:
+                              - /url: cookbook/original/getting_started/
+                          - listitem [ref=e1023]:
+                            - generic [ref=e1024] [cursor=pointer]: Basic Programs
+                            - navigation "Basic Programs" [ref=e1026]:
+                              - generic [ref=e1027] [cursor=pointer]: Basic Programs
+                              - list [ref=e1029]:
+                                - listitem [ref=e1030]:
+                                  - link "1 Shot Window - Simple Data Entry - Return Values - Auto Numbered" [ref=e1031] [cursor=pointer]:
+                                    - /url: cookbook/original/simple_form/
+                                - listitem [ref=e1032]:
+                                  - link "Persistent Window With Text Element Updates" [ref=e1033] [cursor=pointer]:
+                                    - /url: cookbook/original/persistent_window_updates/
+                          - listitem [ref=e1034]:
+                            - link "The Demo Browser" [ref=e1035] [cursor=pointer]:
+                              - /url: cookbook/original/demo_browser/
+                          - listitem [ref=e1036]:
+                            - link "No Console Launching" [ref=e1037] [cursor=pointer]:
+                              - /url: cookbook/original/no_console/
+                          - listitem [ref=e1038]:
+                            - link "Post your screen-shots (PLEASE!)" [ref=e1039] [cursor=pointer]:
+                              - /url: cookbook/original/user_screenshots/
+                          - listitem [ref=e1040]:
+                            - generic [ref=e1041] [cursor=pointer]: Element Recipes
+                            - navigation "Element Recipes" [ref=e1043]:
+                              - generic [ref=e1044] [cursor=pointer]: Element Recipes
+                              - list [ref=e1046]:
+                                - listitem [ref=e1047]:
+                                  - generic [ref=e1048] [cursor=pointer]: Graphical Buttons
+                                  - navigation "Graphical Buttons" [ref=e1050]:
+                                    - generic [ref=e1051] [cursor=pointer]: Graphical Buttons
+                                    - list [ref=e1053]:
+                                      - listitem [ref=e1054]:
+                                        - link "Replacing a Button with a Graphic" [ref=e1055] [cursor=pointer]:
+                                          - /url: cookbook/original/graphical_buttons/
+                                      - listitem [ref=e1056]:
+                                        - link "Button Graphics (Media Player)" [ref=e1057] [cursor=pointer]:
+                                          - /url: cookbook/original/graphical_buttons_media_player/
+                                - listitem [ref=e1058]:
+                                  - link "All Elements (The Everything Bagel... 2022-Style)" [ref=e1059] [cursor=pointer]:
+                                    - /url: cookbook/original/all_elements/
+                                - listitem [ref=e1060]:
+                                  - link "Custom Progress Meter / Progress Bar" [ref=e1061] [cursor=pointer]:
+                                    - /url: cookbook/original/custom_progress_bar/
+                                - listitem [ref=e1062]:
+                                  - link "One Element Updating Another - Compound Elements" [ref=e1063] [cursor=pointer]:
+                                    - /url: cookbook/original/compound_elements/
+                                - listitem [ref=e1064]:
+                                  - link "tkinter Canvas Widget" [ref=e1065] [cursor=pointer]:
+                                    - /url: cookbook/original/canvas/
+                                - listitem [ref=e1066]:
+                                  - link "Graph Element - drawing circle, rectangle, etc, objects" [ref=e1067] [cursor=pointer]:
+                                    - /url: cookbook/original/graph/
+                                - listitem [ref=e1068]:
+                                  - link "Graphing with Graph Element" [ref=e1069] [cursor=pointer]:
+                                    - /url: cookbook/original/graphs_1/
+                                - listitem [ref=e1070]:
+                                  - link "Menus" [ref=e1071] [cursor=pointer]:
+                                    - /url: cookbook/original/menus/
+                                - listitem [ref=e1072]:
+                                  - link "Tabs" [ref=e1073] [cursor=pointer]:
+                                    - /url: cookbook/original/tabs/
+                          - listitem [ref=e1074]:
+                            - generic [ref=e1075] [cursor=pointer]: Justification & Alignment
+                            - navigation "Justification & Alignment" [ref=e1077]:
+                              - generic [ref=e1078] [cursor=pointer]: Justification & Alignment
+                              - list [ref=e1080]:
+                                - listitem [ref=e1081]:
+                                  - link "Element Justification and Alignment" [ref=e1082] [cursor=pointer]:
+                                    - /url: cookbook/original/justification_alignment/
+                                - listitem [ref=e1083]:
+                                  - link "Clean Simple Inputs" [ref=e1084] [cursor=pointer]:
+                                    - /url: cookbook/original/aligning_inputs/
+                          - listitem [ref=e1085]:
+                            - generic [ref=e1086] [cursor=pointer]: Multiple Windows
+                            - navigation "Multiple Windows" [ref=e1088]:
+                              - generic [ref=e1089] [cursor=pointer]: Multiple Windows
+                              - list [ref=e1091]:
+                                - listitem [ref=e1092]:
+                                  - 'link "Recipe Multiple Windows - `read_all_windows`" [ref=e1093] [cursor=pointer]':
+                                    - /url: cookbook/original/multiple_windows/
+                                - listitem [ref=e1094]:
+                                  - link "Multiple Windows" [ref=e1095] [cursor=pointer]:
+                                    - /url: cookbook/original/multiple_windows_hide_first/
+                          - listitem [ref=e1096]:
+                            - generic [ref=e1097] [cursor=pointer]: Themes
+                            - navigation "Themes" [ref=e1099]:
+                              - generic [ref=e1100] [cursor=pointer]: Themes
+                              - list [ref=e1102]:
+                                - listitem [ref=e1103]:
+                                  - link "Built-in Theme Viewer" [ref=e1104] [cursor=pointer]:
+                                    - /url: cookbook/original/theme_viewer/
+                                - listitem [ref=e1105]:
+                                  - link "Theme Browser" [ref=e1106] [cursor=pointer]:
+                                    - /url: cookbook/original/theme_browser/
+                                - listitem [ref=e1107]:
+                                  - link "Modifying an existing Theme" [ref=e1108] [cursor=pointer]:
+                                    - /url: cookbook/original/theme_modification/
+                                - listitem [ref=e1109]:
+                                  - link "Adding Your Own Color Theme" [ref=e1110] [cursor=pointer]:
+                                    - /url: cookbook/original/adding_own_theme/
+                          - listitem [ref=e1111]:
+                            - generic [ref=e1112] [cursor=pointer]: Utility Recipes
+                            - navigation "Utility Recipes" [ref=e1114]:
+                              - generic [ref=e1115] [cursor=pointer]: Utility Recipes
+                              - list [ref=e1117]:
+                                - listitem [ref=e1118]:
+                                  - link "Desktop Floating Toolbar" [ref=e1119] [cursor=pointer]:
+                                    - /url: cookbook/original/floating_toolbar/
+                                - listitem [ref=e1120]:
+                                  - link "Desktop Floating Widget - Timer" [ref=e1121] [cursor=pointer]:
+                                    - /url: cookbook/original/floating_toolbar_timer/
+                                - listitem [ref=e1122]:
+                                  - link "Desktop Floating Widget - CPU Utilization" [ref=e1123] [cursor=pointer]:
+                                    - /url: cookbook/original/floating_toolbar_cpu/
+                                - listitem [ref=e1124]:
+                                  - link "Script Launcher - Exec APIs" [ref=e1125] [cursor=pointer]:
+                                    - /url: cookbook/original/script_launcher/
+                                - listitem [ref=e1126]:
+                                  - link "Recipe- Launch a Program With a Button" [ref=e1127] [cursor=pointer]:
+                                    - /url: cookbook/original/program_launcher/
+                          - listitem [ref=e1128]:
+                            - generic [ref=e1129] [cursor=pointer]: Integrations
+                            - navigation "Integrations" [ref=e1131]:
+                              - generic [ref=e1132] [cursor=pointer]: Integrations
+                              - list [ref=e1134]:
+                                - listitem [ref=e1135]:
+                                  - link "convert_to_bytes Function + PIL Image Viewer" [ref=e1136] [cursor=pointer]:
+                                    - /url: cookbook/original/convert_to_bytes/
+                                - listitem [ref=e1137]:
+                                  - link "Machine Learning GUI" [ref=e1138] [cursor=pointer]:
+                                    - /url: cookbook/original/machine_learning/
+                                - listitem [ref=e1139]:
+                                  - link "Matplotlib Window With GUI Window" [ref=e1140] [cursor=pointer]:
+                                    - /url: cookbook/original/matplotlib/
+                                - listitem [ref=e1141]:
+                                  - link "Animated Matplotlib Graph" [ref=e1142] [cursor=pointer]:
+                                    - /url: cookbook/original/matplotlib_animated/
+                          - listitem [ref=e1143]:
+                            - generic [ref=e1144] [cursor=pointer]: File Browsing
+                            - navigation "File Browsing" [ref=e1146]:
+                              - generic [ref=e1147] [cursor=pointer]: File Browsing
+                              - list [ref=e1149]:
+                                - listitem [ref=e1150]:
+                                  - link "Get 2 Files By Browsing" [ref=e1151] [cursor=pointer]:
+                                    - /url: cookbook/original/input_file_browse/
+                                - listitem [ref=e1152]:
+                                  - link "Get Filename With No Input Display. Returns when file selected" [ref=e1153] [cursor=pointer]:
+                                    - /url: cookbook/original/file_browse_no_input/
+                          - listitem [ref=e1154]:
+                            - generic [ref=e1155] [cursor=pointer]: Layout Composition
+                            - navigation "Layout Composition" [ref=e1157]:
+                              - generic [ref=e1158] [cursor=pointer]: Layout Composition
+                              - list [ref=e1160]:
+                                - listitem [ref=e1161]:
+                                  - link "Collapsible Sections (Visible / Invisible Elements)" [ref=e1162] [cursor=pointer]:
+                                    - /url: cookbook/original/collapsible_sections/
+                                - listitem [ref=e1163]:
+                                  - link "Minesweeper-style Grid of Buttons" [ref=e1164] [cursor=pointer]:
+                                    - /url: cookbook/original/button_grid_minesweeper_style/
+                                - listitem [ref=e1165]:
+                                  - link "Multiple Columns" [ref=e1166] [cursor=pointer]:
+                                    - /url: cookbook/original/multiple_columns/
+                                - listitem [ref=e1167]:
+                                  - link "Keypad Touchscreen Entry - Input Element Update" [ref=e1168] [cursor=pointer]:
+                                    - /url: cookbook/original/keybad_entry/
+                                - listitem [ref=e1169]:
+                                  - link "Tight Layout with Button States" [ref=e1170] [cursor=pointer]:
+                                    - /url: cookbook/original/tight_layout/
+                          - listitem [ref=e1171]:
+                            - generic [ref=e1172] [cursor=pointer]: CLI Implementation
+                            - navigation "CLI Implementation" [ref=e1174]:
+                              - generic [ref=e1175] [cursor=pointer]: CLI Implementation
+                              - list [ref=e1177]:
+                                - listitem [ref=e1178]:
+                                  - link "Add GUI to Front-End of Script" [ref=e1179] [cursor=pointer]:
+                                    - /url: cookbook/original/simple_implementation/
+                                - listitem [ref=e1180]:
+                                  - 'link "The `popup_get_file` Version of Add GUI to Front-End of Script" [ref=e1181] [cursor=pointer]':
+                                    - /url: cookbook/original/simple_implementation_popup/
+                          - listitem [ref=e1182]:
+                            - link "A Simple & Standard Right Click Menu" [ref=e1183] [cursor=pointer]:
+                              - /url: cookbook/original/right_click_menu/
+                          - listitem [ref=e1184]:
+                            - link "Removing Titlebar & Window Transparency" [ref=e1185] [cursor=pointer]:
+                              - /url: cookbook/original/removing_titlebar/
+                          - listitem [ref=e1186]:
+                            - link "Function and Aliases" [ref=e1187] [cursor=pointer]:
+                              - /url: cookbook/original/functions_aliases/
+                          - listitem [ref=e1188]:
+                            - link "Highly Responsive Inputs" [ref=e1189] [cursor=pointer]:
+                              - /url: cookbook/original/highly_responsive_inputs/
+                          - listitem [ref=e1190]:
+                            - link "Input Validation" [ref=e1191] [cursor=pointer]:
+                              - /url: cookbook/original/input_validation/
+                          - listitem [ref=e1192]:
+                            - link "Positioning Windows on a Multi-Monitor Setup" [ref=e1193] [cursor=pointer]:
+                              - /url: cookbook/original/multi_monitor/
+                          - listitem [ref=e1194]:
+                            - link "Printing" [ref=e1195] [cursor=pointer]:
+                              - /url: cookbook/original/printing/
+                          - listitem [ref=e1196]:
+                            - link "Save and Load Program Settings" [ref=e1197] [cursor=pointer]:
+                              - /url: cookbook/original/save_load_program_settings/
+                          - listitem [ref=e1198]:
+                            - link "Multithreading" [ref=e1199] [cursor=pointer]:
+                              - /url: cookbook/original/multi_threading/
+                          - listitem [ref=e1200]:
+                            - link "Exception Handling" [ref=e1201] [cursor=pointer]:
+                              - /url: cookbook/original/exception_handling/
+                          - listitem [ref=e1202]:
+                            - link "Callback Function Simulation" [ref=e1203] [cursor=pointer]:
+                              - /url: cookbook/original/callback_function/
+                          - listitem [ref=e1204]:
+                            - link "Built-in Progress Meter" [ref=e1205] [cursor=pointer]:
+                              - /url: cookbook/original/one_line_progress_meter/
+                          - listitem [ref=e1206]:
+                            - link "Password Protection For Scripts" [ref=e1207] [cursor=pointer]:
+                              - /url: cookbook/original/password_protection/
+              - listitem [ref=e1208]:
+                - link "Demo Screenshots" [ref=e1209] [cursor=pointer]:
+                  - /url: demo_screenshots/
+              - listitem [ref=e1210]:
+                - link "FAQ" [ref=e1211] [cursor=pointer]:
+                  - /url: FAQ/
+              - listitem [ref=e1212]:
+                - generic [ref=e1213] [cursor=pointer]: User Screenshots
+                - navigation "User Screenshots" [ref=e1215]:
+                  - generic [ref=e1216] [cursor=pointer]: User Screenshots
+                  - list [ref=e1218]:
+                    - listitem [ref=e1219]:
+                      - link "User Screenshots" [ref=e1220] [cursor=pointer]:
+                        - /url: user_screenshots/
+                    - listitem [ref=e1221]:
+                      - link "User screenshots plain" [ref=e1222] [cursor=pointer]:
+                        - /url: user_screenshots/user_screenshots_plain/
+                    - listitem [ref=e1223]:
+                      - link "User screenshots captioned" [ref=e1224] [cursor=pointer]:
+                        - /url: user_screenshots/user_screenshots_captioned/
+              - listitem [ref=e1225]:
+                - generic [ref=e1226] [cursor=pointer]: Readme Feb 2024
+                - navigation "Readme Feb 2024" [ref=e1228]:
+                  - generic [ref=e1229] [cursor=pointer]: Readme Feb 2024
+                  - list [ref=e1231]:
+                    - listitem [ref=e1232]:
+                      - link "Index" [ref=e1233] [cursor=pointer]:
+                        - /url: readme_Feb2024/
+              - listitem [ref=e1234]:
+                - generic [ref=e1235] [cursor=pointer]: Announcements2018-2024
+                - navigation "Announcements2018-2024" [ref=e1237]:
+                  - generic [ref=e1238] [cursor=pointer]: Announcements2018-2024
+                  - list [ref=e1240]:
+                    - listitem [ref=e1241]:
+                      - link "Index" [ref=e1242] [cursor=pointer]:
+                        - /url: githubannouncements/
+              - listitem [ref=e1243]:
+                - generic [ref=e1244] [cursor=pointer]: History
+                - navigation "History" [ref=e1246]:
+                  - generic [ref=e1247] [cursor=pointer]: History
+                  - list [ref=e1249]:
+                    - listitem [ref=e1250]:
+                      - link "Project History" [ref=e1251] [cursor=pointer]:
+                        - /url: history/
+        - article [ref=e1253]:
+          - paragraph [ref=e1254]:
+            - img [ref=e1255]
+          - heading "What is PySimpleGUI?" [level=1] [ref=e1256]
+          - paragraph [ref=e1257]: PySimpleGUI is a wrapper for tkinter (and other GUI libraries) that transforms the GUI SDK into a simpler, more compact architecture while still providing detailed customization. No prior GUI programming experience needed.
+          - paragraph [ref=e1258]: This is an entire interactive application.
+          - generic [ref=e1260]:
+            - button "Copy to clipboard" [ref=e1261] [cursor=pointer]
+            - code [ref=e1262]: "import PySimpleGUI as sg # Define the window's contents layout = [[sg.Text(\"What's your name?\")], [sg.Input(key='-INPUT-')], [sg.Text(size=(40,1), key='-OUTPUT-')], [sg.Button('Ok'), sg.Button('Quit')]] # Create the window window = sg.Window('Window Title', layout) # Display and interact with the Window using an Event Loop while True: event, values = window.read() # See if user wants to quit or window was closed if event == sg.WINDOW_CLOSED or event == 'Quit': break # Output a message to the window window['-OUTPUT-'].update('Hello ' + values['-INPUT-'] + \"! Thanks for trying PySimpleGUI\") # Finish up by removing from the screen window.close()"
+          - paragraph [ref=e1263]: This is the window that's created.
+          - paragraph [ref=e1264]:
+            - img "win1"
+          - paragraph [ref=e1265]: Here's the same window after some user interaction.
+          - paragraph [ref=e1266]:
+            - img "win2"
+          - heading "Open Source Once Again..." [level=1] [ref=e1267]
+          - paragraph [ref=e1268]: Hey, it's Mike....
+          - paragraph [ref=e1269]:
+            - text: We gave commercialization a try. It was an incredible experience, but it didn’t generate the resources needed to sustain PySimpleGUI at the level we had hoped. To learn more about the history of the PySimpleGUI project, check out the
+            - link "History Tab" [ref=e1270] [cursor=pointer]:
+              - /url: https://docs.pysimplegui.com/history/
+            - text: . In February 2025, we announced that PySimpleSoft would be shutting down, with support continuing through the end of 2025.
+          - paragraph [ref=e1271]: That process is now complete. The next question was what to do with the code, documentation, and repositories. I always planned to keep the repos available for reference—so the decision came down to the software itself.
+          - heading "PySimpleGUI 6" [level=1] [ref=e1272]
+          - paragraph [ref=e1273]:
+            - img
+          - paragraph [ref=e1274]: I’ve released the PySimpleGUI 5 code as open source. After removing licensing and security components, it’s now available under the LGPL3 license on GitHub and PyPI.
+          - heading "Installing from PyPI" [level=2] [ref=e1275]
+          - paragraph [ref=e1276]: "To install the latest version (v6):"
+          - paragraph [ref=e1277]:
+            - code [ref=e1278]: python -m pip install PySimpleGUI
+          - paragraph [ref=e1279]: "If you need the older version (4.60.5.1):"
+          - paragraph [ref=e1280]:
+            - code [ref=e1281]: python -m pip install PySimpleGUI==4.60.5.1
+          - heading "Installing from Github" [level=2] [ref=e1282]
+          - paragraph [ref=e1283]: "The GitHub repo has the most up-to-date code. You can install directly without cloning:"
+          - paragraph [ref=e1284]:
+            - code [ref=e1285]: python -m pip install --upgrade https://github.com/PySimpleGUI/PySimpleGUI/zipball/master
+          - paragraph [ref=e1286]: "Or clone/download the repo and install locally:"
+          - paragraph [ref=e1287]:
+            - code [ref=e1288]: python -m pip install .
+          - heading "Longer Term Outlook" [level=2] [ref=e1289]
+          - paragraph [ref=e1290]: I’m still wrapping up the transition from version 5 to 6, including the docs. After that, I’m honestly not sure what the long-term future looks like—but if the past 8 years are any indication, I’m not great at predicting it.
+          - paragraph [ref=e1291]: For now, I’m here and happy to help.
+          - heading "Thank you" [level=2] [ref=e1292]
+          - paragraph [ref=e1293]: PySimpleGUI has been a once-in-a-lifetime experience. It’s been amazing to see what people have built and to be a small part of it. Thanks to everyone who supported the project over the years.
+      - link "Back to top":
+        - /url: "#"
+        - img
+        - text: Back to top
+    - contentinfo [ref=e1294]:
+      - navigation "Footer" [ref=e1295]:
+        - 'link "Next: Who Is PySimpleGUI Designed For?" [ref=e1296] [cursor=pointer]':
+          - /url: documentation/what_is_it/
+          - generic [ref=e1298]:
+            - generic [ref=e1299]: Next
+            - text: Who Is PySimpleGUI Designed For?
+          - img [ref=e1301]
+      - generic [ref=e1305]:
+        - text: Made with
+        - link "Material for MkDocs" [ref=e1306] [cursor=pointer]:
+          - /url: https://squidfunk.github.io/mkdocs-material/
