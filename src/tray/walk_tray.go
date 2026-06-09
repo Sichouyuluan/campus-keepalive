@@ -84,7 +84,6 @@ func (t *Tray) onReady() {
 
 	// === 第一行：标题 ===
 	t.mTitle = systray.AddMenuItem("校园网自动登录器", "校园网自动登录器")
-	t.mTitle.Disable()
 
 	// === 第二行：状态（账号 + 是否在线）===
 	account := config.GetCurrentAccount(t.cfg)
@@ -93,11 +92,9 @@ func (t *Tray) onReady() {
 		statusText = fmt.Sprintf("%s - %s", account.Username, statusText)
 	}
 	t.mStatus = systray.AddMenuItem("状态: "+statusText, "当前状态")
-	t.mStatus.Disable()
 
 	// === 第三行：上次更新时间 ===
 	t.mUpdate = systray.AddMenuItem("上次更新: 刚刚", "状态更新时间")
-	t.mUpdate.Disable()
 
 	systray.AddSeparator()
 
