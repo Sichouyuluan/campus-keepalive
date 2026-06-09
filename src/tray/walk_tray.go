@@ -6,10 +6,10 @@ import (
 	"fmt"
 	"image"
 	"image/color"
-	"os/exec"
 	"time"
 
 	"fyne.io/systray"
+	"github.com/gen2brain/beeep"
 
 	"campus-keepalive/src/config"
 	"campus-keepalive/src/logger"
@@ -436,19 +436,9 @@ func (t *Tray) showNotification(title, message string) {
 	}
 }
 
-// showWindowsNotification 显示 Windows 气泡通知
+// showWindowsNotification 显示 Windows Toast 通知
 func showWindowsNotification(title, message string) {
-	// 使用 PowerShell 显示气泡通知
-	script := fmt.Sprintf(`
-		[void] [System.Reflection.Assembly]::LoadWithPartialName('System.Windows.Forms')
-		$notify = New-Object System.Windows.Forms.NotifyIcon
-		$notify.Icon = [System.Drawing.SystemIcons]::Information
-		$notify.Visible = $true
-		$notify.ShowBalloonTip(5000, '%s', '%s', 'Info')
-	`, title, message)
-
-	cmd := exec.Command("powershell", "-WindowStyle", "Hidden", "-Command", script)
-	cmd.Run()
+	beeep.Notify(title, message, "")
 }
 
 // ManualReconnect 手动重连
