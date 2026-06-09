@@ -125,6 +125,11 @@ func openWizard(cfg *config.Config, log *logger.Logger, tray *Tray) {
 		cfg.Accounts[cfg.CurrentAccount].Password = config.EncodePassword(password)
 		cfg.Accounts[cfg.CurrentAccount].Carrier = carrier
 
+		// 自动使用账号名作为名称
+		if username != "" {
+			cfg.Accounts[cfg.CurrentAccount].Name = username
+		}
+
 		parts := strings.Split(server, ":")
 		if len(parts) >= 1 {
 			cfg.Server = parts[0]

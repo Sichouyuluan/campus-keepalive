@@ -158,9 +158,16 @@ input[type=text], input[type=password], input[type=number], select { width: 100%
 		fmt.Sscanf(r.FormValue("account_index"), "%d", &idx)
 		cfg.CurrentAccount = idx
 
-		cfg.Accounts[idx].Username = r.FormValue("username")
+		username := r.FormValue("username")
+		cfg.Accounts[idx].Username = username
 		cfg.Accounts[idx].Password = config.EncodePassword(r.FormValue("password"))
 		cfg.Accounts[idx].Carrier = r.FormValue("carrier")
+
+		// 自动使用账号名作为名称
+		if username != "" {
+			cfg.Accounts[idx].Name = username
+		}
+
 		cfg.Server = r.FormValue("server")
 		fmt.Sscanf(r.FormValue("interval"), "%d", &cfg.CheckInterval)
 		cfg.AutoStart = r.FormValue("autostart") == "on"
