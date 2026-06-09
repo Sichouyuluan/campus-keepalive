@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"image"
 	"image/color"
+	"os/exec"
 	"time"
 
 	"fyne.io/systray"
@@ -139,6 +140,9 @@ func (t *Tray) onReady() {
 	// 启动时立即检测一次
 	t.log.Info("启动首次网络检测...")
 	t.checkAndReconnect()
+
+	// 显示启动通知
+	showWindowsNotification("校园网自动登录器", "程序已启动，在托盘中查看状态")
 
 	// 启动定时检测
 	t.log.Info("启动定时检测，间隔: %d 秒", t.cfg.CheckInterval)
@@ -428,7 +432,23 @@ func (t *Tray) setStatus(status Status) {
 func (t *Tray) showNotification(title, message string) {
 	if t.cfg.Notification {
 		systray.SetTooltip(fmt.Sprintf("校园网自动登录器 - %s: %s", title, message))
+		showWindowsNotification(title, message)
 	}
+}
+
+// showWindowsNotification 显示 Windows 气泡通知
+func showWindowsNotification(title, message string) {
+	// 使用 PowerShell 显示气泡通知
+	script := fmt.Sprintf(`
+		[void] [System.Reflection.Assembly]::LoadWithPartialName('System.Windows.Forms')
+		$notify = New-Object System.Windows.Forms.NotifyIcon
+		$notify.Icon = [System.Drawing.SystemIcons]::Information
+		$notify.Visible = $true
+		$notify.ShowBalloonTip(5000, '%s', '%s', 'Info')
+	`, title, message)
+
+	cmd := exec.Command("powershell", "-WindowStyle", "Hidden", "-Command", script)
+	cmd.Run()
 }
 
 // ManualReconnect 手动重连
