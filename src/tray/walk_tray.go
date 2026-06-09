@@ -111,6 +111,9 @@ func (t *Tray) onReady() {
 	// === 手动重连 ===
 	t.mReconnect = systray.AddMenuItem("手动重连", "立即尝试重新连接")
 
+	// === 配置向导 ===
+	mWizard := systray.AddMenuItem("配置向导", "首次使用配置")
+
 	// === 设置 ===
 	mSettings := systray.AddMenuItem("设置", "打开设置窗口")
 
@@ -131,7 +134,7 @@ func (t *Tray) onReady() {
 	mQuit := systray.AddMenuItem("退出", "退出程序")
 
 	// 监听菜单事件
-	go t.handleMenuEvents(mSettings, mStatusWin, mQuit)
+	go t.handleMenuEvents(mWizard, mSettings, mStatusWin, mQuit)
 
 	// 启动时立即检测一次
 	t.log.Info("启动首次网络检测...")
@@ -207,7 +210,7 @@ func (t *Tray) updateIntervalMenu() {
 }
 
 // handleMenuEvents 处理菜单事件
-func (t *Tray) handleMenuEvents(mSettings, mStatusWin, mQuit *systray.MenuItem) {
+func (t *Tray) handleMenuEvents(mWizard, mSettings, mStatusWin, mQuit *systray.MenuItem) {
 	// 账号切换事件
 	for i, item := range t.accountItems {
 		go func(idx int, ch <-chan struct{}) {
@@ -233,6 +236,9 @@ func (t *Tray) handleMenuEvents(mSettings, mStatusWin, mQuit *systray.MenuItem) 
 		case <-t.mReconnect.ClickedCh:
 			t.log.Info("点击：手动重连")
 			go t.ManualReconnect()
+		case <-mWizard.ClickedCh:
+			t.log.Info("点击：配置向导")
+			go openWizard(t.cfg, t.log, t)
 		case <-mSettings.ClickedCh:
 			t.log.Info("点击：设置")
 			go openSettings(t.cfg, t.log, t)
