@@ -160,6 +160,15 @@ func (t *Tray) onExit() {
 
 // updateAccountMenu 更新账号子菜单
 func (t *Tray) updateAccountMenu() {
+	// 自动更新账号名称：如果有用户名但名称是默认的，就用用户名作为名称
+	for i := range t.cfg.Accounts {
+		account := &t.cfg.Accounts[i]
+		if account.Username != "" && (account.Name == "" || account.Name == fmt.Sprintf("账号%d", i+1) || account.Name == "默认账号") {
+			account.Name = account.Username
+		}
+	}
+	config.Save(t.cfg)
+
 	// 清除旧的子菜单（如果有的话）
 	// fyne.io/systray 不支持动态删除菜单项，所以我们只在初始化时创建
 
