@@ -1,15 +1,22 @@
 package network
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"net/http"
-	"net/url"
-	"strings"
+	"regexp"
 	"time"
 
 	"campus-keepalive/src/logger"
 )
+
+// LoginResponse 登录响应
+type LoginResponse struct {
+	Result   int    `json:"result"`
+	Msg      string `json:"msg"`
+	RetCode  int    `json:"ret_code"`
+}
 
 // LoginResult 登录结果
 type LoginResult struct {
@@ -23,9 +30,11 @@ type LoginManager struct {
 	username  string
 	password  string
 	carrier   string
+	ip        string
+	mac       string
 	logger    *logger.Logger
 	client    *http.Client
-	lastLogin time.Time // 上次登录时间
+	lastLogin time.Time
 }
 
 // NewLoginManager 创建登录管理器
@@ -35,6 +44,8 @@ func NewLoginManager(server, username, password, carrier string, log *logger.Log
 		username: username,
 		password: password,
 		carrier:  carrier,
+		ip:       "10.51.249.167", // 默认值，后续可以从配置或自动获取
+		mac:      "000000000000",
 		logger:   log,
 		client: &http.Client{
 			Timeout: 15 * time.Second,
@@ -42,31 +53,35 @@ func NewLoginManager(server, username, password, carrier string, log *logger.Log
 	}
 }
 
-// Login 登录（单次尝试）
+// Login 登录
 func (m *LoginManager) Login() LoginResult {
 	if m.username == "" || m.password == "" {
 		return LoginResult{Success: false, Message: "账号或密码为空，请先配置"}
 	}
 
-	// 检查距离上次登录是否太频繁（至少间隔 10 秒）
-	if time.Since(m.lastLogin) < 10*time.Second {
+	// 检查距离上次登录是否太频繁（至少间隔 5 秒）
+	if time.Since(m.lastLogin) < 5*time.Second {
 		m.logger.Warn("距离上次登录太近，跳过")
 		return LoginResult{Success: false, Message: "登录太频繁，请稍后再试"}
 	}
 
 	suffix := getCarrierSuffix(m.carrier)
-	DDDDD := m.username + suffix
+	account := m.username + suffix
 
-	loginURL := fmt.Sprintf("http://%s:801/eportal/?c=ACSetting&a=Login&url=drappall", m.server)
+	// 构建登录 URL（JSONP GET 请求）
+	loginURL := fmt.Sprintf("http://%s:801/eportal/portal/login?callback=dr1003&login_method=1&user_account=%s&user_password=%s&wlan_user_ip=%s&wlan_user_ipv6=&wlan_user_mac=%s&wlan_ac_ip=&wlan_ac_name=&jsVersion=4.2.1&terminal_type=1&lang=zh-cn&v=%d&lang=zh",
+		m.server,
+		account,
+		m.password,
+		m.ip,
+		m.mac,
+		time.Now().UnixMilli(),
+	)
 
-	form := url.Values{}
-	form.Set("DDDDD", DDDDD)
-	form.Set("upass", m.password)
-
-	m.logger.Info("发送登录请求: 账号=%s", m.username)
+	m.logger.Info("发送登录请求: 账号=%s", account)
 	m.lastLogin = time.Now()
 
-	resp, err := m.client.Post(loginURL, "application/x-www-form-urlencoded", strings.NewReader(form.Encode()))
+	resp, err := m.client.Get(loginURL)
 	if err != nil {
 		m.logger.Error("登录请求失败: %v", err)
 		return LoginResult{Success: false, Message: fmt.Sprintf("请求失败: %v", err)}
@@ -76,19 +91,36 @@ func (m *LoginManager) Login() LoginResult {
 	body, _ := io.ReadAll(resp.Body)
 	result := string(body)
 
-	// 检查登录结果
-	if strings.Contains(result, "success") || strings.Contains(result, "login_ok") || strings.Contains(result, "Dr.COMWebLoginID_3") {
-		m.logger.Info("登录成功！")
-		return LoginResult{Success: true, Message: "登录成功"}
+	m.logger.Info("登录响应: %s", result)
+
+	// 解析 JSONP 响应
+	loginResp, err := parseJSONP(result)
+	if err != nil {
+		m.logger.Error("解析响应失败: %v", err)
+		return LoginResult{Success: false, Message: "解析响应失败"}
 	}
 
-	m.logger.Warn("登录响应: %s", truncate(result, 200))
-	return LoginResult{Success: false, Message: "登录失败，请检查账号密码"}
+	// 判断登录结果
+	// result=0 且 ret_code=2 表示已在线
+	// result=1 表示成功
+	if loginResp.Result == 1 || loginResp.RetCode == 2 {
+		m.logger.Info("登录成功: %s", loginResp.Msg)
+		return LoginResult{Success: true, Message: loginResp.Msg}
+	}
+
+	m.logger.Warn("登录失败: %s", loginResp.Msg)
+	return LoginResult{Success: false, Message: loginResp.Msg}
 }
 
 // Logout 注销
 func (m *LoginManager) Logout() bool {
-	logoutURL := fmt.Sprintf("http://%s:801/eportal/?c=ACSetting&a=Logout&ver=1.0", m.server)
+	logoutURL := fmt.Sprintf("http://%s:801/eportal/portal/logout?callback=dr1004&login_method=1&user_account=%s&wlan_user_ip=%s&wlan_user_ipv6=&wlan_user_mac=%s&wlan_ac_ip=&wlan_ac_name=&jsVersion=4.2.1&terminal_type=1&lang=zh-cn&v=%d&lang=zh",
+		m.server,
+		m.username,
+		m.ip,
+		m.mac,
+		time.Now().UnixMilli(),
+	)
 
 	m.logger.Info("发送注销请求")
 
@@ -99,17 +131,17 @@ func (m *LoginManager) Logout() bool {
 	}
 	defer resp.Body.Close()
 
-	m.logger.Info("注销完成")
+	body, _ := io.ReadAll(resp.Body)
+	m.logger.Info("注销响应: %s", string(body))
+
 	return true
 }
 
-// SmartReconnect 智能重连（带退避策略）
+// SmartReconnect 智能重连
 func (m *LoginManager) SmartReconnect() LoginResult {
-	// 1. 先等待 5 秒，让网络稳定
-	m.logger.Info("等待 5 秒后开始重连...")
-	time.Sleep(5 * time.Second)
+	m.logger.Info("开始重连，等待 3 秒...")
+	time.Sleep(3 * time.Second)
 
-	// 2. 尝试登录（不注销！）
 	m.logger.Info("尝试登录...")
 	result := m.Login()
 
@@ -117,20 +149,17 @@ func (m *LoginManager) SmartReconnect() LoginResult {
 		return result
 	}
 
-	// 3. 登录失败，等待 30 秒后再试
-	m.logger.Warn("首次登录失败，等待 30 秒后重试...")
-	time.Sleep(30 * time.Second)
+	m.logger.Warn("首次登录失败，等待 10 秒后重试...")
+	time.Sleep(10 * time.Second)
 
-	// 4. 第二次尝试
 	m.logger.Info("第二次尝试登录...")
 	return m.Login()
 }
 
-// RetryWithBackoff 带退避的重试（最多 3 次，间隔递增）
+// RetryWithBackoff 带退避的重试
 func (m *LoginManager) RetryWithBackoff(maxRetries int) LoginResult {
-	// 等待 5 秒让网络稳定
-	m.logger.Info("等待 5 秒后开始重连...")
-	time.Sleep(5 * time.Second)
+	m.logger.Info("等待 3 秒后开始重连...")
+	time.Sleep(3 * time.Second)
 
 	for i := 0; i < maxRetries; i++ {
 		m.logger.Info("重连尝试 %d/%d", i+1, maxRetries)
@@ -140,8 +169,7 @@ func (m *LoginManager) RetryWithBackoff(maxRetries int) LoginResult {
 			return result
 		}
 
-		// 失败后等待：10秒、20秒、30秒...
-		waitSec := 10 * (i + 1)
+		waitSec := 5 * (i + 1)
 		m.logger.Warn("登录失败，等待 %d 秒后重试...", waitSec)
 		time.Sleep(time.Duration(waitSec) * time.Second)
 	}
@@ -158,6 +186,11 @@ func (m *LoginManager) UpdateCredentials(server, username, password, carrier str
 	m.carrier = carrier
 }
 
+// UpdateIP 更新 IP 地址
+func (m *LoginManager) UpdateIP(ip string) {
+	m.ip = ip
+}
+
 // getCarrierSuffix 获取运营商后缀
 func getCarrierSuffix(carrier string) string {
 	switch carrier {
@@ -170,10 +203,21 @@ func getCarrierSuffix(carrier string) string {
 	}
 }
 
-// truncate 截断字符串
-func truncate(s string, maxLen int) string {
-	if len(s) <= maxLen {
-		return s
+// parseJSONP 解析 JSONP 响应
+// 输入: dr1003({"result":0,"msg":"xxx","ret_code":2})
+// 输出: LoginResponse
+func parseJSONP(jsonp string) (*LoginResponse, error) {
+	// 提取 JSON 部分
+	re := regexp.MustCompile(`\{[^}]+\}`)
+	match := re.FindString(jsonp)
+	if match == "" {
+		return nil, fmt.Errorf("无法解析 JSONP: %s", jsonp)
 	}
-	return s[:maxLen] + "..."
+
+	var resp LoginResponse
+	if err := json.Unmarshal([]byte(match), &resp); err != nil {
+		return nil, err
+	}
+
+	return &resp, nil
 }

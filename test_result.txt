@@ -1,0 +1,33 @@
+=== 校园网登录测试 ===
+时间: 2026-06-09 19:54:46
+
+【测试 1】检测当前状态
+  结果: 在线（已登录，账号: 2023405021）
+
+【测试 2】直接登录（不注销）
+  URL: http://210.44.114.32:801/eportal/?c=ACSetting&a=Login&url=drappall
+  参数: DDDDD=2023405021&upass=28287X
+  响应: <!DOCTYPE html><html><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1"><meta name=renderer content=webkit><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><link rel=icon href=/eportal/favicon.ico><title>EPortal</tit...
+  结果: 登录失败
+  登录后状态: 在线（已登录，账号: 2023405021）
+
+【测试 3】先注销再登录
+  正在注销...
+  注销 URL: http://210.44.114.32:801/eportal/?c=ACSetting&a=Logout&ver=1.0
+  注销响应: <html><head>
+<script language="javascript"><!--Dr.COMWebLoginID_2.htm-->
+</script></head>
+<body>
+Logout succeed.
+</body>
+</html>
+  注销后状态: 离线（未登录）
+  等待 5 秒后尝试登录...
+  URL: http://210.44.114.32:801/eportal/?c=ACSetting&a=Login&url=drappall
+  参数: DDDDD=2023405021&upass=28287X
+  响应: <!DOCTYPE html><html><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1"><meta name=renderer content=webkit><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><link rel=icon href=/eportal/favicon.ico><title>EPortal</tit...
+  登录结果: 登录失败
+  登录后状态: 离线（未登录）
+
+=== 测试完成 ===
+结果已保存到 test_result.txt

@@ -1,9 +1,11 @@
 package network
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"net/http"
+	"regexp"
 	"strings"
 	"time"
 )
@@ -29,6 +31,18 @@ func (s Status) String() string {
 	}
 }
 
+// StatusResponse 状态查询响应
+type StatusResponse struct {
+	Result    int    `json:"result"`
+	Msg       string `json:"msg"`
+	RetCode   int    `json:"ret_code"`
+	UserAccount string `json:"user_account"`
+	UserIP      string `json:"user_ip"`
+	OnlineTime  int    `json:"online_time"`
+	Usage       int    `json:"usage"`
+	UserName    string `json:"user_name"`
+}
+
 // Detector 网络检测器
 type Detector struct {
 	server string
@@ -46,13 +60,13 @@ func NewDetector(server string) *Detector {
 }
 
 // Detect 检测网络状态
-// 策略：HTTP 访问认证页面，检查返回内容判断是否已登录
 func (d *Detector) Detect() Status {
+	// 方式1: 访问认证页面检查是否已登录
 	url := fmt.Sprintf("http://%s/", d.server)
 
 	resp, err := d.client.Get(url)
 	if err != nil {
-		// 网络完全不通（没连上校园网，或服务器挂了）
+		// 网络完全不通
 		return StatusOffline
 	}
 	defer resp.Body.Close()
@@ -64,10 +78,7 @@ func (d *Detector) Detect() Status {
 
 	content := string(body)
 
-	// 已登录的特征：
-	// 1. 包含 uid='xxx'（用户账号）
-	// 2. 包含 NID='xxx'（用户姓名）
-	// 3. 页面标题是"用户信息页"
+	// 已登录的特征：包含 uid='xxx'（非空）
 	if strings.Contains(content, "uid='") && !strings.Contains(content, "uid=''") {
 		return StatusOnline
 	}
@@ -90,4 +101,65 @@ func (d *Detector) DetectWithTimeout(timeout time.Duration) Status {
 	case <-time.After(timeout):
 		return StatusUnknown
 	}
+}
+
+// GetStatusInfo 获取详细状态信息
+func (d *Detector) GetStatusInfo() *StatusResponse {
+	url := fmt.Sprintf("http://%s/", d.server)
+
+	resp, err := d.client.Get(url)
+	if err != nil {
+		return nil
+	}
+	defer resp.Body.Close()
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return nil
+	}
+
+	content := string(body)
+
+	// 从页面中提取用户信息
+	statusResp := &StatusResponse{}
+
+	// 提取 uid
+	re := regexp.MustCompile(`uid='([^']+)'`)
+	match := re.FindStringSubmatch(content)
+	if len(match) > 1 && match[1] != "" {
+		statusResp.UserAccount = match[1]
+		statusResp.Result = 1
+	}
+
+	// 提取 IP
+	re = regexp.MustCompile(`lip='([^']+)'`)
+	match = re.FindStringSubmatch(content)
+	if len(match) > 1 {
+		statusResp.UserIP = match[1]
+	}
+
+	// 提取姓名
+	re = regexp.MustCompile(`NID='([^']+)'`)
+	match = re.FindStringSubmatch(content)
+	if len(match) > 1 {
+		statusResp.UserName = match[1]
+	}
+
+	return statusResp
+}
+
+// parseStatusJSONP 解析状态查询 JSONP 响应
+func parseStatusJSONP(jsonp string) (*StatusResponse, error) {
+	re := regexp.MustCompile(`\{[^}]+\}`)
+	match := re.FindString(jsonp)
+	if match == "" {
+		return nil, fmt.Errorf("无法解析 JSONP: %s", jsonp)
+	}
+
+	var resp StatusResponse
+	if err := json.Unmarshal([]byte(match), &resp); err != nil {
+		return nil, err
+	}
+
+	return &resp, nil
 }
