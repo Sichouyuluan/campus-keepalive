@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"image"
 	"image/color"
+	"os/exec"
 	"time"
 
 	"fyne.io/systray"
@@ -131,11 +132,19 @@ func (t *Tray) onReady() {
 
 	systray.AddSeparator()
 
+	// === 关于 ===
+	mAbout := systray.AddMenuItem("关于", "查看项目信息")
+
+	// === 反馈 ===
+	mFeedback := systray.AddMenuItem("反馈", "提交问题反馈")
+
+	systray.AddSeparator()
+
 	// === 退出 ===
 	mQuit := systray.AddMenuItem("退出", "退出程序")
 
 	// 监听菜单事件
-	go t.handleMenuEvents(mWizard, mSettings, mStatusWin, mQuit)
+	go t.handleMenuEvents(mWizard, mSettings, mStatusWin, mAbout, mFeedback, mQuit)
 
 	// 启动时立即检测一次
 	t.log.Info("启动首次网络检测...")
@@ -231,7 +240,7 @@ func (t *Tray) updateIntervalMenu() {
 }
 
 // handleMenuEvents 处理菜单事件
-func (t *Tray) handleMenuEvents(mWizard, mSettings, mStatusWin, mQuit *systray.MenuItem) {
+func (t *Tray) handleMenuEvents(mWizard, mSettings, mStatusWin, mAbout, mFeedback, mQuit *systray.MenuItem) {
 	// 账号切换事件
 	for i, item := range t.accountItems {
 		go func(idx int, ch <-chan struct{}) {
@@ -275,6 +284,12 @@ func (t *Tray) handleMenuEvents(mWizard, mSettings, mStatusWin, mQuit *systray.M
 			}
 			config.Save(t.cfg)
 			t.log.Info("开机自启: %v", t.cfg.AutoStart)
+		case <-mAbout.ClickedCh:
+			t.log.Info("点击：关于")
+			openURL("https://github.com/Sichouyuluan/campus-keepalive")
+		case <-mFeedback.ClickedCh:
+			t.log.Info("点击：反馈")
+			openURL("https://qcnq86kqcocv.feishu.cn/share/base/form/shrcnlxrdR9L1kRKaY7JdcZjhuf")
 		case <-mQuit.ClickedCh:
 			t.log.Info("点击：退出")
 			systray.Quit()
@@ -459,6 +474,11 @@ func (t *Tray) showNotification(title, message string) {
 // showWindowsNotification 显示 Windows Toast 通知
 func showWindowsNotification(title, message string) {
 	beeep.Notify(title, message, "")
+}
+
+// openURL 打开浏览器 URL
+func openURL(url string) {
+	exec.Command("cmd", "/c", "start", url).Run()
 }
 
 // ManualReconnect 手动重连

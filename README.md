@@ -243,7 +243,7 @@ go build -ldflags "-H windowsgui" -o campus-keepalive.exe .
 
 ## 📮 反馈与联系
 
-- **问题反馈表单**: [点击提交反馈](https://qcnq86kqcocv.feishu.cn/base/MTerbQAnJazse6s6ImucZ28Hnle?table=tblhua7dNIgZbqcK&view=vewPVHHfG4)
+- **问题反馈表单**: [点击提交反馈](https://qcnq86kqcocv.feishu.cn/share/base/form/shrcnlxrdR9L1kRKaY7JdcZjhuf)
 - Issues: [GitHub Issues](../../issues)
 - Discussions: [GitHub Discussions](../../discussions)
 
