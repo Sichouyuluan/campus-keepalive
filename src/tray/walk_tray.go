@@ -33,12 +33,21 @@ type Tray struct {
 	status   Status
 
 	// 菜单项
-	mStatus    *systray.MenuItem
-	mReconnect *systray.MenuItem
-	mAutoStart *systray.MenuItem
+	mTitle     *systray.MenuItem // 标题
+	mStatus    *systray.MenuItem // 状态
+	mUpdate    *systray.MenuItem // 上次更新时间
+	mAccounts  *systray.MenuItem // 切换账号
+	mInterval  *systray.MenuItem // 检测间隔
+	mReconnect *systray.MenuItem // 手动重连
+	mAutoStart *systray.MenuItem // 开机自启
 
-	// 通道
-	stopCh chan struct{}
+	// 子菜单项
+	accountItems []*systray.MenuItem // 账号列表
+	intervalItems []*systray.MenuItem // 间隔选项
+
+	// 状态跟踪
+	lastUpdate time.Time // 上次更新时间
+	stopCh     chan struct{}
 }
 
 // New 创建托盘管理器
@@ -54,6 +63,7 @@ func New(cfg *config.Config, log *logger.Logger) *Tray {
 		detector: network.NewDetector(cfg.Server),
 		loginMgr: network.NewLoginManager(cfg.Server, account.Username, config.DecodePassword(account.Password), account.Carrier, log),
 		status:   StatusOffline,
+		lastUpdate: time.Now(),
 		stopCh:   make(chan struct{}),
 	}
 }
@@ -69,21 +79,50 @@ func (t *Tray) onReady() {
 
 	// 设置图标（初始红色离线状态）
 	systray.SetIcon(createIcon(StatusOffline))
-	systray.SetTitle("校园网保活")
-	systray.SetTooltip("校园网自动保活工具 - 启动中...")
+	systray.SetTitle("校园网自动登录器")
+	systray.SetTooltip("校园网自动登录器")
 
-	// 菜单项
-	t.mStatus = systray.AddMenuItem("状态: 检测中...", "当前网络状态")
+	// === 第一行：标题 ===
+	t.mTitle = systray.AddMenuItem("校园网自动登录器", "校园网自动登录器")
+	t.mTitle.Disable()
+
+	// === 第二行：状态（账号 + 是否在线）===
+	account := config.GetCurrentAccount(t.cfg)
+	statusText := "离线"
+	if account != nil {
+		statusText = fmt.Sprintf("%s - %s", account.Username, statusText)
+	}
+	t.mStatus = systray.AddMenuItem("状态: "+statusText, "当前状态")
 	t.mStatus.Disable()
+
+	// === 第三行：上次更新时间 ===
+	t.mUpdate = systray.AddMenuItem("上次更新: 刚刚", "状态更新时间")
+	t.mUpdate.Disable()
 
 	systray.AddSeparator()
 
+	// === 切换账号（子菜单）===
+	t.mAccounts = systray.AddMenuItem("切换账号", "选择账号")
+	t.updateAccountMenu()
+
+	// === 检测间隔（子菜单）===
+	t.mInterval = systray.AddMenuItem("检测间隔", "设置检测间隔")
+	t.updateIntervalMenu()
+
+	systray.AddSeparator()
+
+	// === 手动重连 ===
 	t.mReconnect = systray.AddMenuItem("手动重连", "立即尝试重新连接")
+
+	// === 设置 ===
 	mSettings := systray.AddMenuItem("设置", "打开设置窗口")
+
+	// === 状态窗口 ===
 	mStatusWin := systray.AddMenuItem("状态窗口", "查看详细状态")
 
 	systray.AddSeparator()
 
+	// === 开机自启 ===
 	t.mAutoStart = systray.AddMenuItem("开机自启", "开机自动启动")
 	if t.cfg.AutoStart {
 		t.mAutoStart.Check()
@@ -91,10 +130,11 @@ func (t *Tray) onReady() {
 
 	systray.AddSeparator()
 
+	// === 退出 ===
 	mQuit := systray.AddMenuItem("退出", "退出程序")
 
 	// 监听菜单事件
-	go t.handleMenuEvents(t.mReconnect, mSettings, mStatusWin, t.mAutoStart, mQuit)
+	go t.handleMenuEvents(mSettings, mStatusWin, mQuit)
 
 	// 启动时立即检测一次
 	t.log.Info("启动首次网络检测...")
@@ -103,6 +143,9 @@ func (t *Tray) onReady() {
 	// 启动定时检测
 	t.log.Info("启动定时检测，间隔: %d 秒", t.cfg.CheckInterval)
 	go t.checkLoop()
+
+	// 启动更新时间显示
+	go t.updateTimeDisplay()
 }
 
 // onExit 托盘退出
@@ -111,11 +154,86 @@ func (t *Tray) onExit() {
 	t.log.Info("程序退出")
 }
 
+// updateAccountMenu 更新账号子菜单
+func (t *Tray) updateAccountMenu() {
+	// 清除旧的子菜单（如果有的话）
+	// fyne.io/systray 不支持动态删除菜单项，所以我们只在初始化时创建
+
+	t.accountItems = make([]*systray.MenuItem, len(t.cfg.Accounts))
+	for i, account := range t.cfg.Accounts {
+		name := account.Name
+		if name == "" {
+			name = account.Username
+		}
+		if name == "" {
+			name = fmt.Sprintf("账号%d", i+1)
+		}
+
+		// 标记当前账号
+		prefix := "  "
+		if i == t.cfg.CurrentAccount {
+			prefix = "✓ "
+		}
+
+		t.accountItems[i] = t.mAccounts.AddSubMenuItem(prefix+name, "切换到 "+name)
+	}
+
+	// 添加"新增账号"选项
+	addNew := t.mAccounts.AddSubMenuItem("+ 新增账号", "添加新账号")
+	go func() {
+		<-addNew.ClickedCh
+		t.cfg.Accounts = append(t.cfg.Accounts, config.Account{
+			Name:    fmt.Sprintf("账号%d", len(t.cfg.Accounts)+1),
+			Carrier: "campus",
+		})
+		config.Save(t.cfg)
+		t.log.Info("新增账号")
+	}()
+}
+
+// updateIntervalMenu 更新检测间隔子菜单
+func (t *Tray) updateIntervalMenu() {
+	intervals := []int{5, 10, 30, 60}
+	t.intervalItems = make([]*systray.MenuItem, len(intervals))
+
+	for i, interval := range intervals {
+		prefix := "  "
+		if interval == t.cfg.CheckInterval {
+			prefix = "✓ "
+		}
+
+		t.intervalItems[i] = t.mInterval.AddSubMenuItem(
+			fmt.Sprintf("%s%d秒", prefix, interval),
+			fmt.Sprintf("设置检测间隔为 %d 秒", interval),
+		)
+	}
+}
+
 // handleMenuEvents 处理菜单事件
-func (t *Tray) handleMenuEvents(mReconnect, mSettings, mStatusWin, mAutoStart, mQuit *systray.MenuItem) {
+func (t *Tray) handleMenuEvents(mSettings, mStatusWin, mQuit *systray.MenuItem) {
+	// 账号切换事件
+	for i, item := range t.accountItems {
+		go func(idx int, ch <-chan struct{}) {
+			for range ch {
+				t.switchAccount(idx)
+			}
+		}(i, item.ClickedCh)
+	}
+
+	// 检测间隔事件
+	intervals := []int{5, 10, 30, 60}
+	for i, item := range t.intervalItems {
+		go func(idx int, ch <-chan struct{}) {
+			for range ch {
+				t.setInterval(intervals[idx])
+			}
+		}(i, item.ClickedCh)
+	}
+
+	// 其他菜单事件
 	for {
 		select {
-		case <-mReconnect.ClickedCh:
+		case <-t.mReconnect.ClickedCh:
 			t.log.Info("点击：手动重连")
 			go t.ManualReconnect()
 		case <-mSettings.ClickedCh:
@@ -124,12 +242,12 @@ func (t *Tray) handleMenuEvents(mReconnect, mSettings, mStatusWin, mAutoStart, m
 		case <-mStatusWin.ClickedCh:
 			t.log.Info("点击：状态窗口")
 			go openStatus(t.cfg, t.log, t)
-		case <-mAutoStart.ClickedCh:
+		case <-t.mAutoStart.ClickedCh:
 			t.cfg.AutoStart = !t.cfg.AutoStart
 			if t.cfg.AutoStart {
-				mAutoStart.Check()
+				t.mAutoStart.Check()
 			} else {
-				mAutoStart.Uncheck()
+				t.mAutoStart.Uncheck()
 			}
 			config.Save(t.cfg)
 			t.log.Info("开机自启: %v", t.cfg.AutoStart)
@@ -139,6 +257,92 @@ func (t *Tray) handleMenuEvents(mReconnect, mSettings, mStatusWin, mAutoStart, m
 			return
 		}
 	}
+}
+
+// switchAccount 切换账号
+func (t *Tray) switchAccount(idx int) {
+	if idx < 0 || idx >= len(t.cfg.Accounts) {
+		return
+	}
+
+	t.cfg.CurrentAccount = idx
+	config.Save(t.cfg)
+
+	account := &t.cfg.Accounts[idx]
+	t.loginMgr.UpdateCredentials(t.cfg.Server, account.Username, config.DecodePassword(account.Password), account.Carrier)
+
+	t.log.Info("切换到账号: %s", account.Username)
+
+	// 更新状态显示
+	t.updateStatusDisplay()
+}
+
+// setInterval 设置检测间隔
+func (t *Tray) setInterval(seconds int) {
+	t.cfg.CheckInterval = seconds
+	config.Save(t.cfg)
+
+	t.log.Info("检测间隔设置为: %d 秒", seconds)
+
+	// 更新间隔显示
+	t.updateIntervalDisplay()
+}
+
+// updateStatusDisplay 更新状态显示
+func (t *Tray) updateStatusDisplay() {
+	account := config.GetCurrentAccount(t.cfg)
+	statusText := "离线"
+	switch t.status {
+	case StatusOnline:
+		statusText = "在线"
+	case StatusRetrying:
+		statusText = "重连中..."
+	}
+
+	if account != nil {
+		statusText = fmt.Sprintf("%s - %s", account.Username, statusText)
+	}
+
+	t.mStatus.SetTitle("状态: " + statusText)
+}
+
+// updateIntervalDisplay 更新间隔显示
+func (t *Tray) updateIntervalDisplay() {
+	t.mInterval.SetTitle(fmt.Sprintf("检测间隔 (%d秒)", t.cfg.CheckInterval))
+}
+
+// updateTimeDisplay 定时更新时间显示
+func (t *Tray) updateTimeDisplay() {
+	ticker := time.NewTicker(1 * time.Second)
+	defer ticker.Stop()
+
+	for {
+		select {
+		case <-ticker.C:
+			elapsed := time.Since(t.lastUpdate)
+			timeText := formatDuration(elapsed)
+			t.mUpdate.SetTitle("上次更新: " + timeText)
+		case <-t.stopCh:
+			return
+		}
+	}
+}
+
+// formatDuration 格式化时间间隔
+func formatDuration(d time.Duration) string {
+	seconds := int(d.Seconds())
+	if seconds < 5 {
+		return "刚刚"
+	}
+	if seconds < 60 {
+		return fmt.Sprintf("%d秒前", seconds)
+	}
+	minutes := seconds / 60
+	if minutes < 60 {
+		return fmt.Sprintf("%d分钟前", minutes)
+	}
+	hours := minutes / 60
+	return fmt.Sprintf("%d小时前", hours)
 }
 
 // checkLoop 定时检测循环
@@ -169,6 +373,9 @@ func (t *Tray) checkAndReconnect() {
 	t.log.Info("开始检测网络状态...")
 	status := t.detector.Detect()
 
+	// 更新时间
+	t.lastUpdate = time.Now()
+
 	switch status {
 	case network.StatusOnline:
 		t.log.Info("检测结果: 在线")
@@ -192,6 +399,9 @@ func (t *Tray) checkAndReconnect() {
 	case network.StatusUnknown:
 		t.log.Warn("检测结果: 超时/未知")
 	}
+
+	// 更新状态显示
+	t.updateStatusDisplay()
 }
 
 // setStatus 更新托盘状态
@@ -201,23 +411,20 @@ func (t *Tray) setStatus(status Status) {
 	switch status {
 	case StatusOnline:
 		systray.SetIcon(createIcon(StatusOnline))
-		systray.SetTooltip("校园网保活工具 - 在线")
-		t.mStatus.SetTitle("状态: ✓ 在线")
+		systray.SetTooltip("校园网自动登录器 - 在线")
 	case StatusOffline:
 		systray.SetIcon(createIcon(StatusOffline))
-		systray.SetTooltip("校园网保活工具 - 离线")
-		t.mStatus.SetTitle("状态: ✗ 离线")
+		systray.SetTooltip("校园网自动登录器 - 离线")
 	case StatusRetrying:
 		systray.SetIcon(createIcon(StatusRetrying))
-		systray.SetTooltip("校园网保活工具 - 重连中...")
-		t.mStatus.SetTitle("状态: ⟳ 重连中...")
+		systray.SetTooltip("校园网自动登录器 - 重连中...")
 	}
 }
 
 // showNotification 显示通知
 func (t *Tray) showNotification(title, message string) {
 	if t.cfg.Notification {
-		systray.SetTooltip(fmt.Sprintf("校园网保活 - %s: %s", title, message))
+		systray.SetTooltip(fmt.Sprintf("校园网自动登录器 - %s: %s", title, message))
 	}
 }
 
