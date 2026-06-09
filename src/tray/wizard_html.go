@@ -37,7 +37,7 @@ label { display: block; margin: 10px 0 5px; color: #a6adc8; }
 </div>
 
 <!-- 步骤 2: 输入账号密码 -->
-<div class="step hidden" id="step2">
+<div class="step" id="step2">
 <div class="step-title"><span class="step-num">2</span>输入账号密码</div>
 <label>认证服务器</label>
 <input type="text" id="server" value="" placeholder="例如: 210.44.114.32:801">
@@ -59,7 +59,7 @@ label { display: block; margin: 10px 0 5px; color: #a6adc8; }
 </div>
 
 <!-- 步骤 3: 登录失败 - 抓包引导 -->
-<div class="step hidden" id="step3">
+<div class="step" id="step3">
 <div class="step-title"><span class="step-num">3</span>登录失败？获取正确的登录 API</div>
 
 <div class="result result-warn" id="fail-reason"></div>
@@ -88,7 +88,7 @@ label { display: block; margin: 10px 0 5px; color: #a6adc8; }
 </div>
 
 <!-- 步骤 4: 使用自定义 API 测试 -->
-<div class="step hidden" id="step4">
+<div class="step" id="step4">
 <div class="step-title"><span class="step-num">4</span>测试自定义登录 API</div>
 
 <label>解析出的登录 URL：</label>
@@ -102,7 +102,7 @@ label { display: block; margin: 10px 0 5px; color: #a6adc8; }
 </div>
 
 <!-- 步骤 5: 配置完成 -->
-<div class="step hidden" id="step5">
+<div class="step" id="step5">
 <div class="step-title">✅ 配置完成</div>
 <p>配置已保存！程序将自动保活校园网连接。</p>
 <p>您可以关闭此页面，程序会在后台运行。</p>
@@ -123,11 +123,11 @@ async function startDetect() {
             document.getElementById('detect-result').innerHTML =
                 '<div class="result result-ok">✓ 检测成功！<br>认证系统: ' + data.system + '<br>服务器: ' + data.server + ':' + data.port + '</div>';
             document.getElementById('server').value = data.server + ':' + data.port;
-            document.getElementById('step2').classList.remove('hidden');
+            // 步骤已默认显示
         } else {
             document.getElementById('detect-result').innerHTML =
                 '<div class="result result-err">✗ 未检测到认证系统。请确保已连接校园网，或手动输入服务器地址。</div>';
-            document.getElementById('step2').classList.remove('hidden');
+            // 步骤已默认显示
         }
     } catch (e) {
         document.getElementById('detect-result').innerHTML =
@@ -159,14 +159,13 @@ async function testLogin() {
 
         if (data.success) {
             document.getElementById('test-result').innerHTML = '<div class="result result-ok">✓ 登录成功！<br>' + data.message + '</div>';
-            // 直接跳到保存步骤
-            setTimeout(() => saveConfig(), 500);
+            // 保存配置
+            saveConfig();
         } else {
             document.getElementById('test-result').innerHTML = '<div class="result result-err">✗ 登录失败</div>';
             // 显示抓包引导
             document.getElementById('fail-reason').innerHTML = '默认 API 不适用于你的学校，错误信息: ' + data.message;
-            document.getElementById('step3').classList.remove('hidden');
-            document.getElementById('step3').scrollIntoView({behavior: 'smooth'});
+            // 步骤已默认显示
         }
     } catch (e) {
         document.getElementById('test-result').innerHTML = '<div class="result result-err">✗ 请求失败: ' + e.message + '</div>';
@@ -195,8 +194,7 @@ async function parseCurl() {
             document.getElementById('parse-result').innerHTML =
                 '<div class="result result-ok">✓ 解析成功！<br>URL: ' + data.url + '<br>方法: ' + data.method + '</div>';
             document.getElementById('custom-api').value = data.url;
-            document.getElementById('step4').classList.remove('hidden');
-            document.getElementById('step4').scrollIntoView({behavior: 'smooth'});
+            // 步骤已默认显示
         } else {
             document.getElementById('parse-result').innerHTML =
                 '<div class="result result-err">✗ ' + data.message + '</div>';
@@ -261,11 +259,7 @@ async function saveConfig() {
         const data = await resp.json();
 
         if (data.success) {
-            document.getElementById('step2').classList.add('hidden');
-            document.getElementById('step3').classList.add('hidden');
-            document.getElementById('step4').classList.add('hidden');
-            document.getElementById('step5').classList.remove('hidden');
-            document.getElementById('step5').scrollIntoView({behavior: 'smooth'});
+            // 配置已保存
         } else {
             alert('保存失败: ' + data.message);
         }
@@ -297,9 +291,7 @@ async function saveCustomConfig() {
         const data = await resp.json();
 
         if (data.success) {
-            document.getElementById('step4').classList.add('hidden');
-            document.getElementById('step5').classList.remove('hidden');
-            document.getElementById('step5').scrollIntoView({behavior: 'smooth'});
+            // 配置已保存
         } else {
             document.getElementById('custom-test-result').innerHTML =
                 '<div class="result result-err">✗ 保存失败: ' + data.message + '</div>';
