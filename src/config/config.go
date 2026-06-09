@@ -24,6 +24,7 @@ type Config struct {
 	AutoStart      bool      `json:"auto_start"`      // 开机自启
 	Notification   bool      `json:"notification"`    // 弹窗通知
 	LogFile        string    `json:"log_file"`        // 日志文件路径
+	CustomLoginAPI string    `json:"custom_login_api,omitempty"` // 自定义登录 API
 }
 
 // configDir 配置文件目录
