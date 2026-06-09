@@ -185,13 +185,21 @@ func (t *Tray) updateAccountMenu() {
 	// 添加"新增账号"选项
 	addNew := t.mAccounts.AddSubMenuItem("+ 新增账号", "添加新账号")
 	go func() {
-		<-addNew.ClickedCh
-		t.cfg.Accounts = append(t.cfg.Accounts, config.Account{
-			Name:    fmt.Sprintf("账号%d", len(t.cfg.Accounts)+1),
-			Carrier: "campus",
-		})
-		config.Save(t.cfg)
-		t.log.Info("新增账号")
+		for range addNew.ClickedCh {
+			// 新增一个空账号
+			newIdx := len(t.cfg.Accounts)
+			t.cfg.Accounts = append(t.cfg.Accounts, config.Account{
+				Name:    fmt.Sprintf("账号%d", newIdx+1),
+				Carrier: "campus",
+			})
+			// 切换到新账号
+			t.cfg.CurrentAccount = newIdx
+			config.Save(t.cfg)
+			t.log.Info("新增账号，切换到: 账号%d", newIdx+1)
+
+			// 打开设置窗口让用户输入账号信息
+			go openSettings(t.cfg, t.log, t)
+		}
 	}()
 }
 
@@ -282,6 +290,9 @@ func (t *Tray) switchAccount(idx int) {
 
 	// 更新状态显示
 	t.updateStatusDisplay()
+
+	// 重新检测状态
+	go t.checkAndReconnect()
 }
 
 // setInterval 设置检测间隔
