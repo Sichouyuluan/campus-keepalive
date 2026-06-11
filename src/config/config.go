@@ -17,14 +17,15 @@ type Account struct {
 
 // Config 应用配置
 type Config struct {
-	Accounts       []Account `json:"accounts"`        // 账号列表
-	CurrentAccount int       `json:"current_account"` // 当前账号索引
-	Server         string    `json:"server"`          // 认证服务器地址
-	CheckInterval  int       `json:"check_interval"`  // 检测间隔（秒）
-	AutoStart      bool      `json:"auto_start"`      // 开机自启
-	Notification   bool      `json:"notification"`    // 弹窗通知
-	LogFile        string    `json:"log_file"`        // 日志文件路径
-	CustomLoginAPI string    `json:"custom_login_api,omitempty"` // 自定义登录 API
+	Accounts            []Account `json:"accounts"`        // 账号列表
+	CurrentAccount      int       `json:"current_account"` // 当前账号索引
+	Server              string    `json:"server"`          // 认证服务器地址
+	CheckInterval       int       `json:"check_interval"`  // 检测间隔（秒）
+	AutoStart           bool      `json:"auto_start"`      // 开机自启
+	Notification        bool      `json:"notification"`    // 弹窗通知
+	DisableNotification bool      `json:"disable_notification"` // 禁用所有通知
+	LogFile             string    `json:"log_file"`        // 日志文件路径
+	CustomLoginAPI      string    `json:"custom_login_api,omitempty"` // 自定义登录 API
 }
 
 // configDir 配置文件目录

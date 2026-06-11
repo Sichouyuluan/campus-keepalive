@@ -59,6 +59,10 @@ func openSettings(cfg *config.Config, log *logger.Logger, tray *Tray) {
 		if cfg.Notification {
 			checkedNotify = "checked"
 		}
+		checkedDisableNotify := ""
+		if cfg.DisableNotification {
+			checkedDisableNotify = "checked"
+		}
 
 		html := fmt.Sprintf(`<!DOCTYPE html>
 <html><head><meta charset="utf-8"><title>校园网保活 - 设置</title>
@@ -107,6 +111,7 @@ http://服务器:801/eportal/portal/login?callback=dr1003&login_method=1&user_ac
 <input type="number" name="interval" value="%d" min="5" max="300">
 <div class="checkbox-row"><input type="checkbox" name="autostart" %s><label>开机自启</label></div>
 <div class="checkbox-row"><input type="checkbox" name="notification" %s><label>弹窗通知</label></div>
+<div class="checkbox-row"><input type="checkbox" name="disable_notification" %s><label>禁用所有通知（包括重连成功/失败）</label></div>
 <div>
 <button type="submit" name="action" value="save" class="btn btn-save">保存设置</button>
 <button type="submit" name="action" value="test" class="btn btn-test">测试登录</button>
@@ -124,6 +129,7 @@ http://服务器:801/eportal/portal/login?callback=dr1003&login_method=1&user_ac
 			cfg.CheckInterval,
 			checkedAutoStart,
 			checkedNotify,
+			checkedDisableNotify,
 		)
 		w.Header().Set("Content-Type", "text/html; charset=utf-8")
 		w.Write([]byte(html))
@@ -182,6 +188,7 @@ http://服务器:801/eportal/portal/login?callback=dr1003&login_method=1&user_ac
 		fmt.Sscanf(r.FormValue("interval"), "%d", &cfg.CheckInterval)
 		cfg.AutoStart = r.FormValue("autostart") == "on"
 		cfg.Notification = r.FormValue("notification") == "on"
+		cfg.DisableNotification = r.FormValue("disable_notification") == "on"
 
 		config.Save(cfg)
 		tray.UpdateConfig(cfg)

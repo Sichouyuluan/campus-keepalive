@@ -250,6 +250,9 @@ async function saveConfig() {
         return;
     }
 
+    // 显示正在保存
+    document.getElementById('test-result').innerHTML = '<div class="result result-warn"><span class="spinner"></span> 正在保存...</div>';
+
     try {
         const resp = await fetch('/api/save-config', {
             method: 'POST',
@@ -259,12 +262,16 @@ async function saveConfig() {
         const data = await resp.json();
 
         if (data.success) {
-            // 配置已保存
+            document.getElementById('test-result').innerHTML = '<div class="result result-ok">✓ 配置已保存！程序将使用新配置。</div>';
+            // 跳转到完成步骤
+            setTimeout(() => {
+                document.getElementById('step5').scrollIntoView({behavior: 'smooth'});
+            }, 1000);
         } else {
-            alert('保存失败: ' + data.message);
+            document.getElementById('test-result').innerHTML = '<div class="result result-err">✗ 保存失败: ' + data.message + '</div>';
         }
     } catch (e) {
-        alert('请求失败: ' + e.message);
+        document.getElementById('test-result').innerHTML = '<div class="result result-err">✗ 请求失败: ' + e.message + '</div>';
     }
 }
 

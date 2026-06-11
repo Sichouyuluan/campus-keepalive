@@ -331,6 +331,16 @@ func (t *Tray) setInterval(seconds int) {
 
 	t.log.Info("检测间隔设置为: %d 秒", seconds)
 
+	// 更新菜单项勾选状态
+	intervals := []int{5, 10, 30, 60}
+	for i, item := range t.intervalItems {
+		if i < len(intervals) && intervals[i] == seconds {
+			item.Check()
+		} else {
+			item.Uncheck()
+		}
+	}
+
 	// 发送间隔变化通知
 	select {
 	case t.intervalCh <- seconds:
@@ -439,11 +449,18 @@ func (t *Tray) checkAndReconnect() {
 	// 更新时间
 	t.lastUpdate = time.Now()
 
+	// 记录之前的状态
+	previousStatus := t.status
+
 	switch status {
 	case network.StatusOnline:
 		t.log.Info("检测结果: 在线")
 		if t.status != StatusOnline {
 			t.setStatus(StatusOnline)
+			// 只有从离线/重连中变为在线时，才发送通知
+			if previousStatus == StatusOffline || previousStatus == StatusRetrying {
+				t.showNotification("已连接", "校园网已连接")
+			}
 		}
 	case network.StatusOffline:
 		t.log.Warn("检测结果: 离线，开始重连")
@@ -453,6 +470,7 @@ func (t *Tray) checkAndReconnect() {
 		if result.Success {
 			t.setStatus(StatusOnline)
 			t.log.Info("重连成功！")
+			// 只有重连成功才发送通知
 			t.showNotification("重连成功", "校园网已重新连接")
 		} else {
 			t.setStatus(StatusOffline)
@@ -486,6 +504,12 @@ func (t *Tray) setStatus(status Status) {
 
 // showNotification 显示通知
 func (t *Tray) showNotification(title, message string) {
+	// 如果禁用所有通知，只更新 tooltip，不弹窗
+	if t.cfg.DisableNotification {
+		systray.SetTooltip(fmt.Sprintf("校园网自动登录器 - %s: %s", title, message))
+		return
+	}
+
 	if t.cfg.Notification {
 		systray.SetTooltip(fmt.Sprintf("校园网自动登录器 - %s: %s", title, message))
 		showWindowsNotification(title, message)
