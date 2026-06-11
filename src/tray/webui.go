@@ -63,10 +63,11 @@ func openSettings(cfg *config.Config, log *logger.Logger, tray *Tray) {
 		html := fmt.Sprintf(`<!DOCTYPE html>
 <html><head><meta charset="utf-8"><title>校园网保活 - 设置</title>
 <style>
-body { font-family: Microsoft YaHei, sans-serif; background: #1e1e2e; color: #cdd6f4; padding: 20px; max-width: 500px; margin: 0 auto; }
+body { font-family: Microsoft YaHei, sans-serif; background: #1e1e2e; color: #cdd6f4; padding: 20px; max-width: 600px; margin: 0 auto; }
 h2 { color: #89b4fa; border-bottom: 2px solid #313244; padding-bottom: 10px; }
 label { display: block; margin: 10px 0 5px; color: #a6adc8; }
 input[type=text], input[type=password], input[type=number], select { width: 100%%; padding: 8px; background: #313244; color: #cdd6f4; border: 1px solid #45475a; border-radius: 4px; box-sizing: border-box; }
+textarea { width: 100%%; padding: 8px; background: #313244; color: #cdd6f4; border: 1px solid #45475a; border-radius: 4px; box-sizing: border-box; height: 60px; font-family: monospace; font-size: 12px; }
 .checkbox-row { display: flex; align-items: center; gap: 8px; margin: 10px 0; }
 .checkbox-row input[type=checkbox] { width: auto; }
 .btn { padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; font-size: 14px; margin: 10px 5px 10px 0; }
@@ -78,6 +79,7 @@ input[type=text], input[type=password], input[type=number], select { width: 100%
 .msg { padding: 10px; margin: 10px 0; border-radius: 4px; display: none; }
 .msg-ok { background: #a6e3a122; color: #a6e3a1; }
 .msg-err { background: #f38ba822; color: #f38ba8; }
+.info-box { background: #313244; padding: 10px; border-radius: 4px; margin: 10px 0; font-size: 12px; color: #a6adc8; }
 </style></head><body>
 <h2>🔧 校园网保活工具 - 设置</h2>
 <form method="POST" action="/save">
@@ -95,6 +97,12 @@ input[type=text], input[type=password], input[type=number], select { width: 100%
 <select name="carrier">%s</select>
 <label>认证服务器</label>
 <input type="text" name="server" value="%s">
+<label>登录 API（留空使用默认）</label>
+<textarea name="custom_api" placeholder="粘贴从 F12 抓取的 cURL 命令或完整 URL">%s</textarea>
+<div class="info-box">
+<strong>默认登录 API：</strong><br>
+http://服务器:801/eportal/portal/login?callback=dr1003&login_method=1&user_account=账号&user_password=密码&...
+</div>
 <label>检测间隔（秒）</label>
 <input type="number" name="interval" value="%d" min="5" max="300">
 <div class="checkbox-row"><input type="checkbox" name="autostart" %s><label>开机自启</label></div>
@@ -112,6 +120,7 @@ input[type=text], input[type=password], input[type=number], select { width: 100%
 			config.DecodePassword(account.Password),
 			carrierOptions,
 			cfg.Server,
+			cfg.CustomLoginAPI,
 			cfg.CheckInterval,
 			checkedAutoStart,
 			checkedNotify,
@@ -169,6 +178,7 @@ input[type=text], input[type=password], input[type=number], select { width: 100%
 		}
 
 		cfg.Server = r.FormValue("server")
+		cfg.CustomLoginAPI = r.FormValue("custom_api")
 		fmt.Sscanf(r.FormValue("interval"), "%d", &cfg.CheckInterval)
 		cfg.AutoStart = r.FormValue("autostart") == "on"
 		cfg.Notification = r.FormValue("notification") == "on"

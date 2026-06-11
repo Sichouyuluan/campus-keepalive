@@ -50,6 +50,7 @@ type Tray struct {
 	// 状态跟踪
 	lastUpdate time.Time // 上次更新时间
 	stopCh     chan struct{}
+	intervalCh chan int   // 检测间隔变化通知
 }
 
 // New 创建托盘管理器
@@ -59,14 +60,18 @@ func New(cfg *config.Config, log *logger.Logger) *Tray {
 		account = &config.Account{}
 	}
 
+	loginMgr := network.NewLoginManager(cfg.Server, account.Username, config.DecodePassword(account.Password), account.Carrier, log)
+	loginMgr.UpdateCustomAPI(cfg.CustomLoginAPI)
+
 	return &Tray{
-		cfg:      cfg,
-		log:      log,
-		detector: network.NewDetector(cfg.Server),
-		loginMgr: network.NewLoginManager(cfg.Server, account.Username, config.DecodePassword(account.Password), account.Carrier, log),
-		status:   StatusOffline,
+		cfg:        cfg,
+		log:        log,
+		detector:   network.NewDetector(cfg.Server),
+		loginMgr:   loginMgr,
+		status:     StatusOffline,
 		lastUpdate: time.Now(),
-		stopCh:   make(chan struct{}),
+		stopCh:     make(chan struct{}),
+		intervalCh: make(chan int, 1),
 	}
 }
 
@@ -326,6 +331,13 @@ func (t *Tray) setInterval(seconds int) {
 
 	t.log.Info("检测间隔设置为: %d 秒", seconds)
 
+	// 发送间隔变化通知
+	select {
+	case t.intervalCh <- seconds:
+	default:
+		// channel 已满，丢弃
+	}
+
 	// 更新间隔显示
 	t.updateIntervalDisplay()
 }
@@ -403,6 +415,15 @@ func (t *Tray) checkLoop() {
 		case <-ticker.C:
 			t.log.Debug("定时检测触发")
 			t.checkAndReconnect()
+		case newInterval := <-t.intervalCh:
+			// 检测间隔变化，重新创建 ticker
+			ticker.Stop()
+			interval = newInterval
+			if interval < 5 {
+				interval = 5
+			}
+			ticker = time.NewTicker(time.Duration(interval) * time.Second)
+			t.log.Info("检测间隔已更新为 %d 秒", interval)
 		case <-t.stopCh:
 			t.log.Info("定时检测循环停止")
 			return
@@ -496,6 +517,9 @@ func (t *Tray) UpdateConfig(cfg *config.Config) {
 	if account != nil {
 		t.loginMgr.UpdateCredentials(cfg.Server, account.Username, config.DecodePassword(account.Password), account.Carrier)
 	}
+
+	// 更新自定义登录 API
+	t.loginMgr.UpdateCustomAPI(cfg.CustomLoginAPI)
 }
 
 // Stop 停止

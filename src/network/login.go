@@ -4,8 +4,10 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"net"
 	"net/http"
 	"regexp"
+	"strings"
 	"time"
 
 	"campus-keepalive/src/logger"
@@ -32,6 +34,7 @@ type LoginManager struct {
 	carrier   string
 	ip        string
 	mac       string
+	customAPI string        // 自定义登录 API
 	logger    *logger.Logger
 	client    *http.Client
 	lastLogin time.Time
@@ -39,18 +42,46 @@ type LoginManager struct {
 
 // NewLoginManager 创建登录管理器
 func NewLoginManager(server, username, password, carrier string, log *logger.Logger) *LoginManager {
+	ip := getLocalIP()
+	mac := getLocalMAC()
+
 	return &LoginManager{
 		server:   server,
 		username: username,
 		password: password,
 		carrier:  carrier,
-		ip:       "10.51.249.167", // 默认值，后续可以从配置或自动获取
-		mac:      "000000000000",
+		ip:       ip,
+		mac:      mac,
 		logger:   log,
 		client: &http.Client{
 			Timeout: 15 * time.Second,
 		},
 	}
+}
+
+// getLocalIP 获取本机 IP 地址
+func getLocalIP() string {
+	conn, err := net.Dial("udp", "8.8.8.8:80")
+	if err != nil {
+		return "10.0.0.1" // 默认值
+	}
+	defer conn.Close()
+	localAddr := conn.LocalAddr().(*net.UDPAddr)
+	return localAddr.IP.String()
+}
+
+// getLocalMAC 获取本机 MAC 地址
+func getLocalMAC() string {
+	interfaces, err := net.Interfaces()
+	if err != nil {
+		return "000000000000"
+	}
+	for _, iface := range interfaces {
+		if iface.Flags&net.FlagLoopback == 0 && len(iface.HardwareAddr) > 0 {
+			return strings.ReplaceAll(iface.HardwareAddr.String(), ":", "")
+		}
+	}
+	return "000000000000"
 }
 
 // Login 登录
@@ -68,15 +99,31 @@ func (m *LoginManager) Login() LoginResult {
 	suffix := getCarrierSuffix(m.carrier)
 	account := m.username + suffix
 
-	// 构建登录 URL（JSONP GET 请求）
-	loginURL := fmt.Sprintf("http://%s:801/eportal/portal/login?callback=dr1003&login_method=1&user_account=%s&user_password=%s&wlan_user_ip=%s&wlan_user_ipv6=&wlan_user_mac=%s&wlan_ac_ip=&wlan_ac_name=&jsVersion=4.2.1&terminal_type=1&lang=zh-cn&v=%d&lang=zh",
-		m.server,
-		account,
-		m.password,
-		m.ip,
-		m.mac,
-		time.Now().UnixMilli(),
-	)
+	// 构建登录 URL
+	var loginURL string
+	if m.customAPI != "" {
+		// 使用自定义 API，替换占位符
+		loginURL = m.customAPI
+		loginURL = strings.Replace(loginURL, "{username}", account, -1)
+		loginURL = strings.Replace(loginURL, "{password}", m.password, -1)
+		loginURL = strings.Replace(loginURL, "{ip}", m.ip, -1)
+		loginURL = strings.Replace(loginURL, "{mac}", m.mac, -1)
+		// 替换 user_account 和 user_password（如果存在）
+		loginURL = strings.Replace(loginURL, "user_account=2023405021", "user_account="+account, -1)
+		loginURL = strings.Replace(loginURL, "user_password=28287X", "user_password="+m.password, -1)
+		// 更新时间戳
+		loginURL = regexp.MustCompile(`v=\d+`).ReplaceAllString(loginURL, fmt.Sprintf("v=%d", time.Now().UnixMilli()))
+	} else {
+		// 使用默认 API
+		loginURL = fmt.Sprintf("http://%s:801/eportal/portal/login?callback=dr1003&login_method=1&user_account=%s&user_password=%s&wlan_user_ip=%s&wlan_user_ipv6=&wlan_user_mac=%s&wlan_ac_ip=&wlan_ac_name=&jsVersion=4.2.1&terminal_type=1&lang=zh-cn&v=%d&lang=zh",
+			m.server,
+			account,
+			m.password,
+			m.ip,
+			m.mac,
+			time.Now().UnixMilli(),
+		)
+	}
 
 	m.logger.Info("发送登录请求: 账号=%s", account)
 	m.lastLogin = time.Now()
@@ -184,6 +231,11 @@ func (m *LoginManager) UpdateCredentials(server, username, password, carrier str
 	m.username = username
 	m.password = password
 	m.carrier = carrier
+}
+
+// UpdateCustomAPI 更新自定义登录 API
+func (m *LoginManager) UpdateCustomAPI(customAPI string) {
+	m.customAPI = customAPI
 }
 
 // UpdateIP 更新 IP 地址

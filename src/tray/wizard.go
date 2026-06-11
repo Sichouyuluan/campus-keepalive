@@ -169,27 +169,35 @@ type ParseCurlResult struct {
 	Message string
 }
 
-// parseCurlCommand 解析 curl 命令
+// parseCurlCommand 解析 curl 命令（支持 bash 和 cmd 格式）
 func parseCurlCommand(curlCmd string) ParseCurlResult {
 	result := ParseCurlResult{}
 
 	// 清理命令
 	curlCmd = strings.TrimSpace(curlCmd)
 
+	// 规范化引号：将单引号替换为双引号，统一处理
+	normalizedCmd := strings.ReplaceAll(curlCmd, "'", "\"")
+
 	// 提取 URL
-	// 格式: curl 'http://xxx' 或 curl "http://xxx" 或 curl http://xxx
-	urlRegex := regexp.MustCompile(`(?:curl\s+(?:-[^\s]+\s+)*)['"]?(https?://[^'"\s\\]+)['"]?`)
-	matches := urlRegex.FindStringSubmatch(curlCmd)
+	// 格式: curl "http://xxx" 或 curl http://xxx
+	urlRegex := regexp.MustCompile(`curl\s+(?:-[^\s"]*\s+(?:"[^"]*"\s+)?)*"?(https?://[^"\s\\]+)"?`)
+	matches := urlRegex.FindStringSubmatch(normalizedCmd)
 	if len(matches) < 2 {
-		result.Message = "无法解析 URL，请确保粘贴的是完整的 curl 命令"
-		return result
+		// 尝试更简单的匹配
+		urlRegex2 := regexp.MustCompile(`(https?://[^\s"']+`)
+		matches = urlRegex2.FindStringSubmatch(normalizedCmd)
+		if len(matches) < 2 {
+			result.Message = "无法解析 URL，请确保粘贴的是完整的 curl 命令"
+			return result
+		}
 	}
 
-	result.URL = matches[1]
+	result.URL = strings.Trim(matches[1], "\"'")
 	result.Method = "GET" // 默认 GET
 
 	// 检查是否有 -d 参数（POST 请求）
-	if strings.Contains(curlCmd, " -d ") || strings.Contains(curlCmd, " --data ") {
+	if strings.Contains(normalizedCmd, " -d ") || strings.Contains(normalizedCmd, " --data ") {
 		result.Method = "POST"
 	}
 
